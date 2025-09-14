@@ -3,9 +3,9 @@
 
 # Directories to scan
 scan_directories:
-  - "/home/rewansh57/SIH/marine-data-platform/data"
+  - "/home/rewansh57/SIH/data"  # Primary SIH data directory
+  - "/home/rewansh57/SIH/marine-data-platform/data"  # Platform test data
   - "/home/rewansh57/SIH/marine-data-platform/imports"  # Add more directories as needed
-  - "/tmp/marine_data_uploads"  # Example upload directory
 
 # Database connections (override with environment variables)
 databases:

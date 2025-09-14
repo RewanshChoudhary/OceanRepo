@@ -1,0 +1,659 @@
+2025-09-15 00:07:34,097 - INFO - Connected to PostgreSQL
+2025-09-15 00:07:34,105 - INFO - Connected to MongoDB
+2025-09-15 00:07:54,932 - INFO - Connected to PostgreSQL
+2025-09-15 00:07:54,936 - INFO - Connected to MongoDB
+2025-09-15 00:07:54,949 - INFO - Processing sampling points: sampling_points_dataset.csv (100 records)
+2025-09-15 00:07:54,954 - WARNING - Error processing row 0: column "point_id" of relation "sampling_points" does not exist
+LINE 3:                         point_id, location, latitude, longit...
+                                ^
+
+2025-09-15 00:07:54,955 - WARNING - Error processing row 1: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,956 - WARNING - Error processing row 2: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,956 - WARNING - Error processing row 3: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,957 - WARNING - Error processing row 4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,958 - WARNING - Error processing row 5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,958 - WARNING - Error processing row 6: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,959 - WARNING - Error processing row 7: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,960 - WARNING - Error processing row 8: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,960 - WARNING - Error processing row 9: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,961 - WARNING - Error processing row 10: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,963 - WARNING - Error processing row 11: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,965 - WARNING - Error processing row 12: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,967 - WARNING - Error processing row 13: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,968 - WARNING - Error processing row 14: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,969 - WARNING - Error processing row 15: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,969 - WARNING - Error processing row 16: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,970 - WARNING - Error processing row 17: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,971 - WARNING - Error processing row 18: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,971 - WARNING - Error processing row 19: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,972 - WARNING - Error processing row 20: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,973 - WARNING - Error processing row 21: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,973 - WARNING - Error processing row 22: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,974 - WARNING - Error processing row 23: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,975 - WARNING - Error processing row 24: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,975 - WARNING - Error processing row 25: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,976 - WARNING - Error processing row 26: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,977 - WARNING - Error processing row 27: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,977 - WARNING - Error processing row 28: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,978 - WARNING - Error processing row 29: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,978 - WARNING - Error processing row 30: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,979 - WARNING - Error processing row 31: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,980 - WARNING - Error processing row 32: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,981 - WARNING - Error processing row 33: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,982 - WARNING - Error processing row 34: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,982 - WARNING - Error processing row 35: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,984 - WARNING - Error processing row 36: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,986 - WARNING - Error processing row 37: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,987 - WARNING - Error processing row 38: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,988 - WARNING - Error processing row 39: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,989 - WARNING - Error processing row 40: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,989 - WARNING - Error processing row 41: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,990 - WARNING - Error processing row 42: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,993 - WARNING - Error processing row 43: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,994 - WARNING - Error processing row 44: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,996 - WARNING - Error processing row 45: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,997 - WARNING - Error processing row 46: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,998 - WARNING - Error processing row 47: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,998 - WARNING - Error processing row 48: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,999 - WARNING - Error processing row 49: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:54,999 - WARNING - Error processing row 50: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,001 - WARNING - Error processing row 51: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,002 - WARNING - Error processing row 52: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,003 - WARNING - Error processing row 53: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,004 - WARNING - Error processing row 54: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,004 - WARNING - Error processing row 55: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,005 - WARNING - Error processing row 56: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,006 - WARNING - Error processing row 57: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,006 - WARNING - Error processing row 58: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,007 - WARNING - Error processing row 59: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,007 - WARNING - Error processing row 60: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,008 - WARNING - Error processing row 61: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,009 - WARNING - Error processing row 62: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,011 - WARNING - Error processing row 63: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,012 - WARNING - Error processing row 64: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,014 - WARNING - Error processing row 65: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,015 - WARNING - Error processing row 66: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,015 - WARNING - Error processing row 67: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,016 - WARNING - Error processing row 68: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,017 - WARNING - Error processing row 69: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,018 - WARNING - Error processing row 70: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,019 - WARNING - Error processing row 71: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,019 - WARNING - Error processing row 72: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,021 - WARNING - Error processing row 73: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,023 - WARNING - Error processing row 74: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,024 - WARNING - Error processing row 75: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,025 - WARNING - Error processing row 76: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,026 - WARNING - Error processing row 77: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,027 - WARNING - Error processing row 78: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,028 - WARNING - Error processing row 79: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,029 - WARNING - Error processing row 80: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,029 - WARNING - Error processing row 81: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,030 - WARNING - Error processing row 82: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,031 - WARNING - Error processing row 83: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,031 - WARNING - Error processing row 84: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,032 - WARNING - Error processing row 85: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,033 - WARNING - Error processing row 86: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,033 - WARNING - Error processing row 87: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,034 - WARNING - Error processing row 88: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,035 - WARNING - Error processing row 89: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,036 - WARNING - Error processing row 90: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,038 - WARNING - Error processing row 91: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,040 - WARNING - Error processing row 92: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,041 - WARNING - Error processing row 93: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,041 - WARNING - Error processing row 94: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,042 - WARNING - Error processing row 95: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,043 - WARNING - Error processing row 96: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,043 - WARNING - Error processing row 97: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,044 - WARNING - Error processing row 98: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,044 - WARNING - Error processing row 99: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,045 - INFO - Successfully processed 0 sampling points
+2025-09-15 00:07:55,046 - INFO - Processing sampling points: Sampling_Points_Dataset (2).csv (100 records)
+2025-09-15 00:07:55,048 - WARNING - Error processing row 0: column "point_id" of relation "sampling_points" does not exist
+LINE 3:                         point_id, location, latitude, longit...
+                                ^
+
+2025-09-15 00:07:55,049 - WARNING - Error processing row 1: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,050 - WARNING - Error processing row 2: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,051 - WARNING - Error processing row 3: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,052 - WARNING - Error processing row 4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,052 - WARNING - Error processing row 5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,053 - WARNING - Error processing row 6: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,053 - WARNING - Error processing row 7: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,054 - WARNING - Error processing row 8: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,055 - WARNING - Error processing row 9: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,055 - WARNING - Error processing row 10: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,056 - WARNING - Error processing row 11: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,058 - WARNING - Error processing row 12: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,059 - WARNING - Error processing row 13: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,061 - WARNING - Error processing row 14: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,062 - WARNING - Error processing row 15: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,062 - WARNING - Error processing row 16: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,063 - WARNING - Error processing row 17: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,064 - WARNING - Error processing row 18: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,064 - WARNING - Error processing row 19: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,065 - WARNING - Error processing row 20: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,066 - WARNING - Error processing row 21: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,066 - WARNING - Error processing row 22: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,067 - WARNING - Error processing row 23: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,067 - WARNING - Error processing row 24: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,068 - WARNING - Error processing row 25: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,069 - WARNING - Error processing row 26: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,070 - WARNING - Error processing row 27: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,071 - WARNING - Error processing row 28: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,072 - WARNING - Error processing row 29: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,072 - WARNING - Error processing row 30: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,073 - WARNING - Error processing row 31: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,073 - WARNING - Error processing row 32: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,074 - WARNING - Error processing row 33: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,075 - WARNING - Error processing row 34: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,075 - WARNING - Error processing row 35: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,076 - WARNING - Error processing row 36: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,076 - WARNING - Error processing row 37: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,077 - WARNING - Error processing row 38: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,079 - WARNING - Error processing row 39: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,081 - WARNING - Error processing row 40: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,083 - WARNING - Error processing row 41: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,083 - WARNING - Error processing row 42: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,084 - WARNING - Error processing row 43: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,085 - WARNING - Error processing row 44: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,085 - WARNING - Error processing row 45: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,086 - WARNING - Error processing row 46: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,087 - WARNING - Error processing row 47: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,087 - WARNING - Error processing row 48: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,088 - WARNING - Error processing row 49: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,090 - WARNING - Error processing row 50: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,091 - WARNING - Error processing row 51: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,093 - WARNING - Error processing row 52: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,094 - WARNING - Error processing row 53: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,095 - WARNING - Error processing row 54: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,096 - WARNING - Error processing row 55: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,097 - WARNING - Error processing row 56: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,098 - WARNING - Error processing row 57: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,098 - WARNING - Error processing row 58: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,099 - WARNING - Error processing row 59: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,099 - WARNING - Error processing row 60: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,100 - WARNING - Error processing row 61: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,101 - WARNING - Error processing row 62: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,101 - WARNING - Error processing row 63: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,102 - WARNING - Error processing row 64: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,103 - WARNING - Error processing row 65: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,103 - WARNING - Error processing row 66: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,105 - WARNING - Error processing row 67: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,107 - WARNING - Error processing row 68: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,108 - WARNING - Error processing row 69: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,109 - WARNING - Error processing row 70: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,110 - WARNING - Error processing row 71: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,110 - WARNING - Error processing row 72: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,111 - WARNING - Error processing row 73: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,112 - WARNING - Error processing row 74: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,112 - WARNING - Error processing row 75: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,113 - WARNING - Error processing row 76: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,114 - WARNING - Error processing row 77: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,114 - WARNING - Error processing row 78: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,115 - WARNING - Error processing row 79: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,116 - WARNING - Error processing row 80: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,118 - WARNING - Error processing row 81: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,120 - WARNING - Error processing row 82: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,122 - WARNING - Error processing row 83: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,123 - WARNING - Error processing row 84: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,124 - WARNING - Error processing row 85: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,124 - WARNING - Error processing row 86: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,125 - WARNING - Error processing row 87: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,126 - WARNING - Error processing row 88: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,126 - WARNING - Error processing row 89: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,127 - WARNING - Error processing row 90: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,127 - WARNING - Error processing row 91: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,128 - WARNING - Error processing row 92: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,129 - WARNING - Error processing row 93: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,129 - WARNING - Error processing row 94: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,131 - WARNING - Error processing row 95: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,133 - WARNING - Error processing row 96: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,135 - WARNING - Error processing row 97: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,136 - WARNING - Error processing row 98: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,136 - WARNING - Error processing row 99: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,136 - INFO - Successfully processed 0 sampling points
+2025-09-15 00:07:55,137 - INFO - Processing sampling points: sampling_points.csv (3 records)
+2025-09-15 00:07:55,138 - WARNING - Error processing row 0: column "point_id" of relation "sampling_points" does not exist
+LINE 3:                         point_id, location, latitude, longit...
+                                ^
+
+2025-09-15 00:07:55,139 - WARNING - Error processing row 1: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,140 - WARNING - Error processing row 2: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,140 - INFO - Successfully processed 0 sampling points
+2025-09-15 00:07:55,141 - INFO - Processing oceanographic data: oceanographic_data.csv (6 records)
+2025-09-15 00:07:55,142 - WARNING - Error processing row 0: column "measurement_id" of relation "oceanographic_data" does not exist
+LINE 3:                         measurement_id, point_id, measuremen...
+                                ^
+
+2025-09-15 00:07:55,142 - WARNING - Error processing row 1: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,144 - WARNING - Error processing row 2: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,145 - WARNING - Error processing row 3: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,145 - WARNING - Error processing row 4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,146 - WARNING - Error processing row 5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,146 - INFO - Successfully processed 0 oceanographic measurements
+2025-09-15 00:07:55,147 - INFO - Processing oceanographic data: Oceanographic Data.csv (100 records)
+2025-09-15 00:07:55,148 - WARNING - Error processing row 0: column "measurement_id" of relation "oceanographic_data" does not exist
+LINE 3:                         measurement_id, point_id, measuremen...
+                                ^
+
+2025-09-15 00:07:55,149 - WARNING - Error processing row 1: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,150 - WARNING - Error processing row 2: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,150 - WARNING - Error processing row 3: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,151 - WARNING - Error processing row 4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,153 - WARNING - Error processing row 5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,155 - WARNING - Error processing row 6: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,157 - WARNING - Error processing row 7: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,157 - WARNING - Error processing row 8: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,158 - WARNING - Error processing row 9: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,159 - WARNING - Error processing row 10: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,159 - WARNING - Error processing row 11: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,160 - WARNING - Error processing row 12: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,161 - WARNING - Error processing row 13: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,161 - WARNING - Error processing row 14: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,162 - WARNING - Error processing row 15: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,162 - WARNING - Error processing row 16: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,163 - WARNING - Error processing row 17: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,164 - WARNING - Error processing row 18: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,166 - WARNING - Error processing row 19: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,168 - WARNING - Error processing row 20: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,170 - WARNING - Error processing row 21: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,171 - WARNING - Error processing row 22: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,172 - WARNING - Error processing row 23: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,173 - WARNING - Error processing row 24: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,173 - WARNING - Error processing row 25: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,174 - WARNING - Error processing row 26: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,174 - WARNING - Error processing row 27: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,175 - WARNING - Error processing row 28: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,176 - WARNING - Error processing row 29: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,176 - WARNING - Error processing row 30: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,177 - WARNING - Error processing row 31: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,178 - WARNING - Error processing row 32: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,179 - WARNING - Error processing row 33: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,182 - WARNING - Error processing row 34: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,183 - WARNING - Error processing row 35: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,184 - WARNING - Error processing row 36: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,185 - WARNING - Error processing row 37: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,186 - WARNING - Error processing row 38: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,186 - WARNING - Error processing row 39: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,187 - WARNING - Error processing row 40: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,187 - WARNING - Error processing row 41: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,188 - WARNING - Error processing row 42: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,189 - WARNING - Error processing row 43: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,190 - WARNING - Error processing row 44: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,192 - WARNING - Error processing row 45: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,194 - WARNING - Error processing row 46: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,195 - WARNING - Error processing row 47: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,196 - WARNING - Error processing row 48: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,197 - WARNING - Error processing row 49: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,198 - WARNING - Error processing row 50: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,199 - WARNING - Error processing row 51: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,199 - WARNING - Error processing row 52: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,200 - WARNING - Error processing row 53: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,201 - WARNING - Error processing row 54: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,201 - WARNING - Error processing row 55: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,202 - WARNING - Error processing row 56: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,202 - WARNING - Error processing row 57: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,203 - WARNING - Error processing row 58: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,204 - WARNING - Error processing row 59: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,204 - WARNING - Error processing row 60: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,206 - WARNING - Error processing row 61: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,208 - WARNING - Error processing row 62: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,210 - WARNING - Error processing row 63: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,211 - WARNING - Error processing row 64: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,211 - WARNING - Error processing row 65: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,212 - WARNING - Error processing row 66: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,213 - WARNING - Error processing row 67: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,213 - WARNING - Error processing row 68: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,214 - WARNING - Error processing row 69: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,215 - WARNING - Error processing row 70: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,216 - WARNING - Error processing row 71: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,217 - WARNING - Error processing row 72: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,219 - WARNING - Error processing row 73: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,221 - WARNING - Error processing row 74: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,222 - WARNING - Error processing row 75: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,223 - WARNING - Error processing row 76: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,224 - WARNING - Error processing row 77: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,224 - WARNING - Error processing row 78: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,225 - WARNING - Error processing row 79: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,226 - WARNING - Error processing row 80: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,226 - WARNING - Error processing row 81: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,227 - WARNING - Error processing row 82: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,228 - WARNING - Error processing row 83: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,228 - WARNING - Error processing row 84: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,229 - WARNING - Error processing row 85: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,230 - WARNING - Error processing row 86: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,230 - WARNING - Error processing row 87: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,231 - WARNING - Error processing row 88: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,231 - WARNING - Error processing row 89: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,233 - WARNING - Error processing row 90: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,235 - WARNING - Error processing row 91: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,237 - WARNING - Error processing row 92: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,238 - WARNING - Error processing row 93: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,238 - WARNING - Error processing row 94: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,239 - WARNING - Error processing row 95: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,240 - WARNING - Error processing row 96: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,240 - WARNING - Error processing row 97: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,241 - WARNING - Error processing row 98: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,242 - WARNING - Error processing row 99: current transaction is aborted, commands ignored until end of transaction block
+
+2025-09-15 00:07:55,242 - INFO - Successfully processed 0 oceanographic measurements
+2025-09-15 00:07:55,243 - INFO - Processing species data: species.csv (3 records)
+2025-09-15 00:07:55,266 - WARNING - Error processing row 0: E11000 duplicate key error collection: marine_db.taxonomy_data index: species_id_1 dup key: { species_id: "sp_001" }, full error: {'index': 0, 'code': 11000, 'errmsg': 'E11000 duplicate key error collection: marine_db.taxonomy_data index: species_id_1 dup key: { species_id: "sp_001" }', 'keyPattern': {'species_id': 1}, 'keyValue': {'species_id': 'sp_001'}}
+2025-09-15 00:07:55,268 - WARNING - Error processing row 1: E11000 duplicate key error collection: marine_db.taxonomy_data index: species_id_1 dup key: { species_id: "sp_002" }, full error: {'index': 0, 'code': 11000, 'errmsg': 'E11000 duplicate key error collection: marine_db.taxonomy_data index: species_id_1 dup key: { species_id: "sp_002" }', 'keyPattern': {'species_id': 1}, 'keyValue': {'species_id': 'sp_002'}}
+2025-09-15 00:07:55,270 - WARNING - Error processing row 2: E11000 duplicate key error collection: marine_db.taxonomy_data index: species_id_1 dup key: { species_id: "sp_003" }, full error: {'index': 0, 'code': 11000, 'errmsg': 'E11000 duplicate key error collection: marine_db.taxonomy_data index: species_id_1 dup key: { species_id: "sp_003" }', 'keyPattern': {'species_id': 1}, 'keyValue': {'species_id': 'sp_003'}}
+2025-09-15 00:07:55,270 - INFO - Successfully processed 0 species records
+2025-09-15 00:07:55,273 - INFO - Processing species data: Taxonomy.csv (100 records)
+2025-09-15 00:07:55,431 - INFO - Successfully processed 100 species records
+2025-09-15 00:07:55,438 - INFO - Processing eDNA data: eDNA Sequence.csv (100 records)
+2025-09-15 00:07:55,442 - WARNING - Error processing row 0: E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_001" }, full error: {'index': 0, 'code': 11000, 'errmsg': 'E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_001" }', 'keyPattern': {'sequence_id': 1}, 'keyValue': {'sequence_id': 'seq_001'}}
+2025-09-15 00:07:55,445 - WARNING - Error processing row 1: E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_002" }, full error: {'index': 0, 'code': 11000, 'errmsg': 'E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_002" }', 'keyPattern': {'sequence_id': 1}, 'keyValue': {'sequence_id': 'seq_002'}}
+2025-09-15 00:07:55,447 - WARNING - Error processing row 2: E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_003" }, full error: {'index': 0, 'code': 11000, 'errmsg': 'E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_003" }', 'keyPattern': {'sequence_id': 1}, 'keyValue': {'sequence_id': 'seq_003'}}
+2025-09-15 00:07:55,450 - WARNING - Error processing row 3: E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_004" }, full error: {'index': 0, 'code': 11000, 'errmsg': 'E11000 duplicate key error collection: marine_db.edna_sequences index: sequence_id_1 dup key: { sequence_id: "seq_004" }', 'keyPattern': {'sequence_id': 1}, 'keyValue': {'sequence_id': 'seq_004'}}
+2025-09-15 00:07:55,701 - INFO - Successfully processed 96 eDNA sequences
+2025-09-15 00:07:55,704 - ERROR - Error during processing: column "point_id" does not exist
+LINE 1: SELECT COUNT(*) FROM sampling_points WHERE point_id LIKE 'SI...
+                                                   ^
+

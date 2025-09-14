@@ -87,7 +87,7 @@ def check_python_dependencies():
     print("🐍 Checking Python dependencies...")
     
     required_packages = [
-        'psycopg2', 'pymongo', 'python-dotenv', 'numpy', 'pandas'
+        'psycopg2', 'pymongo', 'dotenv', 'numpy', 'pandas'
     ]
     
     missing_packages = []

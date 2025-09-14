@@ -369,7 +369,7 @@ def main():
     
     # Connect to MongoDB
     mongo_client, db = get_mongodb_connection()
-    if not db:
+    if db is None:
         print("❌ Failed to connect to MongoDB")
         sys.exit(1)
     

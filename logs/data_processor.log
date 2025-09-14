@@ -1,0 +1,35 @@
+2025-09-15 00:03:47,210 - __main__ - INFO - 🚀 Starting automated data processing pipeline
+2025-09-15 00:03:47,225 - __main__ - INFO - Connected to PostgreSQL
+2025-09-15 00:03:47,227 - __main__ - ERROR - MongoDB connection error: Database objects do not implement truth value testing or bool(). Please compare with None instead: database is not None
+2025-09-15 00:04:08,780 - __main__ - INFO - 🚀 Starting automated data processing pipeline
+2025-09-15 00:04:08,784 - __main__ - INFO - Connected to PostgreSQL
+2025-09-15 00:04:08,787 - __main__ - INFO - Connected to MongoDB
+2025-09-15 00:04:08,787 - __main__ - INFO - 🔍 Running schema matcher to discover files...
+2025-09-15 00:04:08,791 - automation.run_schema_matcher - INFO - === Starting Automated Schema Matcher ===
+2025-09-15 00:04:08,791 - automation.run_schema_matcher - INFO - Platform: Linux 6.16.3-200.fc42.x86_64
+2025-09-15 00:04:08,791 - automation.run_schema_matcher - INFO - Python: 3.13.7 (main, Aug 14 2025, 00:00:00) [GCC 15.2.1 20250808 (Red Hat 15.2.1-1)]
+2025-09-15 00:04:08,791 - automation.run_schema_matcher - INFO - Processing directory: /home/rewansh57/SIH/data
+2025-09-15 00:04:08,791 - automation.run_schema_matcher - INFO - Starting schema matching for directory: /home/rewansh57/SIH/data
+2025-09-15 00:04:08,791 - automation.run_schema_matcher - INFO - Output file: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250915_000408.json
+2025-09-15 00:04:10,036 - automation.run_schema_matcher - INFO - Schema matching completed successfully
+2025-09-15 00:04:10,039 - automation.run_schema_matcher - INFO - Found 33 total schema matches
+2025-09-15 00:04:10,040 - automation.run_schema_matcher - INFO - Processing directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-15 00:04:10,041 - automation.run_schema_matcher - INFO - Starting schema matching for directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-15 00:04:10,041 - automation.run_schema_matcher - INFO - Output file: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250915_000410.json
+2025-09-15 00:04:11,360 - automation.run_schema_matcher - INFO - Schema matching completed successfully
+2025-09-15 00:04:11,361 - automation.run_schema_matcher - INFO - Found 9 total schema matches
+2025-09-15 00:04:11,362 - automation.run_schema_matcher - WARNING - Directory not found or not accessible: /home/rewansh57/SIH/marine-data-platform/imports
+2025-09-15 00:04:11,362 - automation.run_schema_matcher - INFO - === Automated Schema Matcher completed successfully ===
+2025-09-15 00:04:11,363 - __main__ - INFO - 📊 Using schema match report: schema_matches_20250915_000410.json
+2025-09-15 00:04:11,364 - __main__ - INFO - 📁 Discovered 3 files to process
+2025-09-15 00:04:11,365 - __main__ - ERROR - Error calculating hash for /home/rewansh57/SIH/data/home/rewansh57/SIH/marine-data-platform/data/test_oceanographic_data.csv: [Errno 2] No such file or directory: '/home/rewansh57/SIH/data/home/rewansh57/SIH/marine-data-platform/data/test_oceanographic_data.csv'
+2025-09-15 00:04:11,365 - __main__ - INFO - Processing file: test_oceanographic_data.csv -> 
+2025-09-15 00:04:11,365 - __main__ - WARNING - No processor for schema: 
+2025-09-15 00:04:11,366 - __main__ - ERROR - Error calculating hash for /home/rewansh57/SIH/data/home/rewansh57/SIH/marine-data-platform/data/test_species_data.csv: [Errno 2] No such file or directory: '/home/rewansh57/SIH/data/home/rewansh57/SIH/marine-data-platform/data/test_species_data.csv'
+2025-09-15 00:04:11,366 - __main__ - INFO - Processing file: test_species_data.csv -> 
+2025-09-15 00:04:11,368 - __main__ - ERROR - Error processing species file: [Errno 2] No such file or directory: '/home/rewansh57/SIH/data//home/rewansh57/SIH/marine-data-platform/data/test_species_data.csv'
+2025-09-15 00:04:11,368 - __main__ - ERROR - Error calculating hash for /home/rewansh57/SIH/data/home/rewansh57/SIH/marine-data-platform/data/sample_sequences.json: [Errno 2] No such file or directory: '/home/rewansh57/SIH/data/home/rewansh57/SIH/marine-data-platform/data/sample_sequences.json'
+2025-09-15 00:04:11,368 - __main__ - INFO - Processing file: sample_sequences.json -> 
+2025-09-15 00:04:11,369 - __main__ - ERROR - Error processing eDNA file: [Errno 2] No such file or directory: '/home/rewansh57/SIH/data//home/rewansh57/SIH/marine-data-platform/data/sample_sequences.json'
+2025-09-15 00:04:11,369 - __main__ - INFO - ✅ Automated processing completed
+2025-09-15 00:04:11,370 - __main__ - INFO - 📊 Summary: 0 processed, 3 failed, 0 skipped

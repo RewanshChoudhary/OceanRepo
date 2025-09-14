@@ -316,7 +316,7 @@ def main():
         print("❌ Failed to connect to PostgreSQL")
         sys.exit(1)
         
-    if not db:
+    if db is None:
         print("❌ Failed to connect to MongoDB")
         sys.exit(1)
     

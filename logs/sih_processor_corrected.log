@@ -1,0 +1,1045 @@
+2025-09-15 00:10:31,206 - INFO - Connected to PostgreSQL
+2025-09-15 00:10:31,209 - INFO - Connected to MongoDB
+2025-09-15 00:10:31,210 - INFO - 🚀 Starting SIH data processing with corrected schema...
+2025-09-15 00:10:31,210 - INFO - 📍 Processing sampling points file: sampling_points_dataset.csv
+2025-09-15 00:10:31,212 - INFO - Processing sampling points: sampling_points_dataset.csv (100 records)
+2025-09-15 00:10:31,239 - WARNING - Error processing row 0: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2024-04-10T14...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,241 - WARNING - Error processing row 1: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-06-18T15:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,243 - WARNING - Error processing row 2: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-05-05T23:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,244 - WARNING - Error processing row 3: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-06-15T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,247 - WARNING - Error processing row 4: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2024-04-20T12...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,248 - WARNING - Error processing row 5: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2024-05-26T01:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,249 - WARNING - Error processing row 6: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-02-11T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,250 - WARNING - Error processing row 7: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-05-26T13:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,251 - WARNING - Error processing row 8: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-04-05T16:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,252 - WARNING - Error processing row 9: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-03-23T07...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,253 - WARNING - Error processing row 10: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-02-21T22:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,253 - WARNING - Error processing row 11: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-03-27T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,254 - WARNING - Error processing row 12: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-10-01T06:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,255 - WARNING - Error processing row 13: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-01-10T22:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,256 - WARNING - Error processing row 14: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-05-31T00...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,257 - WARNING - Error processing row 15: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-06-25T06:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,258 - WARNING - Error processing row 16: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-08-07T03:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,259 - WARNING - Error processing row 17: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-05-17T20...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,259 - WARNING - Error processing row 18: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-02-08T0...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,260 - WARNING - Error processing row 19: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2024-08-08T18:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,261 - WARNING - Error processing row 20: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-07-27T04:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,262 - WARNING - Error processing row 21: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-09-04T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,262 - WARNING - Error processing row 22: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-11-24T0...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,263 - WARNING - Error processing row 23: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-04-20T11:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,265 - WARNING - Error processing row 24: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-10-25T23:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,267 - WARNING - Error processing row 25: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-01-22T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,269 - WARNING - Error processing row 26: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2024-07-17T00:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,269 - WARNING - Error processing row 27: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-01-03T14:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,270 - WARNING - Error processing row 28: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-05-19T15:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,271 - WARNING - Error processing row 29: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-01-05T11:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,272 - WARNING - Error processing row 30: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-04-12T0...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,273 - WARNING - Error processing row 31: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-07-01T0...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,273 - WARNING - Error processing row 32: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-07-11T15:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,274 - WARNING - Error processing row 33: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-09-01T10:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,276 - WARNING - Error processing row 34: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-08-02T07:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,279 - WARNING - Error processing row 35: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-04-23T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,281 - WARNING - Error processing row 36: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-11-03T2...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,282 - WARNING - Error processing row 37: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-11-15T06:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,283 - WARNING - Error processing row 38: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-09-25T02...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,284 - WARNING - Error processing row 39: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-04-05T04:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,285 - WARNING - Error processing row 40: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-09-17T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,286 - WARNING - Error processing row 41: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-01-23T2...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,287 - WARNING - Error processing row 42: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-12-04T00...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,288 - WARNING - Error processing row 43: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-09-06T12:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,289 - WARNING - Error processing row 44: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-02-12T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,290 - WARNING - Error processing row 45: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-12-31T21:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,291 - WARNING - Error processing row 46: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-04-23T23:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,293 - WARNING - Error processing row 47: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-06-24T04:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,296 - WARNING - Error processing row 48: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-01-01T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,298 - WARNING - Error processing row 49: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-03-31T14:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,299 - WARNING - Error processing row 50: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-09-06T21:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,299 - WARNING - Error processing row 51: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-01-15T17:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,300 - WARNING - Error processing row 52: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-06-03T19:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,301 - WARNING - Error processing row 53: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-03-01T07:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,302 - WARNING - Error processing row 54: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2024-07-20T12:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,302 - WARNING - Error processing row 55: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-01-06T03:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,303 - WARNING - Error processing row 56: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-06-19T00:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,305 - WARNING - Error processing row 57: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-02-18T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,308 - WARNING - Error processing row 58: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-05-15T01:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,309 - WARNING - Error processing row 59: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-07-18T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,310 - WARNING - Error processing row 60: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-05-10T00:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,311 - WARNING - Error processing row 61: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-05-27T14...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,312 - WARNING - Error processing row 62: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-12-09T21:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,313 - WARNING - Error processing row 63: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-03-23T07:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,314 - WARNING - Error processing row 64: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-07-24T0...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,315 - WARNING - Error processing row 65: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2024-05-15T12...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,316 - WARNING - Error processing row 66: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-07-28T03:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,316 - WARNING - Error processing row 67: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-07-30T05:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,317 - WARNING - Error processing row 68: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-08-18T2...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,318 - WARNING - Error processing row 69: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-08-14T0...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,319 - WARNING - Error processing row 70: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-04-08T15:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,319 - WARNING - Error processing row 71: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-02-01T14:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,321 - WARNING - Error processing row 72: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2024-01-01T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,323 - WARNING - Error processing row 73: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-07-29T05:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,325 - WARNING - Error processing row 74: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-11-24T19:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,326 - WARNING - Error processing row 75: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2024-05-21T23:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,327 - WARNING - Error processing row 76: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2024-07-30T00...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,327 - WARNING - Error processing row 77: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-01-31T00:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,328 - WARNING - Error processing row 78: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-01-18T22...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,329 - WARNING - Error processing row 79: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-12-11T06:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,330 - WARNING - Error processing row 80: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-05-22T01:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,331 - WARNING - Error processing row 81: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-04-05T00:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,331 - WARNING - Error processing row 82: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-04-12T1...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,333 - WARNING - Error processing row 83: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-07-20T06:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,335 - WARNING - Error processing row 84: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-10-01T12:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,337 - WARNING - Error processing row 85: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-05-07T22:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,338 - WARNING - Error processing row 86: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-09-17T15:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,339 - WARNING - Error processing row 87: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-01-23T09...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,340 - WARNING - Error processing row 88: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2023-09-08T14:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,341 - WARNING - Error processing row 89: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-10-05T15:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,342 - WARNING - Error processing row 90: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2023-06-28T02:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,343 - WARNING - Error processing row 91: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-05-25T13:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,344 - WARNING - Error processing row 92: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Indian Ocean', '2023-06-02T19...
+                                      ^
+HINT:  "In" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,344 - WARNING - Error processing row 93: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Arabian Sea', '2023-05-21T09:...
+                                      ^
+HINT:  "Ar" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,345 - WARNING - Error processing row 94: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-03-14T15:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,346 - WARNING - Error processing row 95: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-10-06T0...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,346 - WARNING - Error processing row 96: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Andaman Sea', '2024-01-18T11:...
+                                      ^
+HINT:  "An" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,347 - WARNING - Error processing row 97: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-02-07T03:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,350 - WARNING - Error processing row 98: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Lakshadweep', '2024-08-04T04:...
+                                      ^
+HINT:  "La" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,352 - WARNING - Error processing row 99: parse error - invalid geometry
+LINE 4:                     ) VALUES ('Bay of Bengal', '2023-12-27T2...
+                                      ^
+HINT:  "Ba" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,352 - INFO - Successfully processed 0 sampling points
+2025-09-15 00:10:31,353 - INFO - 📍 Processing sampling points file: Sampling_Points_Dataset (2).csv
+2025-09-15 00:10:31,354 - INFO - Processing sampling points: Sampling_Points_Dataset (2).csv (100 records)
+2025-09-15 00:10:31,355 - WARNING - Error processing row 0: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.00)', '2025-09-14...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,356 - WARNING - Error processing row 1: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.00)', '2025-09-14...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,357 - WARNING - Error processing row 2: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.00)', '2025-09-14...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,357 - WARNING - Error processing row 3: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,358 - WARNING - Error processing row 4: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,359 - WARNING - Error processing row 5: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,360 - WARNING - Error processing row 6: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,360 - WARNING - Error processing row 7: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,361 - WARNING - Error processing row 8: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,363 - WARNING - Error processing row 9: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(51.50, -0.12)', '2025-09-14T...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,364 - WARNING - Error processing row 10: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,365 - WARNING - Error processing row 11: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(29.96, -90.07)', '2025-09-14...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,366 - WARNING - Error processing row 12: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(51.5, -0.12)', '2025-09-14T1...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,366 - WARNING - Error processing row 13: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(19.07, 72.87)', '2025-09-14T...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,367 - WARNING - Error processing row 14: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-34.6, -58.38)', '2025-09-14...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,368 - WARNING - Error processing row 15: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(30.04, 31.23)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,369 - WARNING - Error processing row 16: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.0)', '2025-09-14T...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,369 - WARNING - Error processing row 17: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,370 - WARNING - Error processing row 18: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(55.75, 37.61)', '2025-09-14T...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,373 - WARNING - Error processing row 19: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(30.04, 31.23)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,375 - WARNING - Error processing row 20: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(55.75, 37.61)', '2025-09-14T...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,376 - WARNING - Error processing row 21: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-22.9, -43.17)', '2025-09-14...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,377 - WARNING - Error processing row 22: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,377 - WARNING - Error processing row 23: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.0)', '2025-09-14T...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,378 - WARNING - Error processing row 24: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(55.75, 37.61)', '2025-09-14T...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,379 - WARNING - Error processing row 25: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(39.9, 116.4)', '2025-09-14T1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,379 - WARNING - Error processing row 26: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.44, -70.66)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,380 - WARNING - Error processing row 27: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,381 - WARNING - Error processing row 28: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(39.9, 116.4)', '2025-09-14T1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,382 - WARNING - Error processing row 29: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(39.9, 116.4)', '2025-09-14T1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,384 - WARNING - Error processing row 30: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,386 - WARNING - Error processing row 31: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(55.75, 37.61)', '2025-09-14T...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,388 - WARNING - Error processing row 32: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(48.85, 2.35)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,389 - WARNING - Error processing row 33: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(13.75, 100.49)', '2025-09-14...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,390 - WARNING - Error processing row 34: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-12.04, -77.04)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,391 - WARNING - Error processing row 35: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.0)', '2025-09-14T...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,392 - WARNING - Error processing row 36: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(51.5, -0.12)', '2025-09-14T1...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,393 - WARNING - Error processing row 37: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(29.96, -90.07)', '2025-09-14...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,394 - WARNING - Error processing row 38: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.44, -70.66)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,394 - WARNING - Error processing row 39: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(13.75, 100.49)', '2025-09-14...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,395 - WARNING - Error processing row 40: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(35.68, 139.75)', '2025-09-14...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,396 - WARNING - Error processing row 41: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(35.68, 139.75)', '2025-09-14...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,397 - WARNING - Error processing row 42: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.0)', '2025-09-14T...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,398 - WARNING - Error processing row 43: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(38.9, -77.03)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,399 - WARNING - Error processing row 44: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(35.68, 139.75)', '2025-09-14...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,402 - WARNING - Error processing row 45: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-34.6, -58.38)', '2025-09-14...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,404 - WARNING - Error processing row 46: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(51.5, -0.12)', '2025-09-14T1...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,404 - WARNING - Error processing row 47: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(41.9, 12.49)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,405 - WARNING - Error processing row 48: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(35.68, 139.75)', '2025-09-14...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,406 - WARNING - Error processing row 49: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(28.61, 77.2)', '2025-09-14T1...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,407 - WARNING - Error processing row 50: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-12.04, -77.04)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,407 - WARNING - Error processing row 51: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(13.75, 100.49)', '2025-09-14...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,408 - WARNING - Error processing row 52: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.0)', '2025-09-14T...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,409 - WARNING - Error processing row 53: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(30.04, 31.23)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,410 - WARNING - Error processing row 54: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(55.75, 37.61)', '2025-09-14T...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,413 - WARNING - Error processing row 55: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(35.68, 139.75)', '2025-09-14...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,415 - WARNING - Error processing row 56: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(51.5, -0.12)', '2025-09-14T1...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,416 - WARNING - Error processing row 57: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,416 - WARNING - Error processing row 58: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(29.96, -90.07)', '2025-09-14...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,418 - WARNING - Error processing row 59: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(41.9, 12.49)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,419 - WARNING - Error processing row 60: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-22.9, -43.17)', '2025-09-14...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,420 - WARNING - Error processing row 61: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(41.9, 12.49)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,420 - WARNING - Error processing row 62: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(29.96, -90.07)', '2025-09-14...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,421 - WARNING - Error processing row 63: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(41.9, 12.49)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,422 - WARNING - Error processing row 64: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(51.5, -0.12)', '2025-09-14T1...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,423 - WARNING - Error processing row 65: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(28.61, 77.2)', '2025-09-14T1...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,423 - WARNING - Error processing row 66: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,424 - WARNING - Error processing row 67: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(30.04, 31.23)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,425 - WARNING - Error processing row 68: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.44, -70.66)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,426 - WARNING - Error processing row 69: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(48.85, 2.35)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,429 - WARNING - Error processing row 70: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,431 - WARNING - Error processing row 71: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(13.75, 100.49)', '2025-09-14...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,432 - WARNING - Error processing row 72: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,433 - WARNING - Error processing row 73: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.0)', '2025-09-14T...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,433 - WARNING - Error processing row 74: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-12.04, -77.04)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,434 - WARNING - Error processing row 75: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(35.68, 139.75)', '2025-09-14...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,435 - WARNING - Error processing row 76: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-12.04, -77.04)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,436 - WARNING - Error processing row 77: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(29.96, -90.07)', '2025-09-14...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,436 - WARNING - Error processing row 78: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(28.61, 77.2)', '2025-09-14T1...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,437 - WARNING - Error processing row 79: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(38.9, -77.03)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,438 - WARNING - Error processing row 80: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.44, -70.66)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,441 - WARNING - Error processing row 81: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(51.5, -0.12)', '2025-09-14T1...
+                                      ^
+HINT:  "(5" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,443 - WARNING - Error processing row 82: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(41.9, 12.49)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,444 - WARNING - Error processing row 83: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(41.9, 12.49)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,445 - WARNING - Error processing row 84: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-12.04, -77.04)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,446 - WARNING - Error processing row 85: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-34.6, -58.38)', '2025-09-14...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,447 - WARNING - Error processing row 86: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(34.05, -118.25)', '2025-09-1...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,448 - WARNING - Error processing row 87: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(48.85, 2.35)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,449 - WARNING - Error processing row 88: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(40.71, -74.0)', '2025-09-14T...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,449 - WARNING - Error processing row 89: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(35.68, 139.75)', '2025-09-14...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,450 - WARNING - Error processing row 90: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(30.04, 31.23)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,451 - WARNING - Error processing row 91: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(41.9, 12.49)', '2025-09-14T1...
+                                      ^
+HINT:  "(4" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,452 - WARNING - Error processing row 92: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(37.98, 23.72)', '2025-09-14T...
+                                      ^
+HINT:  "(3" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,452 - WARNING - Error processing row 93: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-33.86, 151.21)', '2025-09-1...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,453 - WARNING - Error processing row 94: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(-22.9, -43.17)', '2025-09-14...
+                                      ^
+HINT:  "(-" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,455 - WARNING - Error processing row 95: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(28.61, 77.20)', '2025-09-14T...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,457 - WARNING - Error processing row 96: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(28.61, 77.20)', '2025-09-14T...
+                                      ^
+HINT:  "(2" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,459 - WARNING - Error processing row 97: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(19.07, 72.87)', '2025-09-14T...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,460 - WARNING - Error processing row 98: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(19.07, 72.87)', '2025-09-14T...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,461 - WARNING - Error processing row 99: parse error - invalid geometry
+LINE 4:                     ) VALUES ('(19.07, 72.87)', '2025-09-14T...
+                                      ^
+HINT:  "(1" <-- parse error at position 2 within geometry
+
+2025-09-15 00:10:31,461 - INFO - Successfully processed 0 sampling points
+2025-09-15 00:10:31,461 - INFO - 📍 Processing sampling points file: sampling_points.csv
+2025-09-15 00:10:31,462 - INFO - Processing sampling points: sampling_points.csv (3 records)
+2025-09-15 00:10:31,463 - WARNING - Error processing row 0: parse error - invalid geometry
+LINE 4:                     ) VALUES ('', '2024-01-15T10:30:00'::tim...
+                                      ^
+
+2025-09-15 00:10:31,463 - WARNING - Error processing row 1: parse error - invalid geometry
+LINE 4:                     ) VALUES ('', '2024-01-15T11:45:00'::tim...
+                                      ^
+
+2025-09-15 00:10:31,464 - WARNING - Error processing row 2: parse error - invalid geometry
+LINE 4:                     ) VALUES ('', '2024-01-15T14:20:00'::tim...
+                                      ^
+
+2025-09-15 00:10:31,464 - INFO - Successfully processed 0 sampling points
+2025-09-15 00:10:31,465 - INFO - 🌡️ Processing oceanographic file: oceanographic_data.csv
+2025-09-15 00:10:31,466 - INFO - Processing oceanographic data: oceanographic_data.csv (6 records)
+2025-09-15 00:10:31,488 - INFO - Successfully processed 6 oceanographic measurements
+2025-09-15 00:10:31,488 - INFO - 🌡️ Processing oceanographic file: Oceanographic Data.csv
+2025-09-15 00:10:31,489 - INFO - Processing oceanographic data: Oceanographic Data.csv (100 records)
+2025-09-15 00:10:31,716 - INFO - Successfully processed 100 oceanographic measurements
+2025-09-15 00:10:31,717 - INFO - 🐟 Processing species file: species.csv
+2025-09-15 00:10:31,724 - INFO - Processing species data: species.csv (3 records)
+2025-09-15 00:10:31,734 - INFO - Successfully processed 3 species records
+2025-09-15 00:10:31,735 - INFO - 🐟 Processing species file: Taxonomy.csv
+2025-09-15 00:10:31,741 - INFO - Processing species data: Taxonomy.csv (100 records)
+2025-09-15 00:10:31,899 - INFO - Successfully processed 100 species records
+2025-09-15 00:10:31,900 - INFO - 🧬 Processing eDNA file: eDNA Sequence.csv
+2025-09-15 00:10:31,901 - INFO - Processing eDNA data: eDNA Sequence.csv (100 records)
+2025-09-15 00:10:31,957 - INFO - Successfully processed 100 eDNA sequences
+2025-09-15 00:10:31,959 - ERROR - Error during processing: invalid input syntax for type json
+LINE 1: ...CT COUNT(*) FROM sampling_points WHERE metadata = 'SIH Impor...
+                                                             ^
+DETAIL:  Token "SIH" is invalid.
+CONTEXT:  JSON data, line 1: SIH...
+

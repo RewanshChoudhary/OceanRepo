@@ -1,0 +1,34 @@
+file_name,file_type,schema_name,schema_type,match_score,coverage,matched_fields
+morphometric_data.json,json,morphometric_data,postgres_table,0.717,1.0,10
+morphometric_data.json,json,sampling_points,postgres_table,0.42,0.5,5
+morphometric_data.json,json,oceanographic_data,postgres_table,0.382,0.5,5
+sampling_points_dataset.csv,csv,sampling_points,postgres_table,0.625,1.0,5
+sampling_points_dataset.csv,csv,oceanographic_data,postgres_table,0.344,0.8,4
+sampling_points_dataset.csv,csv,morphometric_data,postgres_table,0.233,0.6,3
+oceanographic_data.csv,csv,oceanographic_data,postgres_table,0.273,0.6,3
+oceanographic_data.csv,csv,sampling_points,postgres_table,0.223,0.4,2
+oceanographic_data.csv,csv,morphometric_data,postgres_table,0.083,0.2,1
+sampling_points.csv,csv,sampling_points,postgres_table,0.375,0.6,3
+sampling_points.csv,csv,oceanographic_data,postgres_table,0.162,0.4,2
+sampling_points.csv,csv,morphometric_data,postgres_table,0.083,0.2,1
+species.csv,csv,taxonomy_data,mongo_collection,0.714,0.909,10
+species.csv,csv,morphometric_data,postgres_table,0.207,0.273,3
+species.csv,csv,research_studies,mongo_collection,0.162,0.273,3
+Morphometric Data.csv,csv,morphometric_data,postgres_table,0.5,1.0,6
+Morphometric Data.csv,csv,sampling_points,postgres_table,0.45,0.667,4
+Morphometric Data.csv,csv,oceanographic_data,postgres_table,0.327,0.667,4
+Sampling_Points_Dataset (2).csv,csv,sampling_points,postgres_table,0.625,1.0,5
+Sampling_Points_Dataset (2).csv,csv,oceanographic_data,postgres_table,0.344,0.8,4
+Sampling_Points_Dataset (2).csv,csv,morphometric_data,postgres_table,0.233,0.6,3
+Oceanographic Data.csv,csv,sampling_points,postgres_table,0.473,0.8,4
+Oceanographic Data.csv,csv,oceanographic_data,postgres_table,0.455,1.0,5
+Oceanographic Data.csv,csv,morphometric_data,postgres_table,0.233,0.6,3
+Metadata Tag.csv,csv,oceanographic_data,postgres_table,0.137,0.286,2
+Metadata Tag.csv,csv,data_quality_logs,postgres_table,0.114,0.143,1
+Metadata Tag.csv,csv,sampling_points,postgres_table,0.1,0.143,1
+Taxonomy.csv,csv,taxonomy_data,mongo_collection,0.714,0.909,10
+Taxonomy.csv,csv,morphometric_data,postgres_table,0.207,0.273,3
+Taxonomy.csv,csv,research_studies,mongo_collection,0.162,0.273,3
+eDNA Sequence.csv,csv,edna_sequences,mongo_collection,0.448,1.0,6
+eDNA Sequence.csv,csv,sampling_points,postgres_table,0.3,0.5,3
+eDNA Sequence.csv,csv,data_quality_logs,postgres_table,0.229,0.333,2

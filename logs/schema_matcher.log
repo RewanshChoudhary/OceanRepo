@@ -143,3 +143,133 @@
 2025-09-14 23:22:23,846 - __main__ - WARNING - Directory not found or not accessible: /tmp/marine_data_uploads
 2025-09-14 23:22:23,846 - __main__ - INFO - === Automated Schema Matcher completed successfully ===
 2025-09-14 23:22:24,028 - __main__ - INFO - Scheduled schema matching completed successfully
+2025-09-14 23:46:40,535 - __main__ - INFO - === Starting Automated Schema Matcher ===
+2025-09-14 23:46:40,536 - __main__ - INFO - Platform: Linux 6.16.3-200.fc42.x86_64
+2025-09-14 23:46:40,536 - __main__ - INFO - Python: 3.13.7 (main, Aug 14 2025, 00:00:00) [GCC 15.2.1 20250808 (Red Hat 15.2.1-1)]
+2025-09-14 23:46:41,314 - __main__ - INFO - Processing directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:46:41,314 - __main__ - INFO - Starting schema matching for directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:46:41,314 - __main__ - INFO - Output file: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250914_234641.json
+2025-09-14 23:46:41,316 - __main__ - ERROR - Unexpected error running schema matcher: [Errno 2] No such file or directory: '/home/rewansh57/SIH/marine-data-platform/Cursor-1.5.11-x86_64.AppImage'
+2025-09-14 23:46:41,317 - __main__ - WARNING - Directory not found or not accessible: /home/rewansh57/SIH/marine-data-platform/imports
+2025-09-14 23:46:41,317 - __main__ - WARNING - Directory not found or not accessible: /tmp/marine_data_uploads
+2025-09-14 23:46:41,317 - __main__ - ERROR - === Automated Schema Matcher completed with errors ===
+2025-09-14 23:54:32,684 - __main__ - INFO - === Starting Automated Schema Matcher ===
+2025-09-14 23:54:32,684 - __main__ - INFO - Platform: Linux 6.16.3-200.fc42.x86_64
+2025-09-14 23:54:32,684 - __main__ - INFO - Python: 3.13.7 (main, Aug 14 2025, 00:00:00) [GCC 15.2.1 20250808 (Red Hat 15.2.1-1)]
+2025-09-14 23:54:32,977 - __main__ - INFO - Processing directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:54:32,978 - __main__ - INFO - Starting schema matching for directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:54:32,978 - __main__ - INFO - Output file: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250914_235432.json
+2025-09-14 23:54:33,373 - __main__ - INFO - Starting Marine Data Schema Matcher
+2025-09-14 23:54:33,374 - __main__ - INFO - Found 3 files to analyze in /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:54:33,374 - __main__ - INFO - Analyzing: test_oceanographic_data.csv
+2025-09-14 23:54:33,380 - __main__ - INFO - Analyzing: test_species_data.csv
+2025-09-14 23:54:33,384 - __main__ - INFO - Analyzing: sample_sequences.json
+2025-09-14 23:54:33,387 - __main__ - INFO - Extracting PostgreSQL table schemas...
+2025-09-14 23:54:33,405 - __main__ - INFO - Found 6 PostgreSQL tables
+2025-09-14 23:54:33,420 - __main__ - INFO - Extracting MongoDB collection schemas...
+2025-09-14 23:54:33,425 - __main__ - INFO - Found 3 MongoDB collections
+2025-09-14 23:54:33,425 - __main__ - INFO - Matching 3 files against 9 schemas
+2025-09-14 23:54:33,426 - __main__ - INFO - Matching: test_oceanographic_data.csv
+2025-09-14 23:54:33,440 - __main__ - INFO - Best match for test_oceanographic_data.csv: sampling_points (score: 0.50)
+2025-09-14 23:54:33,440 - __main__ - INFO - Matching: test_species_data.csv
+2025-09-14 23:54:33,454 - __main__ - INFO - Best match for test_species_data.csv: taxonomy_data (score: 0.63)
+2025-09-14 23:54:33,454 - __main__ - INFO - Matching: sample_sequences.json
+2025-09-14 23:54:33,491 - __main__ - INFO - Best match for sample_sequences.json: edna_sequences (score: 0.62)
+2025-09-14 23:54:33,495 - __main__ - INFO - JSON report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250914_235432.json
+2025-09-14 23:54:33,497 - __main__ - INFO - CSV report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250914_235432.csv
+2025-09-14 23:54:34,146 - __main__ - INFO - Schema matching completed successfully
+2025-09-14 23:54:34,147 - __main__ - INFO - Found 9 total schema matches
+2025-09-14 23:54:34,148 - __main__ - WARNING - Directory not found or not accessible: /home/rewansh57/SIH/marine-data-platform/imports
+2025-09-14 23:54:34,148 - __main__ - WARNING - Directory not found or not accessible: /tmp/marine_data_uploads
+2025-09-14 23:54:34,148 - __main__ - INFO - === Automated Schema Matcher completed successfully ===
+2025-09-14 23:54:52,839 - __main__ - INFO - Executing scheduled schema matching...
+2025-09-14 23:54:53,118 - __main__ - INFO - === Starting Automated Schema Matcher ===
+2025-09-14 23:54:53,118 - __main__ - INFO - Platform: Linux 6.16.3-200.fc42.x86_64
+2025-09-14 23:54:53,118 - __main__ - INFO - Python: 3.13.7 (main, Aug 14 2025, 00:00:00) [GCC 15.2.1 20250808 (Red Hat 15.2.1-1)]
+2025-09-14 23:54:53,422 - __main__ - INFO - Processing directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:54:53,422 - __main__ - INFO - Starting schema matching for directory: /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:54:53,422 - __main__ - INFO - Output file: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250914_235453.json
+2025-09-14 23:54:53,864 - __main__ - INFO - Starting Marine Data Schema Matcher
+2025-09-14 23:54:53,865 - __main__ - INFO - Found 3 files to analyze in /home/rewansh57/SIH/marine-data-platform/data
+2025-09-14 23:54:53,865 - __main__ - INFO - Analyzing: sample_sequences.json
+2025-09-14 23:54:53,865 - __main__ - INFO - Analyzing: test_oceanographic_data.csv
+2025-09-14 23:54:53,869 - __main__ - INFO - Analyzing: test_species_data.csv
+2025-09-14 23:54:53,875 - __main__ - INFO - Extracting PostgreSQL table schemas...
+2025-09-14 23:54:53,890 - __main__ - INFO - Found 6 PostgreSQL tables
+2025-09-14 23:54:53,894 - __main__ - INFO - Extracting MongoDB collection schemas...
+2025-09-14 23:54:53,897 - __main__ - INFO - Found 3 MongoDB collections
+2025-09-14 23:54:53,897 - __main__ - INFO - Matching 3 files against 9 schemas
+2025-09-14 23:54:53,897 - __main__ - INFO - Matching: sample_sequences.json
+2025-09-14 23:54:53,919 - __main__ - INFO - Best match for sample_sequences.json: edna_sequences (score: 0.62)
+2025-09-14 23:54:53,920 - __main__ - INFO - Matching: test_oceanographic_data.csv
+2025-09-14 23:54:53,932 - __main__ - INFO - Best match for test_oceanographic_data.csv: sampling_points (score: 0.50)
+2025-09-14 23:54:53,932 - __main__ - INFO - Matching: test_species_data.csv
+2025-09-14 23:54:53,944 - __main__ - INFO - Best match for test_species_data.csv: taxonomy_data (score: 0.63)
+2025-09-14 23:54:53,946 - __main__ - INFO - JSON report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250914_235453.json
+2025-09-14 23:54:53,947 - __main__ - INFO - CSV report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250914_235453.csv
+2025-09-14 23:54:54,627 - __main__ - INFO - Schema matching completed successfully
+2025-09-14 23:54:54,628 - __main__ - INFO - Found 9 total schema matches
+2025-09-14 23:54:54,628 - __main__ - WARNING - Directory not found or not accessible: /home/rewansh57/SIH/marine-data-platform/imports
+2025-09-14 23:54:54,629 - __main__ - WARNING - Directory not found or not accessible: /tmp/marine_data_uploads
+2025-09-14 23:54:54,629 - __main__ - INFO - === Automated Schema Matcher completed successfully ===
+2025-09-14 23:54:54,729 - __main__ - INFO - Scheduled schema matching completed successfully
+2025-09-15 00:04:09,225 - __main__ - INFO - Starting Marine Data Schema Matcher
+2025-09-15 00:04:09,226 - __main__ - INFO - Found 11 files to analyze in /home/rewansh57/SIH/data
+2025-09-15 00:04:09,226 - __main__ - INFO - Analyzing: morphometric_data.json
+2025-09-15 00:04:09,226 - __main__ - INFO - Analyzing: sampling_points_dataset.csv
+2025-09-15 00:04:09,240 - __main__ - INFO - Analyzing: oceanographic_data.csv
+2025-09-15 00:04:09,242 - __main__ - INFO - Analyzing: sampling_points.csv
+2025-09-15 00:04:09,244 - __main__ - INFO - Analyzing: species.csv
+2025-09-15 00:04:09,248 - __main__ - INFO - Analyzing: Morphometric Data.csv
+2025-09-15 00:04:09,251 - __main__ - INFO - Analyzing: Sampling_Points_Dataset (2).csv
+2025-09-15 00:04:09,253 - __main__ - INFO - Analyzing: Oceanographic Data.csv
+2025-09-15 00:04:09,256 - __main__ - INFO - Analyzing: Metadata Tag.csv
+2025-09-15 00:04:09,260 - __main__ - INFO - Analyzing: Taxonomy.csv
+2025-09-15 00:04:09,264 - __main__ - INFO - Analyzing: eDNA Sequence.csv
+2025-09-15 00:04:09,272 - __main__ - INFO - Extracting PostgreSQL table schemas...
+2025-09-15 00:04:09,293 - __main__ - INFO - Found 6 PostgreSQL tables
+2025-09-15 00:04:09,296 - __main__ - INFO - Extracting MongoDB collection schemas...
+2025-09-15 00:04:09,299 - __main__ - INFO - Found 3 MongoDB collections
+2025-09-15 00:04:09,299 - __main__ - INFO - Matching 11 files against 9 schemas
+2025-09-15 00:04:09,299 - __main__ - INFO - Matching: morphometric_data.json
+2025-09-15 00:04:09,317 - __main__ - INFO - Best match for morphometric_data.json: morphometric_data (score: 0.72)
+2025-09-15 00:04:09,318 - __main__ - INFO - Matching: sampling_points_dataset.csv
+2025-09-15 00:04:09,326 - __main__ - INFO - Best match for sampling_points_dataset.csv: sampling_points (score: 0.62)
+2025-09-15 00:04:09,327 - __main__ - INFO - Matching: oceanographic_data.csv
+2025-09-15 00:04:09,335 - __main__ - INFO - Best match for oceanographic_data.csv: oceanographic_data (score: 0.27)
+2025-09-15 00:04:09,335 - __main__ - INFO - Matching: sampling_points.csv
+2025-09-15 00:04:09,344 - __main__ - INFO - Best match for sampling_points.csv: sampling_points (score: 0.38)
+2025-09-15 00:04:09,344 - __main__ - INFO - Matching: species.csv
+2025-09-15 00:04:09,367 - __main__ - INFO - Best match for species.csv: taxonomy_data (score: 0.71)
+2025-09-15 00:04:09,367 - __main__ - INFO - Matching: Morphometric Data.csv
+2025-09-15 00:04:09,380 - __main__ - INFO - Best match for Morphometric Data.csv: morphometric_data (score: 0.50)
+2025-09-15 00:04:09,381 - __main__ - INFO - Matching: Sampling_Points_Dataset (2).csv
+2025-09-15 00:04:09,387 - __main__ - INFO - Best match for Sampling_Points_Dataset (2).csv: sampling_points (score: 0.62)
+2025-09-15 00:04:09,387 - __main__ - INFO - Matching: Oceanographic Data.csv
+2025-09-15 00:04:09,394 - __main__ - INFO - Best match for Oceanographic Data.csv: sampling_points (score: 0.47)
+2025-09-15 00:04:09,394 - __main__ - INFO - Matching: Metadata Tag.csv
+2025-09-15 00:04:09,408 - __main__ - INFO - Best match for Metadata Tag.csv: oceanographic_data (score: 0.14)
+2025-09-15 00:04:09,408 - __main__ - INFO - Matching: Taxonomy.csv
+2025-09-15 00:04:09,421 - __main__ - INFO - Best match for Taxonomy.csv: taxonomy_data (score: 0.71)
+2025-09-15 00:04:09,422 - __main__ - INFO - Matching: eDNA Sequence.csv
+2025-09-15 00:04:09,432 - __main__ - INFO - Best match for eDNA Sequence.csv: edna_sequences (score: 0.45)
+2025-09-15 00:04:09,436 - __main__ - INFO - JSON report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250915_000408.json
+2025-09-15 00:04:09,437 - __main__ - INFO - CSV report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250915_000408.csv
+2025-09-15 00:04:10,576 - __main__ - INFO - Starting Marine Data Schema Matcher
+2025-09-15 00:04:10,576 - __main__ - INFO - Found 3 files to analyze in /home/rewansh57/SIH/marine-data-platform/data
+2025-09-15 00:04:10,577 - __main__ - INFO - Analyzing: test_oceanographic_data.csv
+2025-09-15 00:04:10,582 - __main__ - INFO - Analyzing: test_species_data.csv
+2025-09-15 00:04:10,585 - __main__ - INFO - Analyzing: sample_sequences.json
+2025-09-15 00:04:10,588 - __main__ - INFO - Extracting PostgreSQL table schemas...
+2025-09-15 00:04:10,605 - __main__ - INFO - Found 6 PostgreSQL tables
+2025-09-15 00:04:10,609 - __main__ - INFO - Extracting MongoDB collection schemas...
+2025-09-15 00:04:10,612 - __main__ - INFO - Found 3 MongoDB collections
+2025-09-15 00:04:10,612 - __main__ - INFO - Matching 3 files against 9 schemas
+2025-09-15 00:04:10,612 - __main__ - INFO - Matching: test_oceanographic_data.csv
+2025-09-15 00:04:10,628 - __main__ - INFO - Best match for test_oceanographic_data.csv: sampling_points (score: 0.50)
+2025-09-15 00:04:10,628 - __main__ - INFO - Matching: test_species_data.csv
+2025-09-15 00:04:10,643 - __main__ - INFO - Best match for test_species_data.csv: taxonomy_data (score: 0.63)
+2025-09-15 00:04:10,643 - __main__ - INFO - Matching: sample_sequences.json
+2025-09-15 00:04:10,679 - __main__ - INFO - Best match for sample_sequences.json: edna_sequences (score: 0.62)
+2025-09-15 00:04:10,682 - __main__ - INFO - JSON report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250915_000410.json
+2025-09-15 00:04:10,685 - __main__ - INFO - CSV report saved to: /home/rewansh57/SIH/marine-data-platform/reports/schema_matches_20250915_000410.csv
