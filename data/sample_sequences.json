@@ -1,0 +1,56 @@
+{
+  "reference_sequences": [
+    {
+      "species_id": "sp_001",
+      "species_name": "Epinephelus coioides",
+      "common_name": "Orange-spotted grouper",
+      "sequence": "AGTCGATCGTAGCTACGTAGCTAGCTACGTAGCTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGC",
+      "gene_region": "COI",
+      "sequence_length": 76
+    },
+    {
+      "species_id": "sp_002", 
+      "species_name": "Acropora digitifera",
+      "common_name": "Finger coral",
+      "sequence": "TCGATCGAGTCGATCGAGTCGATCGAGTCGATCGAGTCGATCGAGTCGATCGAGTCGATCGAGTCGATCGAGTCG",
+      "gene_region": "18S rRNA",
+      "sequence_length": 72
+    },
+    {
+      "species_id": "sp_003",
+      "species_name": "Sepia pharaonis", 
+      "common_name": "Pharaoh cuttlefish",
+      "sequence": "GCTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGT",
+      "gene_region": "COI",
+      "sequence_length": 72
+    },
+    {
+      "species_id": "sp_004",
+      "species_name": "Sargassum wightii",
+      "common_name": "Wight's sargassum", 
+      "sequence": "CGATCGTAGCTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACG",
+      "gene_region": "rbcL",
+      "sequence_length": 70
+    }
+  ],
+  "test_sequences": [
+    {
+      "test_id": "test_001",
+      "sequence": "AGTCGATCGTAGCTACGTAGCTAGCTACGTAGCTAGCTAC",
+      "expected_match": "sp_001",
+      "description": "Partial sequence from Orange-spotted grouper"
+    },
+    {
+      "test_id": "test_002", 
+      "sequence": "TCGATCGAGTCGATCGAGTCGATCGAGTCGATCGAGT",
+      "expected_match": "sp_002",
+      "description": "Partial sequence from Finger coral"
+    },
+    {
+      "test_id": "test_003",
+      "sequence": "ATCGATCGATCGATCGATCGATCGATCGATCGATCG",
+      "expected_match": null,
+      "description": "Random sequence - should not match any species"
+    }
+  ]
+}

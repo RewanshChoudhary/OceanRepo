@@ -1,0 +1,19 @@
+# Database drivers
+psycopg2-binary==2.9.7
+pymongo==4.5.0
+
+# Environment management
+python-dotenv==1.0.0
+
+# Data processing
+numpy==1.24.3
+pandas==2.0.3
+
+# Utilities
+uuid==1.30
+datetime
+
+# Development and testing
+pytest==7.4.2
+black==23.7.0
+flake8==6.0.0

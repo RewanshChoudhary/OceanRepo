@@ -1,0 +1,4 @@
+species_id,kingdom,phylum,class,family,genus,species_name,common_name,conservation_status
+sp_001,Animalia,Chordata,Actinopterygii,Serranidae,Epinephelus,Epinephelus coioides,Orange-spotted grouper,Near Threatened
+sp_002,Animalia,Cnidaria,Anthozoa,Acroporidae,Acropora,Acropora digitifera,Finger coral,Vulnerable
+sp_003,Animalia,Mollusca,Cephalopoda,Sepiidae,Sepia,Sepia pharaonis,Pharaoh cuttlefish,Least Concern

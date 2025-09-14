@@ -1,0 +1,84 @@
+# Schema Matcher Configuration
+# Configuration for automated schema matching and scheduling
+
+# Directories to scan
+scan_directories:
+  - "/home/rewansh57/SIH/marine-data-platform/data"
+  - "/home/rewansh57/SIH/marine-data-platform/imports"  # Add more directories as needed
+  - "/tmp/marine_data_uploads"  # Example upload directory
+
+# Database connections (override with environment variables)
+databases:
+  postgres:
+    host: "localhost"
+    port: 5433  # Docker PostgreSQL port
+    database: "marine_db"
+    user: "marineuser"
+    password: "marinepass123"  # Use env var POSTGRES_PASSWORD instead
+  
+  mongodb:
+    connection_string: "mongodb://localhost:27018/"  # Docker MongoDB port
+    database: "marine_db"
+
+# Matching configuration
+matching:
+  similarity_threshold: 0.6  # Minimum similarity for field matching (0.0-1.0)
+  max_matches_per_file: 3    # Maximum matches to report per file
+
+# Output configuration
+output:
+  format: "all"  # console, json, csv, all
+  directory: "/home/rewansh57/SIH/marine-data-platform/reports"
+  filename_template: "schema_matches_{timestamp}"
+  
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "/home/rewansh57/SIH/marine-data-platform/logs/schema_matcher.log"
+  max_size_mb: 10
+  backup_count: 5
+  console_logging: false  # Set to false for cron jobs
+
+# Scheduling configuration
+scheduling:
+  enabled: true
+  
+  # Cron-style schedule (minute hour day month weekday)
+  # Examples:
+  # "0 2 * * *"     # Daily at 2:00 AM
+  # "0 */6 * * *"   # Every 6 hours
+  # "0 9,17 * * 1-5" # 9 AM and 5 PM on weekdays
+  cron_schedule: "0 2 * * *"  # Daily at 2:00 AM
+  
+  # Systemd timer alternative (for systemd-based scheduling)
+  systemd:
+    enabled: true
+    on_calendar: "daily"  # daily, hourly, weekly, or specific time like "02:00"
+    
+# Notifications
+notifications:
+  email:
+    enabled: false
+    smtp_server: "localhost"
+    smtp_port: 587
+    username: ""
+    password: ""  # Use env var EMAIL_PASSWORD
+    from_address: "schema-matcher@marine-platform.local"
+    to_addresses:
+      - "admin@marine-platform.local"
+    send_on_errors: true
+    send_on_no_matches: false
+    send_summary: true
+
+# File monitoring
+file_monitoring:
+  watch_for_new_files: true
+  file_age_threshold_hours: 24  # Only process files newer than this
+  skip_already_processed: true
+  processed_files_log: "/home/rewansh57/SIH/marine-data-platform/logs/processed_files.json"
+
+# Performance settings
+performance:
+  max_file_size_mb: 100  # Skip files larger than this
+  csv_sample_rows: 100   # Number of rows to sample for CSV analysis
+  timeout_seconds: 300   # Overall timeout for the matching process

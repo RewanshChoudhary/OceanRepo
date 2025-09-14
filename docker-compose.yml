@@ -1,0 +1,80 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgis/postgis:15-3.3
+    container_name: marine-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-marineuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marinepass123}
+      POSTGRES_DB: ${POSTGRES_DB:-marine_db}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/postgres_schema.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-marineuser} -d ${POSTGRES_DB:-marine_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - marine-network
+
+  mongodb:
+    image: mongo:6
+    container_name: marine-mongodb
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGODB_DB:-marine_db}
+    ports:
+      - "${MONGODB_PORT:-27017}:27017"
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo localhost:27017/marine_db --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - marine-network
+
+  # Optional: MongoDB Express for database management
+  mongo-express:
+    image: mongo-express:latest
+    container_name: marine-mongo-express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin123
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    networks:
+      - marine-network
+
+  # Optional: pgAdmin for PostgreSQL management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: marine-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@marine.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    networks:
+      - marine-network
+
+volumes:
+  postgres_data:
+    driver: local
+  mongodb_data:
+    driver: local
+
+networks:
+  marine-network:
+    driver: bridge

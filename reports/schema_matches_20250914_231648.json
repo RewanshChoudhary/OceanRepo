@@ -1,0 +1,558 @@
+{
+  "timestamp": "2025-09-14T23:16:48.881977",
+  "directory_scanned": "/home/rewansh57/SIH/marine-data-platform/data",
+  "files_analyzed": 3,
+  "schemas_found": 9,
+  "matches": {
+    "/home/rewansh57/SIH/marine-data-platform/data/test_oceanographic_data.csv": {
+      "file_info": {
+        "file_path": "/home/rewansh57/SIH/marine-data-platform/data/test_oceanographic_data.csv",
+        "file_type": "csv",
+        "file_size": 345,
+        "fields": {
+          "sampling_point_id": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 4
+          },
+          "location_lat": {
+            "type": "float64",
+            "nullable": "False",
+            "unique_values": 4
+          },
+          "location_lon": {
+            "type": "float64",
+            "nullable": "False",
+            "unique_values": 4
+          },
+          "depth_meters": {
+            "type": "float64",
+            "nullable": "False",
+            "unique_values": 4
+          },
+          "temperature": {
+            "type": "float64",
+            "nullable": "False",
+            "unique_values": 4
+          },
+          "salinity": {
+            "type": "float64",
+            "nullable": "False",
+            "unique_values": 4
+          },
+          "ph": {
+            "type": "float64",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "dissolved_oxygen": {
+            "type": "float64",
+            "nullable": "False",
+            "unique_values": 4
+          },
+          "timestamp": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 4
+          }
+        },
+        "sample_data": {
+          "sampling_point_id": "sp_001",
+          "location_lat": 10.5,
+          "location_lon": 76.2,
+          "depth_meters": 15.5,
+          "temperature": 29.5,
+          "salinity": 35.2,
+          "ph": 8.1,
+          "dissolved_oxygen": 6.8,
+          "timestamp": "2024-09-10 10:30:00"
+        },
+        "total_rows": 4,
+        "columns": [
+          "sampling_point_id",
+          "location_lat",
+          "location_lon",
+          "depth_meters",
+          "temperature",
+          "salinity",
+          "ph",
+          "dissolved_oxygen",
+          "timestamp"
+        ]
+      },
+      "potential_matches": [
+        {
+          "schema_name": "sampling_points",
+          "schema_type": "postgres_table",
+          "match_score": 0.4982456140350877,
+          "coverage": 0.5555555555555556,
+          "field_matches": [
+            {
+              "file_field": "location_lon",
+              "schema_field": "location",
+              "similarity": 0.8421052631578947
+            },
+            {
+              "file_field": "timestamp",
+              "schema_field": "timestamp",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "location_lat",
+              "schema_field": "location",
+              "similarity": 0.8421052631578947
+            },
+            {
+              "file_field": "depth_meters",
+              "schema_field": "depth_meters",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "sampling_point_id",
+              "schema_field": "id",
+              "similarity": 0.8
+            }
+          ],
+          "matched_fields": 5,
+          "total_file_fields": 9,
+          "total_schema_fields": 8
+        },
+        {
+          "schema_name": "oceanographic_data",
+          "schema_type": "postgres_table",
+          "match_score": 0.3902641980445184,
+          "coverage": 0.5555555555555556,
+          "field_matches": [
+            {
+              "file_field": "location_lon",
+              "schema_field": "location",
+              "similarity": 0.8421052631578947
+            },
+            {
+              "file_field": "timestamp",
+              "schema_field": "timestamp",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "salinity",
+              "schema_field": "sampling_point_id",
+              "similarity": 0.6086956521739131
+            },
+            {
+              "file_field": "location_lat",
+              "schema_field": "location",
+              "similarity": 0.8421052631578947
+            },
+            {
+              "file_field": "sampling_point_id",
+              "schema_field": "sampling_point_id",
+              "similarity": 1.0
+            }
+          ],
+          "matched_fields": 5,
+          "total_file_fields": 9,
+          "total_schema_fields": 11
+        },
+        {
+          "schema_name": "morphometric_data",
+          "schema_type": "postgres_table",
+          "match_score": 0.31000000000000005,
+          "coverage": 0.5555555555555556,
+          "field_matches": [
+            {
+              "file_field": "location_lon",
+              "schema_field": "sample_location",
+              "similarity": 0.64
+            },
+            {
+              "file_field": "timestamp",
+              "schema_field": "timestamp",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "location_lat",
+              "schema_field": "sample_location",
+              "similarity": 0.64
+            },
+            {
+              "file_field": "depth_meters",
+              "schema_field": "depth_collected",
+              "similarity": 0.64
+            },
+            {
+              "file_field": "sampling_point_id",
+              "schema_field": "id",
+              "similarity": 0.8
+            }
+          ],
+          "matched_fields": 5,
+          "total_file_fields": 9,
+          "total_schema_fields": 12
+        }
+      ]
+    },
+    "/home/rewansh57/SIH/marine-data-platform/data/test_species_data.csv": {
+      "file_info": {
+        "file_path": "/home/rewansh57/SIH/marine-data-platform/data/test_species_data.csv",
+        "file_type": "csv",
+        "file_size": 412,
+        "fields": {
+          "species_id": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "kingdom": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 1
+          },
+          "phylum": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "class": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "family": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "genus": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "species_name": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "common_name": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          },
+          "conservation_status": {
+            "type": "object",
+            "nullable": "False",
+            "unique_values": 3
+          }
+        },
+        "sample_data": {
+          "species_id": "sp_001",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "class": "Actinopterygii",
+          "family": "Serranidae",
+          "genus": "Epinephelus",
+          "species_name": "Epinephelus coioides",
+          "common_name": "Orange-spotted grouper",
+          "conservation_status": "Near Threatened"
+        },
+        "total_rows": 3,
+        "columns": [
+          "species_id",
+          "kingdom",
+          "phylum",
+          "class",
+          "family",
+          "genus",
+          "species_name",
+          "common_name",
+          "conservation_status"
+        ]
+      },
+      "potential_matches": [
+        {
+          "schema_name": "taxonomy_data",
+          "schema_type": "mongo_collection",
+          "match_score": 0.6285714285714287,
+          "coverage": 1.0,
+          "field_matches": [
+            {
+              "file_field": "species_name",
+              "schema_field": "species",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "family",
+              "schema_field": "family",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "genus",
+              "schema_field": "genus",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "conservation_status",
+              "schema_field": "conservation_status",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "common_name",
+              "schema_field": "common_name",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "phylum",
+              "schema_field": "phylum",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "class",
+              "schema_field": "class",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "kingdom",
+              "schema_field": "kingdom",
+              "similarity": 1.0
+            },
+            {
+              "file_field": "species_id",
+              "schema_field": "species_id",
+              "similarity": 1.0
+            }
+          ],
+          "matched_fields": 9,
+          "total_file_fields": 9,
+          "total_schema_fields": 14
+        },
+        {
+          "schema_name": "morphometric_data",
+          "schema_type": "postgres_table",
+          "match_score": 0.19239130434782611,
+          "coverage": 0.3333333333333333,
+          "field_matches": [
+            {
+              "file_field": "species_name",
+              "schema_field": "species_id",
+              "similarity": 0.7
+            },
+            {
+              "file_field": "common_name",
+              "schema_field": "collector_name",
+              "similarity": 0.6086956521739131
+            },
+            {
+              "file_field": "species_id",
+              "schema_field": "species_id",
+              "similarity": 1.0
+            }
+          ],
+          "matched_fields": 3,
+          "total_file_fields": 9,
+          "total_schema_fields": 12
+        },
+        {
+          "schema_name": "data_quality_logs",
+          "schema_type": "postgres_table",
+          "match_score": 0.17777777777777778,
+          "coverage": 0.2222222222222222,
+          "field_matches": [
+            {
+              "file_field": "conservation_status",
+              "schema_field": "status",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "species_id",
+              "schema_field": "id",
+              "similarity": 0.8
+            }
+          ],
+          "matched_fields": 2,
+          "total_file_fields": 9,
+          "total_schema_fields": 7
+        }
+      ]
+    },
+    "/home/rewansh57/SIH/marine-data-platform/data/sample_sequences.json": {
+      "file_info": {
+        "file_path": "/home/rewansh57/SIH/marine-data-platform/data/sample_sequences.json",
+        "file_type": "json",
+        "file_size": 1852,
+        "fields": {
+          "reference_sequences.species_id": {
+            "type": "str",
+            "nullable": false
+          },
+          "reference_sequences.species_name": {
+            "type": "str",
+            "nullable": false
+          },
+          "reference_sequences.common_name": {
+            "type": "str",
+            "nullable": false
+          },
+          "reference_sequences.sequence": {
+            "type": "str",
+            "nullable": false
+          },
+          "reference_sequences.gene_region": {
+            "type": "str",
+            "nullable": false
+          },
+          "reference_sequences.sequence_length": {
+            "type": "int",
+            "nullable": false
+          },
+          "test_sequences.test_id": {
+            "type": "str",
+            "nullable": false
+          },
+          "test_sequences.sequence": {
+            "type": "str",
+            "nullable": false
+          },
+          "test_sequences.expected_match": {
+            "type": "str",
+            "nullable": false
+          },
+          "test_sequences.description": {
+            "type": "str",
+            "nullable": false
+          }
+        },
+        "sample_data": {
+          "reference_sequences.species_id": "sp_001",
+          "reference_sequences.species_name": "Epinephelus coioides",
+          "reference_sequences.common_name": "Orange-spotted grouper",
+          "reference_sequences.sequence": "AGTCGATCGTAGCTACGTAGCTAGCTACGTAGCTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGCTACGTAGC",
+          "reference_sequences.gene_region": "COI",
+          "reference_sequences.sequence_length": 76,
+          "test_sequences.test_id": "test_001",
+          "test_sequences.sequence": "AGTCGATCGTAGCTACGTAGCTAGCTACGTAGCTAGCTAC",
+          "test_sequences.expected_match": "sp_001",
+          "test_sequences.description": "Partial sequence from Orange-spotted grouper"
+        },
+        "nested_structures": {
+          "reference_sequences": "array_of_objects",
+          "test_sequences": "array_of_objects"
+        },
+        "arrays": []
+      },
+      "potential_matches": [
+        {
+          "schema_name": "edna_sequences",
+          "schema_type": "mongo_collection",
+          "match_score": 0.6153846153846153,
+          "coverage": 1.0,
+          "field_matches": [
+            {
+              "file_field": "test_sequences.sequence",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "test_sequences.expected_match",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.species_id",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "test_sequences.description",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "test_sequences.test_id",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.sequence",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.species_name",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.common_name",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.gene_region",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.sequence_length",
+              "schema_field": "sequence",
+              "similarity": 0.8
+            }
+          ],
+          "matched_fields": 10,
+          "total_file_fields": 10,
+          "total_schema_fields": 13
+        },
+        {
+          "schema_name": "taxonomy_data",
+          "schema_type": "mongo_collection",
+          "match_score": 0.2285714285714286,
+          "coverage": 0.4,
+          "field_matches": [
+            {
+              "file_field": "reference_sequences.species_id",
+              "schema_field": "species",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "test_sequences.description",
+              "schema_field": "description",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.species_name",
+              "schema_field": "species",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "reference_sequences.common_name",
+              "schema_field": "common_name",
+              "similarity": 0.8
+            }
+          ],
+          "matched_fields": 4,
+          "total_file_fields": 10,
+          "total_schema_fields": 14
+        },
+        {
+          "schema_name": "sampling_points",
+          "schema_type": "postgres_table",
+          "match_score": 0.16,
+          "coverage": 0.2,
+          "field_matches": [
+            {
+              "file_field": "reference_sequences.species_id",
+              "schema_field": "id",
+              "similarity": 0.8
+            },
+            {
+              "file_field": "test_sequences.test_id",
+              "schema_field": "id",
+              "similarity": 0.8
+            }
+          ],
+          "matched_fields": 2,
+          "total_file_fields": 10,
+          "total_schema_fields": 8
+        }
+      ]
+    }
+  }
+}
