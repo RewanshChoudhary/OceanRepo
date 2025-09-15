@@ -1,0 +1,119 @@
+2025-09-15 15:11:29,602 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:11:29,636 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.111.40:5000
+2025-09-15 15:11:29,637 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-09-15 15:11:29,644 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 15:11:30,078 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:11:30,093 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 15:11:30,108 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 15:12:19,886 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:12:19,903 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.111.40:5000
+2025-09-15 15:12:19,903 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-09-15 15:12:19,907 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 15:12:20,457 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:12:20,474 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 15:12:20,475 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 15:12:31,909 INFO app Thread-14 (process_request_thread) : Request: GET http://localhost:5000/api/info
+2025-09-15 15:12:31,910 ERROR app Thread-14 (process_request_thread) : Unhandled exception: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+2025-09-15 15:12:31,923 ERROR app Thread-14 (process_request_thread) : Traceback: Traceback (most recent call last):
+  File "/home/rewansh57/.local/lib/python3.13/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/rewansh57/.local/lib/python3.13/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "/home/rewansh57/SIH/marine-data-platform/api/app.py", line 159, in log_request_info
+    if request.json:
+       ^^^^^^^^^^^^
+  File "/home/rewansh57/.local/lib/python3.13/site-packages/werkzeug/wrappers/request.py", line 560, in json
+    return self.get_json()
+           ~~~~~~~~~~~~~^^
+  File "/home/rewansh57/.local/lib/python3.13/site-packages/werkzeug/wrappers/request.py", line 604, in get_json
+    return self.on_json_loading_failed(None)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/rewansh57/.local/lib/python3.13/site-packages/flask/wrappers.py", line 214, in on_json_loading_failed
+    return super().on_json_loading_failed(e)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/rewansh57/.local/lib/python3.13/site-packages/werkzeug/wrappers/request.py", line 647, in on_json_loading_failed
+    raise UnsupportedMediaType(
+    ...<2 lines>...
+    )
+werkzeug.exceptions.UnsupportedMediaType: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+
+2025-09-15 15:12:31,925 INFO app Thread-14 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 15:12:31,926 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:12:31] "[35m[1mGET /api/info HTTP/1.1[0m" 500 -
+2025-09-15 15:14:39,587 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:14:39,605 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.111.40:5000
+2025-09-15 15:14:39,605 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-09-15 15:14:39,608 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 15:14:40,162 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:14:40,177 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 15:14:40,178 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 15:14:52,704 INFO app Thread-14 (process_request_thread) : Request: GET http://localhost:5000/api/info
+2025-09-15 15:14:52,706 INFO app Thread-14 (process_request_thread) : Response: 200 OK
+2025-09-15 15:14:52,709 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:14:52] "GET /api/info HTTP/1.1" 200 -
+2025-09-15 15:15:05,809 INFO app Thread-16 (process_request_thread) : Request: GET http://localhost:5000/api/health
+2025-09-15 15:15:05,812 ERROR api.utils.database Thread-16 (process_request_thread) : PostgreSQL health check failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:15:10,894 ERROR api.utils.database Thread-16 (process_request_thread) : MongoDB health check failed: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c7e0213bd6909b1d5e63d1, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 15:15:10,897 INFO app Thread-16 (process_request_thread) : Response: 200 OK
+2025-09-15 15:15:10,898 INFO werkzeug Thread-16 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:10] "GET /api/health HTTP/1.1" 200 -
+2025-09-15 15:15:20,269 INFO app Thread-18 (process_request_thread) : Request: GET http://localhost:5000/api/species/statistics
+2025-09-15 15:15:25,302 ERROR api.routes.species_identification Thread-18 (process_request_thread) : Statistics retrieval error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c7e0303bd6909b1d5e63d2, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 15:15:25,302 INFO app Thread-18 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 15:15:25,304 INFO werkzeug Thread-18 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:25] "[35m[1mGET /api/species/statistics HTTP/1.1[0m" 500 -
+2025-09-15 15:15:33,924 INFO app Thread-20 (process_request_thread) : Request: GET http://localhost:5000/api/ingestion/schemas
+2025-09-15 15:15:33,925 INFO app Thread-20 (process_request_thread) : Response: 200 OK
+2025-09-15 15:15:33,931 INFO werkzeug Thread-20 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:33] "GET /api/ingestion/schemas HTTP/1.1" 200 -
+2025-09-15 15:15:46,815 INFO app Thread-22 (process_request_thread) : Request: GET http://localhost:5000/api/oceanographic/data
+2025-09-15 15:15:46,816 INFO app Thread-22 (process_request_thread) : Response: 200 OK
+2025-09-15 15:15:46,817 INFO werkzeug Thread-22 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:46] "GET /api/oceanographic/data HTTP/1.1" 200 -
+2025-09-15 15:16:01,225 INFO app Thread-24 (process_request_thread) : Request: POST http://localhost:5000/api/species/identify
+2025-09-15 15:16:01,226 DEBUG app Thread-24 (process_request_thread) : Request body: {'sequence': 'ATGCGATCGATCGATCGATC', 'min_score': 50.0, 'top_matches': 5}
+2025-09-15 15:16:06,244 ERROR api.routes.species_identification Thread-24 (process_request_thread) : Species identification error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c7e0593bd6909b1d5e63d3, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 15:16:06,245 INFO app Thread-24 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 15:16:06,247 INFO werkzeug Thread-24 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:16:06] "[35m[1mPOST /api/species/identify HTTP/1.1[0m" 500 -
+2025-09-15 16:02:50,928 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/database/test_schemas.py', reloading
+2025-09-15 16:02:50,930 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/database/test_schemas.py', reloading
+2025-09-15 16:02:50,931 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/database/test_schemas.py', reloading
+2025-09-15 16:02:52,089 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 16:02:55,006 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 16:02:55,097 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 16:02:55,115 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245

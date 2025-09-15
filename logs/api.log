@@ -1,0 +1,102 @@
+nohup: ignoring input
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 15:14:39,587 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+ * Serving Flask app 'app'
+ * Debug mode: on
+2025-09-15 15:14:39,605 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.111.40:5000
+2025-09-15 15:14:39,605 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-09-15 15:14:39,608 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 15:14:40,162 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:14:40,177 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 15:14:40,178 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 15:14:52,704 INFO app Thread-14 (process_request_thread) : Request: GET http://localhost:5000/api/info
+2025-09-15 15:14:52,706 INFO app Thread-14 (process_request_thread) : Response: 200 OK
+2025-09-15 15:14:52,709 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:14:52] "GET /api/info HTTP/1.1" 200 -
+2025-09-15 15:15:05,809 INFO app Thread-16 (process_request_thread) : Request: GET http://localhost:5000/api/health
+2025-09-15 15:15:05,812 ERROR api.utils.database Thread-16 (process_request_thread) : PostgreSQL health check failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 15:15:10,894 ERROR api.utils.database Thread-16 (process_request_thread) : MongoDB health check failed: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c7e0213bd6909b1d5e63d1, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+/home/rewansh57/SIH/marine-data-platform/api/app.py:95: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  'timestamp': datetime.utcnow().isoformat(),
+2025-09-15 15:15:10,897 INFO app Thread-16 (process_request_thread) : Response: 200 OK
+2025-09-15 15:15:10,898 INFO werkzeug Thread-16 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:10] "GET /api/health HTTP/1.1" 200 -
+2025-09-15 15:15:20,269 INFO app Thread-18 (process_request_thread) : Request: GET http://localhost:5000/api/species/statistics
+2025-09-15 15:15:25,302 ERROR api.routes.species_identification Thread-18 (process_request_thread) : Statistics retrieval error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c7e0303bd6909b1d5e63d2, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 15:15:25,302 INFO app Thread-18 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 15:15:25,304 INFO werkzeug Thread-18 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:25] "[35m[1mGET /api/species/statistics HTTP/1.1[0m" 500 -
+2025-09-15 15:15:33,924 INFO app Thread-20 (process_request_thread) : Request: GET http://localhost:5000/api/ingestion/schemas
+2025-09-15 15:15:33,925 INFO app Thread-20 (process_request_thread) : Response: 200 OK
+2025-09-15 15:15:33,931 INFO werkzeug Thread-20 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:33] "GET /api/ingestion/schemas HTTP/1.1" 200 -
+2025-09-15 15:15:46,815 INFO app Thread-22 (process_request_thread) : Request: GET http://localhost:5000/api/oceanographic/data
+2025-09-15 15:15:46,816 INFO app Thread-22 (process_request_thread) : Response: 200 OK
+2025-09-15 15:15:46,817 INFO werkzeug Thread-22 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:15:46] "GET /api/oceanographic/data HTTP/1.1" 200 -
+2025-09-15 15:16:01,225 INFO app Thread-24 (process_request_thread) : Request: POST http://localhost:5000/api/species/identify
+2025-09-15 15:16:01,226 DEBUG app Thread-24 (process_request_thread) : Request body: {'sequence': 'ATGCGATCGATCGATCGATC', 'min_score': 50.0, 'top_matches': 5}
+2025-09-15 15:16:06,244 ERROR api.routes.species_identification Thread-24 (process_request_thread) : Species identification error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c7e0593bd6909b1d5e63d3, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 15:16:06,245 INFO app Thread-24 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 15:16:06,247 INFO werkzeug Thread-24 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 15:16:06] "[35m[1mPOST /api/species/identify HTTP/1.1[0m" 500 -
+2025-09-15 16:02:50,928 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/database/test_schemas.py', reloading
+2025-09-15 16:02:50,930 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/database/test_schemas.py', reloading
+2025-09-15 16:02:50,931 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/database/test_schemas.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+🔬 Building k-mer reference database...
+2025-09-15 16:02:52,089 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 16:02:55,006 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 16:02:55,097 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 16:02:55,115 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
