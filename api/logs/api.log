@@ -117,3 +117,45 @@ connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection re
 
 2025-09-15 16:02:55,097 WARNING werkzeug MainThread :  * Debugger is active!
 2025-09-15 16:02:55,115 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 18:11:52,683 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/oceanographic.py', reloading
+2025-09-15 18:11:52,686 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/oceanographic.py', reloading
+2025-09-15 18:11:52,688 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/oceanographic.py', reloading
+2025-09-15 18:11:53,976 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 18:11:55,913 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 18:11:55,934 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 18:11:55,939 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 18:16:35,590 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/spatial.py', reloading
+2025-09-15 18:16:35,591 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/spatial.py', reloading
+2025-09-15 18:16:35,593 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/spatial.py', reloading
+2025-09-15 18:16:36,387 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 18:16:37,566 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 18:16:37,600 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 18:16:37,604 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 18:27:12,508 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/search.py', reloading
+2025-09-15 18:27:12,509 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/search.py', reloading
+2025-09-15 18:27:13,840 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 18:27:15,714 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 18:27:15,780 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 18:27:15,787 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 18:29:31,755 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/analytics.py', reloading
+2025-09-15 18:29:31,757 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/api/routes/analytics.py', reloading
+2025-09-15 18:29:32,330 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 18:29:33,042 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 18:29:33,061 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 18:29:33,063 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
