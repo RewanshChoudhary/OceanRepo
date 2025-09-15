@@ -218,3 +218,202 @@ connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection re
 
 2025-09-15 18:29:33,061 WARNING werkzeug MainThread :  * Debugger is active!
 2025-09-15 18:29:33,063 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 19:53:14,621 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/validate_database.py', reloading
+2025-09-15 19:53:14,639 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/validate_database.py', reloading
+2025-09-15 19:53:14,641 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/validate_database.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+2025-09-15 19:53:16,054 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 19:53:19,050 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 19:53:19,075 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 19:53:19,176 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 19:53:19,195 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 19:54:14,446 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/.local/lib/python3.13/site-packages/tabulate/__init__.py', reloading
+2025-09-15 19:54:14,447 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/.local/lib/python3.13/site-packages/tabulate/__init__.py', reloading
+2025-09-15 19:54:14,447 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/.local/lib/python3.13/site-packages/tabulate/__init__.py', reloading
+2025-09-15 19:54:14,448 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/.local/lib/python3.13/site-packages/tabulate/version.py', reloading
+2025-09-15 19:54:14,448 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/.local/lib/python3.13/site-packages/tabulate/version.py', reloading
+2025-09-15 19:54:14,449 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/.local/lib/python3.13/site-packages/tabulate/version.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+2025-09-15 19:54:15,705 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 19:54:16,478 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 19:54:16,484 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 19:54:16,507 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 19:54:16,511 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 19:55:48,917 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/simple_db_check.py', reloading
+2025-09-15 19:55:48,920 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/simple_db_check.py', reloading
+2025-09-15 19:55:48,922 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/simple_db_check.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+2025-09-15 19:55:49,844 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 19:55:51,925 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 19:55:51,947 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 19:55:52,058 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 19:55:52,071 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 20:04:15,535 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/validate_apis.py', reloading
+2025-09-15 20:04:15,549 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/validate_apis.py', reloading
+2025-09-15 20:04:15,550 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/validate_apis.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+2025-09-15 20:04:16,183 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 20:04:17,485 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 20:04:17,490 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 20:04:17,517 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 20:04:17,522 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 20:05:42,006 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/test_api_endpoints.py', reloading
+2025-09-15 20:05:42,008 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/test_api_endpoints.py', reloading
+2025-09-15 20:05:42,009 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/test_api_endpoints.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+2025-09-15 20:05:42,746 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 20:05:43,378 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 20:05:43,382 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 20:05:43,402 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 20:05:43,406 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 20:08:24,633 INFO app Thread-14 (process_request_thread) : Request: GET http://localhost:5000/api/health
+/home/rewansh57/SIH/marine-data-platform/api/app.py:95: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  'timestamp': datetime.utcnow().isoformat(),
+2025-09-15 20:08:24,725 INFO app Thread-14 (process_request_thread) : Response: 200 OK
+2025-09-15 20:08:24,727 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:08:24] "GET /api/health HTTP/1.1" 200 -
+2025-09-15 20:08:34,826 INFO app Thread-16 (process_request_thread) : Request: GET http://localhost:5000/api/info
+2025-09-15 20:08:34,828 INFO app Thread-16 (process_request_thread) : Response: 200 OK
+2025-09-15 20:08:34,830 INFO werkzeug Thread-16 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:08:34] "GET /api/info HTTP/1.1" 200 -
+2025-09-15 20:08:48,762 INFO app Thread-18 (process_request_thread) : Request: POST http://localhost:5000/api/species/identify
+2025-09-15 20:08:48,762 DEBUG app Thread-18 (process_request_thread) : Request body: {'sequence': 'ACAGGCAAGCCCATCAAACTTCGTAATTTCAGAGAGGATACTCAAAGAGTTAAAAAATCTAGCCATACTGT', 'min_score': 50.0, 'top_matches': 3}
+2025-09-15 20:08:48,871 INFO app Thread-18 (process_request_thread) : Response: 200 OK
+2025-09-15 20:08:48,871 INFO werkzeug Thread-18 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:08:48] "POST /api/species/identify HTTP/1.1" 200 -
+2025-09-15 20:09:26,753 INFO app Thread-20 (process_request_thread) : Request: GET http://localhost:5000/api/species/taxonomy?per_page=5
+2025-09-15 20:09:26,780 INFO app Thread-20 (process_request_thread) : Response: 200 OK
+2025-09-15 20:09:26,789 INFO werkzeug Thread-20 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:09:26] "GET /api/species/taxonomy?per_page=5 HTTP/1.1" 200 -
+2025-09-15 20:09:53,691 INFO app Thread-22 (process_request_thread) : Request: GET http://localhost:5000/api/species/statistics
+2025-09-15 20:09:53,746 INFO app Thread-22 (process_request_thread) : Response: 200 OK
+2025-09-15 20:09:53,747 INFO werkzeug Thread-22 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:09:53] "GET /api/species/statistics HTTP/1.1" 200 -
+2025-09-15 20:10:03,326 INFO app Thread-24 (process_request_thread) : Request: POST http://localhost:5000/api/species/batch-identify
+2025-09-15 20:10:03,327 DEBUG app Thread-24 (process_request_thread) : Request body: {'sequences': [{'id': 'seq_001', 'sequence': 'ACAGGCAAGCCCATCAAACTTCGTAATTTCAGAGAGGATACTCAAAGAGT', 'metadata': {'source': 'SIH_test'}}, {'id': 'seq_002', 'sequence': 'ATGCGATCGATCGATCGATCGATCGATCGATCG', 'metadata': {'source': 'SIH_test'}}], 'min_score': 30.0, 'top_matches': 2}
+2025-09-15 20:10:03,407 INFO app Thread-24 (process_request_thread) : Response: 200 OK
+2025-09-15 20:10:03,407 INFO werkzeug Thread-24 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:10:03] "POST /api/species/batch-identify HTTP/1.1" 200 -
+2025-09-15 20:10:33,569 INFO app Thread-26 (process_request_thread) : Request: GET http://localhost:5000/api/search?query=coral&limit=3
+2025-09-15 20:10:33,571 INFO app Thread-26 (process_request_thread) : Response: 308 PERMANENT REDIRECT
+2025-09-15 20:10:33,573 INFO werkzeug Thread-26 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:10:33] "[32mGET /api/search?query=coral&limit=3 HTTP/1.1[0m" 308 -
+2025-09-15 20:10:58,310 INFO app Thread-27 (process_request_thread) : Request: GET http://localhost:5000/api/search?query=coral&limit=3
+2025-09-15 20:10:58,312 INFO app Thread-27 (process_request_thread) : Response: 308 PERMANENT REDIRECT
+2025-09-15 20:10:58,313 INFO werkzeug Thread-27 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:10:58] "[32mGET /api/search?query=coral&limit=3 HTTP/1.1[0m" 308 -
+2025-09-15 20:11:07,280 INFO app Thread-28 (process_request_thread) : Request: GET http://localhost:5000/api/analytics/summary
+2025-09-15 20:11:07,282 INFO app Thread-28 (process_request_thread) : Response: 404 NOT FOUND
+2025-09-15 20:11:07,287 INFO werkzeug Thread-28 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:11:07] "[33mGET /api/analytics/summary HTTP/1.1[0m" 404 -
+2025-09-15 20:11:14,115 INFO app Thread-29 (process_request_thread) : Request: POST http://localhost:5000/api/spatial/distance
+2025-09-15 20:11:14,116 DEBUG app Thread-29 (process_request_thread) : Request body: {'point1': {'latitude': 40.7128, 'longitude': -74.006}, 'point2': {'latitude': 48.13, 'longitude': 11.58}, 'unit': 'km'}
+2025-09-15 20:11:14,117 INFO app Thread-29 (process_request_thread) : Response: 404 NOT FOUND
+2025-09-15 20:11:14,118 INFO werkzeug Thread-29 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:11:14] "[33mPOST /api/spatial/distance HTTP/1.1[0m" 404 -
+2025-09-15 20:11:34,563 INFO app Thread-30 (process_request_thread) : Request: GET http://localhost:5000/api/oceanographic/data?limit=3
+2025-09-15 20:11:34,577 ERROR api.routes.oceanographic Thread-30 (process_request_thread) : Oceanographic data retrieval error: relation "sampling_events" does not exist
+LINE 5:                 LEFT JOIN sampling_events se ON od.sampling_...
+                                  ^
+
+2025-09-15 20:11:34,578 INFO app Thread-30 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 20:11:34,579 INFO werkzeug Thread-30 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:11:34] "[35m[1mGET /api/oceanographic/data?limit=3 HTTP/1.1[0m" 500 -
+2025-09-15 20:11:44,173 INFO app Thread-32 (process_request_thread) : Request: POST http://localhost:5000/api/ingestion/morphometric
+2025-09-15 20:11:44,173 DEBUG app Thread-32 (process_request_thread) : Request body: {'species_id': 'test_species', 'sample_location': 'Lab Test', 'metrics': {'length_um': 12.5, 'width_um': 4.2, 'area_sq_um': 25.8, 'circularity': 0.85}, 'timestamp': '2025-09-15T14:00:00Z', 'metadata': {'source': 'curl_test', 'image_path': '/test/path'}}
+2025-09-15 20:11:44,174 INFO app Thread-32 (process_request_thread) : Response: 404 NOT FOUND
+2025-09-15 20:11:44,175 INFO werkzeug Thread-32 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:11:44] "[33mPOST /api/ingestion/morphometric HTTP/1.1[0m" 404 -
+2025-09-15 20:12:13,116 INFO app Thread-33 (process_request_thread) : Request: GET http://localhost:5000/api/species/taxonomy/sp_001
+2025-09-15 20:12:13,158 INFO app Thread-33 (process_request_thread) : Response: 200 OK
+2025-09-15 20:12:13,160 INFO werkzeug Thread-33 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:12:13] "GET /api/species/taxonomy/sp_001 HTTP/1.1" 200 -
+2025-09-15 20:12:26,541 INFO app Thread-35 (process_request_thread) : Request: GET http://localhost:5000/api/species/taxonomy?kingdom=Plantae&per_page=3
+2025-09-15 20:12:26,584 INFO app Thread-35 (process_request_thread) : Response: 200 OK
+2025-09-15 20:12:26,587 INFO werkzeug Thread-35 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:12:26] "GET /api/species/taxonomy?kingdom=Plantae&per_page=3 HTTP/1.1" 200 -
+2025-09-15 20:12:46,181 INFO app Thread-37 (process_request_thread) : Request: GET http://localhost:5000/api/species/taxonomy?kingdom=Bacteria&per_page=2
+2025-09-15 20:12:46,209 INFO app Thread-37 (process_request_thread) : Response: 200 OK
+2025-09-15 20:12:46,212 INFO werkzeug Thread-37 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:12:46] "GET /api/species/taxonomy?kingdom=Bacteria&per_page=2 HTTP/1.1" 200 -
+2025-09-15 20:14:24,030 INFO app Thread-39 (process_request_thread) : Request: GET http://localhost:5000/api/health
+2025-09-15 20:14:24,063 INFO app Thread-39 (process_request_thread) : Response: 200 OK
+2025-09-15 20:14:24,065 INFO werkzeug Thread-39 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:14:24] "GET /api/health HTTP/1.1" 200 -
+2025-09-15 20:14:36,451 INFO app Thread-41 (process_request_thread) : Request: GET http://localhost:5000/api/info
+2025-09-15 20:14:36,452 INFO app Thread-41 (process_request_thread) : Response: 200 OK
+2025-09-15 20:14:36,455 INFO werkzeug Thread-41 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:14:36] "GET /api/info HTTP/1.1" 200 -
