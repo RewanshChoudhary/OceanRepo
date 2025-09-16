@@ -197,6 +197,258 @@ class DatabaseSchemaExtractor:
         except Exception as e:
             self.logger.warning(f"Could not connect to MongoDB: {e}")
             return False
+
+class SchemaMatcher:
+    """Matches file schemas with database schemas using pattern recognition and confidence scoring"""
+    
+    def __init__(self):
+        self.schemas = {}
+        self.field_mappings = {}
+        self.validation_rules = {}
+        self.logger = logging.getLogger(__name__)
+        
+    def load_schemas(self, config_path: str) -> bool:
+        """Load schema definitions from YAML config file"""
+        try:
+            import yaml
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = yaml.safe_load(f)
+                
+            self.schemas = config.get('schemas', {})
+            self.field_mappings = config.get('field_mappings', {})
+            self.validation_rules = config.get('validation_rules', {})
+            
+            self.logger.info(f"Loaded {len(self.schemas)} schema definitions from {config_path}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Failed to load schemas from {config_path}: {e}")
+            return False
+    
+    def match_file_schema(self, file_path: str) -> List[Dict[str, Any]]:
+        """Match file structure against available schemas with confidence scoring"""
+        try:
+            # Analyze file structure
+            analyzer = FileStructureAnalyzer()
+            
+            if file_path.lower().endswith('.json'):
+                file_structure = analyzer.analyze_json_file(Path(file_path))
+            elif file_path.lower().endswith(('.csv', '.tsv')):
+                file_structure = analyzer.analyze_csv_file(Path(file_path))
+            else:
+                raise ValueError(f"Unsupported file type: {file_path}")
+            
+            if 'error' in file_structure:
+                raise ValueError(f"File analysis failed: {file_structure['error']}")
+            
+            # Score against each schema
+            schema_matches = []
+            file_fields = list(file_structure.get('fields', {}).keys())
+            
+            if file_structure['file_type'] == 'csv':
+                file_fields = file_structure.get('columns', [])
+            
+            for schema_name, schema_config in self.schemas.items():
+                confidence = self._calculate_schema_confidence(file_fields, schema_config)
+                
+                if confidence >= schema_config.get('confidence_threshold', 50.0):
+                    field_mappings = self._map_fields(file_fields, schema_config)
+                    
+                    schema_matches.append({
+                        'schema': schema_name,
+                        'confidence': confidence,
+                        'target_database': schema_config.get('target_database'),
+                        'target_table': schema_config.get('table') or schema_config.get('collection'),
+                        'field_mappings': field_mappings,
+                        'required_fields_found': self._check_required_fields(field_mappings, schema_config),
+                        'description': schema_config.get('description', '')
+                    })
+            
+            # Sort by confidence (highest first)
+            schema_matches.sort(key=lambda x: x['confidence'], reverse=True)
+            
+            return schema_matches
+            
+        except Exception as e:
+            self.logger.error(f"Schema matching failed for {file_path}: {e}")
+            return []
+    
+    def _calculate_schema_confidence(self, file_fields: List[str], schema_config: Dict) -> float:
+        """Calculate confidence score for schema match"""
+        if not file_fields:
+            return 0.0
+        
+        total_score = 0.0
+        max_possible_score = 0.0
+        
+        required_fields = schema_config.get('required_fields', [])
+        optional_fields = schema_config.get('optional_fields', [])
+        all_schema_fields = required_fields + optional_fields
+        field_patterns = schema_config.get('field_patterns', [])
+        
+        # Score based on exact field matches
+        for schema_field in all_schema_fields:
+            weight = 2.0 if schema_field in required_fields else 1.0
+            max_possible_score += weight
+            
+            if schema_field.lower() in [f.lower() for f in file_fields]:
+                total_score += weight
+        
+        # Score based on pattern matches
+        for file_field in file_fields:
+            best_pattern_score = 0.0
+            
+            for pattern in field_patterns:
+                pattern_score = self._match_field_pattern(file_field.lower(), pattern)
+                if pattern_score > best_pattern_score:
+                    best_pattern_score = pattern_score
+            
+            total_score += best_pattern_score * 0.5  # Pattern matches get half weight
+            max_possible_score += 0.5
+        
+        # Calculate percentage confidence
+        if max_possible_score == 0:
+            return 0.0
+        
+        confidence = (total_score / max_possible_score) * 100
+        return min(confidence, 100.0)
+    
+    def _match_field_pattern(self, field_name: str, pattern: str) -> float:
+        """Match field name against regex pattern"""
+        try:
+            import re
+            if re.search(pattern.lower(), field_name.lower()):
+                # More specific matches get higher scores
+                if field_name.lower() == pattern.lower():
+                    return 1.0
+                elif len(pattern) > 5:  # Longer patterns are more specific
+                    return 0.8
+                else:
+                    return 0.6
+            return 0.0
+        except Exception:
+            return 0.0
+    
+    def _map_fields(self, file_fields: List[str], schema_config: Dict) -> Dict[str, str]:
+        """Map file fields to schema fields using patterns and mappings"""
+        field_mappings = {}
+        
+        required_fields = schema_config.get('required_fields', [])
+        optional_fields = schema_config.get('optional_fields', [])
+        all_schema_fields = required_fields + optional_fields
+        
+        # Direct mapping first
+        for file_field in file_fields:
+            for schema_field in all_schema_fields:
+                if file_field.lower() == schema_field.lower():
+                    field_mappings[file_field] = schema_field
+                    break
+        
+        # Pattern-based mapping for unmapped fields
+        unmapped_fields = [f for f in file_fields if f not in field_mappings]
+        
+        for file_field in unmapped_fields:
+            best_match = None
+            best_score = 0.0
+            
+            # Check against global field mappings
+            for mapping_group, mapping_sets in self.field_mappings.items():
+                for mapping_set in mapping_sets:
+                    if isinstance(mapping_set, list):
+                        for variant in mapping_set:
+                            if file_field.lower() == variant.lower():
+                                # Find corresponding schema field
+                                canonical_field = mapping_set[0]  # First one is canonical
+                                if canonical_field in all_schema_fields:
+                                    field_mappings[file_field] = canonical_field
+                                    break
+            
+            # Pattern matching as fallback
+            if file_field not in field_mappings:
+                field_patterns = schema_config.get('field_patterns', [])
+                for pattern in field_patterns:
+                    score = self._match_field_pattern(file_field, pattern)
+                    if score > best_score:
+                        best_score = score
+                        # Try to find corresponding schema field
+                        for schema_field in all_schema_fields:
+                            if self._match_field_pattern(schema_field, pattern) > 0.5:
+                                best_match = schema_field
+                                break
+                
+                if best_match and best_score > 0.6:
+                    field_mappings[file_field] = best_match
+        
+        return field_mappings
+    
+    def _check_required_fields(self, field_mappings: Dict[str, str], schema_config: Dict) -> Dict[str, bool]:
+        """Check which required fields are satisfied by the mapping"""
+        required_fields = schema_config.get('required_fields', [])
+        found_fields = {}
+        
+        mapped_schema_fields = set(field_mappings.values())
+        
+        for required_field in required_fields:
+            found_fields[required_field] = required_field in mapped_schema_fields
+        
+        return found_fields
+    
+    def validate_data(self, data: Dict[str, Any], schema_name: str) -> Tuple[bool, List[str]]:
+        """Validate data against schema rules"""
+        if schema_name not in self.schemas:
+            return False, [f"Unknown schema: {schema_name}"]
+        
+        errors = []
+        schema_config = self.schemas[schema_name]
+        
+        # Check required fields
+        required_fields = schema_config.get('required_fields', [])
+        for field in required_fields:
+            if field not in data or data[field] is None:
+                errors.append(f"Required field missing: {field}")
+        
+        # Validate field values against rules
+        for field, value in data.items():
+            field_errors = self._validate_field_value(field, value, schema_name)
+            errors.extend(field_errors)
+        
+        return len(errors) == 0, errors
+    
+    def _validate_field_value(self, field_name: str, value: Any, schema_name: str) -> List[str]:
+        """Validate individual field value"""
+        errors = []
+        
+        # Find validation rules for this field
+        validation_rules = None
+        for rule_group, rules in self.validation_rules.items():
+            if field_name in rules:
+                validation_rules = rules[field_name]
+                break
+        
+        if not validation_rules:
+            return errors
+        
+        # Check numeric ranges
+        if isinstance(value, (int, float)):
+            if 'min' in validation_rules and value < validation_rules['min']:
+                errors.append(f"{field_name} value {value} below minimum {validation_rules['min']}")
+            if 'max' in validation_rules and value > validation_rules['max']:
+                errors.append(f"{field_name} value {value} above maximum {validation_rules['max']}")
+        
+        # Check string patterns
+        if isinstance(value, str):
+            if 'pattern' in validation_rules:
+                import re
+                if not re.match(validation_rules['pattern'], value):
+                    errors.append(f"{field_name} value '{value}' doesn't match required pattern")
+            
+            if 'min_length' in validation_rules and len(value) < validation_rules['min_length']:
+                errors.append(f"{field_name} length {len(value)} below minimum {validation_rules['min_length']}")
+            
+            if 'max_length' in validation_rules and len(value) > validation_rules['max_length']:
+                errors.append(f"{field_name} length {len(value)} above maximum {validation_rules['max_length']}")
+        
+        return errors
     
     def get_postgres_tables(self) -> Dict[str, Dict]:
         """Get PostgreSQL table schemas"""

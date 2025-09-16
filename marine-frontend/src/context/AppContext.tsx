@@ -75,6 +75,9 @@ interface AppContextType {
   loadSpecies: (params?: { kingdom?: string; limit?: number }) => Promise<void>;
   toggleSidebar: () => void;
   setSidebarOpen: (open: boolean) => void;
+  // File upload methods
+  uploadFiles: (files: FileList, uploadType: string, description?: string) => Promise<any[]>;
+  refreshData: () => Promise<void>;
 }
 
 // Create context
@@ -139,6 +142,47 @@ export function AppProvider({ children }: AppProviderProps) {
     dispatch({ type: 'SET_SIDEBAR_OPEN', payload: open });
   };
 
+  const uploadFiles = async (files: FileList, uploadType: string, description: string = '') => {
+    const results = [];
+    
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('description', description);
+      formData.append('auto_process', 'true');
+      
+      const metadata = {
+        upload_type: uploadType,
+        upload_timestamp: new Date().toISOString(),
+      };
+      formData.append('metadata', JSON.stringify(metadata));
+      
+      try {
+        const response = await ApiService.uploadFile(formData);
+        results.push({ file: file.name, success: response.success, data: response.data });
+      } catch (error: any) {
+        results.push({ 
+          file: file.name, 
+          success: false, 
+          error: error.response?.data?.message || error.message 
+        });
+      }
+    }
+    
+    // Refresh stats after upload
+    await loadDatabaseStats();
+    
+    return results;
+  };
+
+  const refreshData = async () => {
+    await Promise.all([
+      loadDatabaseStats(),
+      loadSpecies({ limit: 20 })
+    ]);
+  };
+
   // Load initial data
   useEffect(() => {
     loadDatabaseStats();
@@ -154,6 +198,8 @@ export function AppProvider({ children }: AppProviderProps) {
     loadSpecies,
     toggleSidebar,
     setSidebarOpen,
+    uploadFiles,
+    refreshData,
   };
 
   return (

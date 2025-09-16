@@ -61,13 +61,20 @@ def identify_species():
                 'sequence': ['Sequence contains invalid DNA bases. Only A, T, G, C, N are allowed']
             })
         
-        # Initialize eDNA matcher
-        with MongoDB() as db:
-            if db is None:
-                return APIResponse.server_error("Database connection failed")
+        # Initialize eDNA matcher (direct connection to avoid Flask context issues)
+        try:
+            from pymongo import MongoClient
+            client = MongoClient(
+                host=os.getenv('MONGODB_HOST', 'localhost'),
+                port=int(os.getenv('MONGODB_PORT', '27017'))
+            )
+            db = client[os.getenv('MONGODB_DB', 'marine_db')]
             
             matcher = eDNAMatcher(min_score=min_score)
             matcher.build_reference_database(db)
+        except Exception as e:
+            logger.error(f"Database connection failed: {e}")
+            return APIResponse.server_error("Database connection failed")
             
             # Perform matching
             matches = matcher.match_sequence(sequence, top_n=top_matches)
@@ -116,10 +123,16 @@ def identify_species():
                 message = f"No species matches found above {min_score}% similarity threshold"
                 return APIResponse.success(result_data, message)
             
+            client.close()  # Close the direct connection
             return APIResponse.success(result_data, f"Found {len(matches)} species matches")
             
     except Exception as e:
         logger.error(f"Species identification error: {e}")
+        # Make sure to close connection on error
+        try:
+            client.close()
+        except:
+            pass
         return APIResponse.server_error(f"Species identification failed: {str(e)}")
 
 @species_bp.route('/batch-identify', methods=['POST'])

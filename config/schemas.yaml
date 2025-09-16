@@ -1,0 +1,164 @@
+# Schema definitions for marine data platform
+# This file defines the expected structure of different data types
+
+schemas:
+  oceanographic_data:
+    name: "Oceanographic Data"
+    description: "Physical and chemical oceanographic measurements"
+    target_database: "postgresql"
+    table: "oceanographic_data"
+    required_fields:
+      - "location"
+      - "timestamp"
+      - "depth_meters"
+    optional_fields:
+      - "temperature_celsius"
+      - "salinity_psu"
+      - "ph_level"
+      - "dissolved_oxygen_mg_per_l"
+      - "turbidity_ntu"
+      - "metadata"
+    field_patterns:
+      - "lat|latitude|coord.*lat"
+      - "lon|longitude|coord.*lon"
+      - "temp|temperature"
+      - "sal|salinity"
+      - "ph|acidity"
+      - "oxygen|o2|dissolved"
+      - "depth|meters|m"
+      - "time|date|timestamp"
+    confidence_threshold: 70.0
+
+  sampling_points:
+    name: "Sampling Points"
+    description: "Geographical sampling point locations"
+    target_database: "postgresql"
+    table: "sampling_points"
+    required_fields:
+      - "location"
+      - "timestamp"
+    optional_fields:
+      - "depth_meters"
+      - "metadata"
+    field_patterns:
+      - "lat|latitude|coord.*lat"
+      - "lon|longitude|coord.*lon"
+      - "time|date|timestamp"
+      - "sample|point|location"
+      - "depth|meters|m"
+    confidence_threshold: 65.0
+
+  species_data:
+    name: "Species Data"
+    description: "Species taxonomy and classification data"
+    target_database: "mongodb"
+    collection: "taxonomy_data"
+    required_fields:
+      - "species_id"
+      - "species"
+    optional_fields:
+      - "common_name"
+      - "kingdom"
+      - "phylum"
+      - "class"
+      - "order"
+      - "family"
+      - "genus"
+      - "description"
+    field_patterns:
+      - "species.*id|taxon.*id"
+      - "scientific.*name|species.*name|latin.*name"
+      - "common.*name|vernacular|name"
+      - "kingdom|domain"
+      - "phylum|division"
+      - "class|classis"
+      - "order|ordo"
+      - "family|familia"
+      - "genus"
+      - "taxonomy|classification"
+    confidence_threshold: 70.0
+
+  edna_sequences:
+    name: "eDNA Sequences"
+    description: "Environmental DNA sequences and analysis results"
+    target_database: "mongodb"
+    collection: "edna_sequences"
+    required_fields:
+      - "sequence_id"
+      - "sequence"
+    optional_fields:
+      - "matched_species_id"
+      - "matching_score"
+      - "confidence_level"
+      - "sample_location"
+      - "sequencing_method"
+      - "collection_date"
+    field_patterns:
+      - "sequence.*id|seq.*id"
+      - "sequence|seq|dna|genetic"
+      - "species.*id|match.*species"
+      - "score|confidence|match.*score"
+      - "location|site|sample.*location"
+      - "method|protocol|technique"
+      - "date|time|collection"
+    confidence_threshold: 75.0
+
+# Field mapping rules
+field_mappings:
+  # Coordinate fields
+  coordinates:
+    - ["lat", "latitude", "coord_lat", "y_coord", "lat_dd"]
+    - ["lon", "longitude", "coord_lon", "x_coord", "lon_dd"]
+    - ["elevation", "altitude", "height", "z_coord"]
+
+  # Temporal fields
+  temporal:
+    - ["timestamp", "datetime", "date_time", "time", "date"]
+    - ["collection_date", "sample_date", "recorded_date"]
+
+  # Measurement fields
+  measurements:
+    - ["temperature", "temp", "temp_c", "temperature_celsius"]
+    - ["salinity", "sal", "salinity_psu", "salt"]
+    - ["ph", "ph_level", "acidity", "hydrogen_ion"]
+    - ["dissolved_oxygen", "oxygen", "o2", "do", "dissolved_o2"]
+    - ["depth", "depth_m", "depth_meters", "water_depth"]
+
+  # Taxonomic fields
+  taxonomy:
+    - ["species_id", "taxon_id", "species_code", "sp_id"]
+    - ["scientific_name", "species_name", "latin_name", "binomial"]
+    - ["common_name", "vernacular_name", "common", "name"]
+    - ["kingdom", "domain", "regnum"]
+    - ["phylum", "division", "phylum_name"]
+    - ["class", "classis", "class_name"]
+    - ["order", "ordo", "order_name"]
+    - ["family", "familia", "family_name"]
+    - ["genus", "genus_name"]
+
+# Data validation rules
+validation_rules:
+  coordinates:
+    latitude:
+      min: -90.0
+      max: 90.0
+    longitude:
+      min: -180.0
+      max: 180.0
+
+  oceanographic:
+    temperature_celsius:
+      min: -5.0
+      max: 50.0
+    salinity_psu:
+      min: 0.0
+      max: 40.0
+    ph_level:
+      min: 0.0
+      max: 14.0
+    dissolved_oxygen_mg_per_l:
+      min: 0.0
+      max: 20.0
+    depth_meters:
+      min: 0.0
+      max: 12000.0

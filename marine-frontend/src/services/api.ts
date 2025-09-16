@@ -102,6 +102,40 @@ export class ApiService {
     return response.data;
   }
 
+  // File upload endpoints
+  static async uploadFile(formData: FormData): Promise<ApiResponse<any>> {
+    const response = await api.post('/ingestion/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  }
+
+  static async processFile(fileId: string): Promise<ApiResponse<any>> {
+    const response = await api.post(`/ingestion/process/${fileId}`);
+    return response.data;
+  }
+
+  static async getUploadedFiles(params?: {
+    page?: number;
+    per_page?: number;
+    status?: string;
+  }): Promise<ApiResponse<any>> {
+    const response = await api.get('/ingestion/files', { params });
+    return response.data;
+  }
+
+  static async getFileDetails(fileId: string): Promise<ApiResponse<any>> {
+    const response = await api.get(`/ingestion/files/${fileId}`);
+    return response.data;
+  }
+
+  static async getSupportedSchemas(): Promise<ApiResponse<any>> {
+    const response = await api.get('/ingestion/schemas');
+    return response.data;
+  }
+
   // eDNA API endpoints
   static async identifySequence(data: {
     sequence: string;

@@ -169,6 +169,11 @@ def process_uploaded_file(file_id: str, file_path: str, db) -> Dict:
         
         # Load available schemas
         schemas_config_path = os.path.join(project_root, 'config', 'schemas.yaml')
+        if not os.path.exists(schemas_config_path):
+            logger.warning(f"Schema config not found at {schemas_config_path}, using basic schema detection")
+            # Use basic schema detection based on file content
+            return detect_schema_basic(file_path, db)
+        
         matcher.load_schemas(schemas_config_path)
         
         # Detect file schema
@@ -342,6 +347,77 @@ def ingest_sampling_points(df: pd.DataFrame, cursor) -> Dict:
         
     except Exception as e:
         return {'success': False, 'error': f'Sampling points ingestion failed: {str(e)}'}
+
+def detect_schema_basic(file_path: str, db) -> Dict:
+    """Basic schema detection when config file is not available"""
+    try:
+        # Analyze file based on extension and content
+        if file_path.lower().endswith('.csv'):
+            df = pd.read_csv(file_path, nrows=5)  # Read first 5 rows
+            columns = [col.lower() for col in df.columns]
+            
+            # Simple heuristic-based detection
+            if any('sequence' in col for col in columns) or any('dna' in col for col in columns):
+                schema_name = 'edna_sequences'
+            elif any('species' in col for col in columns) or any('scientific' in col for col in columns):
+                schema_name = 'species_data'
+            elif any('temp' in col for col in columns) or any('salinity' in col for col in columns):
+                schema_name = 'oceanographic_data'
+            elif any('lat' in col for col in columns) and any('lon' in col for col in columns):
+                schema_name = 'sampling_points'
+            else:
+                schema_name = 'oceanographic_data'  # Default fallback
+            
+            # Process based on detected schema
+            if schema_name in ['oceanographic_data', 'sampling_points']:
+                result = ingest_to_postgresql(file_path, schema_name, db)
+            else:
+                result = ingest_to_mongodb(file_path, schema_name, db)
+            
+            return {
+                'success': True,
+                'schema_detected': schema_name,
+                'confidence': 75.0,  # Basic confidence
+                'ingestion_results': [result],
+                'processed_timestamp': datetime.utcnow().isoformat()
+            }
+            
+        elif file_path.lower().endswith('.json'):
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            
+            # Simple JSON detection
+            sample = data[0] if isinstance(data, list) and data else data
+            
+            if 'sequence' in str(sample).lower():
+                schema_name = 'edna_sequences'
+            elif 'species' in str(sample).lower():
+                schema_name = 'species_data'
+            else:
+                schema_name = 'species_data'  # Default for JSON
+            
+            result = ingest_to_mongodb(file_path, schema_name, db)
+            
+            return {
+                'success': True,
+                'schema_detected': schema_name,
+                'confidence': 70.0,  # Basic confidence
+                'ingestion_results': [result],
+                'processed_timestamp': datetime.utcnow().isoformat()
+            }
+        
+        return {
+            'success': False,
+            'error': 'Unsupported file format',
+            'file_analyzed': False
+        }
+        
+    except Exception as e:
+        return {
+            'success': False,
+            'error': f'Basic schema detection failed: {str(e)}',
+            'file_analyzed': False
+        }
 
 @data_ingestion_bp.route('/process/<file_id>', methods=['POST'])
 def process_file(file_id):

@@ -1,14 +1,18 @@
 import React, { useState, useRef } from 'react';
-import { Upload, X, FileText, CheckCircle, AlertCircle, Download } from 'lucide-react';
+import { Upload, X, FileText, CheckCircle, AlertCircle, Download, RefreshCw } from 'lucide-react';
+import { ApiService } from '../../services/api';
+import { useApp } from '../../context/AppContext';
 
 interface UploadFile {
   id: string;
   name: string;
   size: number;
   type: string;
-  status: 'pending' | 'uploading' | 'completed' | 'error';
+  status: 'pending' | 'uploading' | 'processing' | 'completed' | 'error';
   progress: number;
   errorMessage?: string;
+  fileId?: string;
+  processingResults?: any;
 }
 
 const SUPPORTED_FORMATS = {
@@ -23,7 +27,9 @@ export default function FileUpload() {
   const [files, setFiles] = useState<UploadFile[]>([]);
   const [isDragging, setIsDragging] = useState(false);
   const [uploadType, setUploadType] = useState<'edna' | 'oceanographic' | 'species' | 'taxonomy'>('edna');
+  const [description, setDescription] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { loadDatabaseStats } = useApp();
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -49,7 +55,12 @@ export default function FileUpload() {
 
   const processFiles = (fileList: File[]) => {
     const validFiles = fileList.filter(file => {
-      return Object.keys(SUPPORTED_FORMATS).includes(file.type) || file.name.endsWith('.fasta');
+      return Object.keys(SUPPORTED_FORMATS).includes(file.type) || 
+             file.name.endsWith('.fasta') || 
+             file.name.endsWith('.csv') || 
+             file.name.endsWith('.json') ||
+             file.name.endsWith('.xlsx') ||
+             file.name.endsWith('.xls');
     });
 
     const newFiles: UploadFile[] = validFiles.map(file => ({
@@ -63,35 +74,82 @@ export default function FileUpload() {
 
     setFiles(prev => [...prev, ...newFiles]);
 
-    // Start upload simulation for each file
-    newFiles.forEach(file => simulateUpload(file.id));
+    // Start actual upload for each file
+    newFiles.forEach((file, index) => {
+      const actualFile = validFiles[index];
+      uploadFile(file.id, actualFile);
+    });
   };
 
-  const simulateUpload = async (fileId: string) => {
-    setFiles(prev => prev.map(f => 
-      f.id === fileId ? { ...f, status: 'uploading' } : f
-    ));
-
-    // Simulate upload progress
-    for (let progress = 0; progress <= 100; progress += 10) {
-      await new Promise(resolve => setTimeout(resolve, 200));
+  const uploadFile = async (fileId: string, file: File) => {
+    try {
       setFiles(prev => prev.map(f => 
-        f.id === fileId ? { ...f, progress } : f
+        f.id === fileId ? { ...f, status: 'uploading' } : f
+      ));
+
+      // Create form data
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('description', description);
+      formData.append('auto_process', 'true');
+      
+      // Add metadata based on upload type
+      const metadata = {
+        upload_type: uploadType,
+        upload_timestamp: new Date().toISOString(),
+      };
+      formData.append('metadata', JSON.stringify(metadata));
+
+      // Simulate progress during upload
+      const progressInterval = setInterval(() => {
+        setFiles(prev => prev.map(f => {
+          if (f.id === fileId && f.progress < 90) {
+            return { ...f, progress: f.progress + 10 };
+          }
+          return f;
+        }));
+      }, 200);
+
+      // Upload file
+      const response = await ApiService.uploadFile(formData);
+      
+      clearInterval(progressInterval);
+
+      if (response.success) {
+        setFiles(prev => prev.map(f => 
+          f.id === fileId ? { 
+            ...f, 
+            status: response.data.status === 'processed' ? 'completed' : 'processing',
+            progress: 100,
+            fileId: response.data.file_id,
+            processingResults: response.data.processing_results
+          } : f
+        ));
+        
+        // Refresh database stats after successful upload
+        await loadDatabaseStats();
+        
+      } else {
+        setFiles(prev => prev.map(f => 
+          f.id === fileId ? { 
+            ...f, 
+            status: 'error',
+            progress: 0,
+            errorMessage: response.message || 'Upload failed'
+          } : f
+        ));
+      }
+      
+    } catch (error: any) {
+      setFiles(prev => prev.map(f => 
+        f.id === fileId ? { 
+          ...f, 
+          status: 'error',
+          progress: 0,
+          errorMessage: error.response?.data?.message || error.message || 'Upload failed'
+        } : f
       ));
     }
-
-    // Randomly succeed or fail for demo
-    const success = Math.random() > 0.2;
-    
-    setFiles(prev => prev.map(f => 
-      f.id === fileId 
-        ? { 
-            ...f, 
-            status: success ? 'completed' : 'error',
-            errorMessage: success ? undefined : 'Upload failed. Please try again.'
-          }
-        : f
-    ));
   };
 
   const removeFile = (fileId: string) => {
@@ -99,10 +157,59 @@ export default function FileUpload() {
   };
 
   const retryUpload = (fileId: string) => {
-    setFiles(prev => prev.map(f => 
-      f.id === fileId ? { ...f, status: 'pending', progress: 0, errorMessage: undefined } : f
-    ));
-    simulateUpload(fileId);
+    // Find the original file to retry upload
+    const fileToRetry = files.find(f => f.id === fileId);
+    if (fileToRetry) {
+      setFiles(prev => prev.map(f => 
+        f.id === fileId ? { ...f, status: 'pending', progress: 0, errorMessage: undefined } : f
+      ));
+      // Note: We'd need to store the original File object to retry
+      // For now, this is a placeholder - in a real app, you'd store the File reference
+      console.log('Retry upload for:', fileToRetry.name);
+    }
+  };
+
+  const processUploadedFile = async (fileId: string) => {
+    const file = files.find(f => f.id === fileId);
+    if (!file || !file.fileId) return;
+
+    try {
+      setFiles(prev => prev.map(f => 
+        f.id === fileId ? { ...f, status: 'processing' } : f
+      ));
+
+      const response = await ApiService.processFile(file.fileId);
+      
+      if (response.success) {
+        setFiles(prev => prev.map(f => 
+          f.id === fileId ? { 
+            ...f, 
+            status: 'completed',
+            processingResults: response.data.processing_results
+          } : f
+        ));
+        
+        // Refresh database stats after successful processing
+        await loadDatabaseStats();
+        
+      } else {
+        setFiles(prev => prev.map(f => 
+          f.id === fileId ? { 
+            ...f, 
+            status: 'error',
+            errorMessage: response.message || 'Processing failed'
+          } : f
+        ));
+      }
+    } catch (error: any) {
+      setFiles(prev => prev.map(f => 
+        f.id === fileId ? { 
+          ...f, 
+          status: 'error',
+          errorMessage: error.response?.data?.message || error.message || 'Processing failed'
+        } : f
+      ));
+    }
   };
 
   const formatFileSize = (bytes: number): string => {
@@ -120,14 +227,51 @@ export default function FileUpload() {
       case 'error':
         return <AlertCircle className="w-5 h-5 text-red-500" />;
       case 'uploading':
-        return <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />;
+      case 'processing':
+        return <RefreshCw className="w-5 h-5 text-blue-500 animate-spin" />;
       default:
         return <FileText className="w-5 h-5 text-gray-400" />;
     }
   };
 
+  const getStatusText = (file: UploadFile) => {
+    switch (file.status) {
+      case 'uploading':
+        return 'Uploading...';
+      case 'processing':
+        return 'Processing...';
+      case 'completed':
+        if (file.processingResults) {
+          const results = file.processingResults;
+          if (results.success && results.ingestion_results) {
+            const totalRecords = results.ingestion_results.reduce((sum: number, result: any) => 
+              sum + (result.records_inserted || result.inserted_count || 0), 0
+            );
+            return `Processed ${totalRecords} records`;
+          }
+        }
+        return 'Upload completed';
+      case 'error':
+        return file.errorMessage || 'Upload failed';
+      default:
+        return `${formatFileSize(file.size)} • ${uploadType} data`;
+    }
+  };
+
   return (
     <div className="space-y-6">
+      {/* Description Input */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Description (Optional)</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Enter a description for this upload batch..."
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-ocean-500"
+          rows={2}
+        />
+      </div>
+
       {/* Upload Type Selection */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-3">Data Type</label>
@@ -208,26 +352,33 @@ export default function FileUpload() {
                     <p className="text-sm font-medium text-gray-900 truncate">
                       {file.name}
                     </p>
-                    <div className="flex items-center space-x-2 text-xs text-gray-500">
-                      <span>{formatFileSize(file.size)}</span>
-                      <span>•</span>
-                      <span className="capitalize">{uploadType} data</span>
+                    <div className="text-xs text-gray-500">
+                      {getStatusText(file)}
                     </div>
-                    {file.status === 'error' && file.errorMessage && (
-                      <p className="text-xs text-red-600 mt-1">{file.errorMessage}</p>
+                    {file.processingResults && file.processingResults.schema_detected && (
+                      <div className="text-xs text-green-600 mt-1">
+                        Schema: {file.processingResults.schema_detected} 
+                        {file.processingResults.confidence && (
+                          <span className="text-gray-500">({file.processingResults.confidence.toFixed(1)}% confidence)</span>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
 
-                {file.status === 'uploading' && (
+                {(file.status === 'uploading' || file.status === 'processing') && (
                   <div className="flex items-center space-x-3">
                     <div className="w-24 bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          file.status === 'processing' ? 'bg-orange-500' : 'bg-blue-600'
+                        }`}
                         style={{ width: `${file.progress}%` }}
                       />
                     </div>
-                    <span className="text-sm text-gray-500">{file.progress}%</span>
+                    <span className="text-sm text-gray-500">
+                      {file.status === 'processing' ? 'Processing' : `${file.progress}%`}
+                    </span>
                   </div>
                 )}
 
@@ -240,9 +391,23 @@ export default function FileUpload() {
                       Retry
                     </button>
                   )}
-                  {file.status === 'completed' && (
-                    <button className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors">
+                  {file.status === 'completed' && file.processingResults && (
+                    <button 
+                      className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors"
+                      onClick={() => {
+                        console.log('Processing results:', file.processingResults);
+                        // Here you could open a modal or navigate to results view
+                      }}
+                    >
                       View Results
+                    </button>
+                  )}
+                  {file.status === 'processing' && (
+                    <button 
+                      className="text-xs px-2 py-1 bg-orange-100 text-orange-700 rounded hover:bg-orange-200 transition-colors"
+                      onClick={() => processUploadedFile(file.id)}
+                    >
+                      Process Now
                     </button>
                   )}
                   <button

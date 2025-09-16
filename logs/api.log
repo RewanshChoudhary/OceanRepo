@@ -417,3 +417,148 @@ LINE 5:                 LEFT JOIN sampling_events se ON od.sampling_...
 2025-09-15 20:14:36,451 INFO app Thread-41 (process_request_thread) : Request: GET http://localhost:5000/api/info
 2025-09-15 20:14:36,452 INFO app Thread-41 (process_request_thread) : Response: 200 OK
 2025-09-15 20:14:36,455 INFO werkzeug Thread-41 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:14:36] "GET /api/info HTTP/1.1" 200 -
+2025-09-15 20:23:53,351 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/flatted/python/flatted.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+🔬 Building k-mer reference database...
+✅ Reference database built with 48 species
+📊 Total k-mer profiles: 6871
+🔬 Building k-mer reference database...
+✅ Reference database built with 48 species
+📊 Total k-mer profiles: 6871
+2025-09-15 20:23:54,847 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 20:23:56,940 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 20:23:56,980 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 20:23:57,078 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 20:23:57,105 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 20:24:01,303 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/shell-quote/print.py', reloading
+2025-09-15 20:24:01,309 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/shell-quote/print.py', reloading
+2025-09-15 20:24:01,336 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/shell-quote/print.py', reloading
+
+🌊 Marine Data Integration Platform API
+==================================================
+Starting API server...
+Host: 0.0.0.0
+Port: 5000
+Debug: True
+Environment: development
+
+Available endpoints:
+- Health Check: http://0.0.0.0:5000/api/health
+- API Info: http://0.0.0.0:5000/api/info
+- Documentation: http://0.0.0.0:5000/api/docs
+
+Press Ctrl+C to stop the server
+==================================================
+    
+2025-09-15 20:24:02,326 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+/home/rewansh57/.local/lib/python3.13/site-packages/flask_limiter/extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2025-09-15 20:24:04,136 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 20:24:04,191 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 20:24:04,279 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 20:24:04,321 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 21:31:50,993 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 21:31:51,102 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.111.40:5000
+2025-09-15 21:31:51,102 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-09-15 21:31:51,123 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 21:31:51,815 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 21:31:51,834 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 21:31:51,856 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 21:32:52,240 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 21:33:08,947 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 21:33:08,976 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.111.40:5000
+2025-09-15 21:33:08,976 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-09-15 21:33:08,983 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 21:33:09,743 ERROR api.utils.database MainThread : Database initialization failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 21:33:09,773 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 21:33:09,776 INFO werkzeug MainThread :  * Debugger PIN: 135-263-649
+2025-09-15 21:33:16,346 INFO app Thread-14 (process_request_thread) : Request: GET http://localhost:5000/api/health
+2025-09-15 21:33:16,349 ERROR api.utils.database Thread-14 (process_request_thread) : PostgreSQL health check failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 21:33:21,404 ERROR api.utils.database Thread-14 (process_request_thread) : MongoDB health check failed: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c838c4e5ecaf0d9bc7289c, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 21:33:21,407 INFO app Thread-14 (process_request_thread) : Response: 200 OK
+2025-09-15 21:33:21,410 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 21:33:21] "GET /api/health HTTP/1.1" 200 -
+2025-09-15 21:33:44,533 INFO app Thread-16 (process_request_thread) : Request: GET http://localhost:5000/api/species/statistics
+2025-09-15 21:33:44,534 INFO app Thread-18 (process_request_thread) : Request: GET http://localhost:5000/api/species/statistics
+2025-09-15 21:33:49,584 ERROR api.routes.species_identification Thread-16 (process_request_thread) : Statistics retrieval error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c838e0e5ecaf0d9bc7289d, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 21:33:49,586 INFO app Thread-16 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 21:33:49,588 INFO werkzeug Thread-16 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 21:33:49] "[35m[1mGET /api/species/statistics HTTP/1.1[0m" 500 -
+2025-09-15 21:33:49,596 ERROR api.routes.species_identification Thread-18 (process_request_thread) : Statistics retrieval error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c838e0e5ecaf0d9bc7289e, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 21:33:49,598 INFO app Thread-18 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 21:33:49,602 INFO werkzeug Thread-18 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 21:33:49] "[35m[1mGET /api/species/statistics HTTP/1.1[0m" 500 -
+2025-09-15 21:35:28,215 INFO app Thread-19 (process_request_thread) : Request: GET http://localhost:5000/api/species/statistics
+2025-09-15 21:35:33,249 ERROR api.routes.species_identification Thread-19 (process_request_thread) : Statistics retrieval error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c83948e5ecaf0d9bc7289f, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 21:35:33,250 INFO app Thread-19 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 21:35:33,251 INFO werkzeug Thread-19 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 21:35:33] "[35m[1mGET /api/species/statistics HTTP/1.1[0m" 500 -
+2025-09-15 21:36:15,158 INFO app Thread-21 (process_request_thread) : Request: GET http://localhost:5000/api/health
+2025-09-15 21:36:15,161 ERROR api.utils.database Thread-21 (process_request_thread) : PostgreSQL health check failed: connection to server at "localhost" (::1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-09-15 21:36:20,183 ERROR api.utils.database Thread-21 (process_request_thread) : MongoDB health check failed: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c83977e5ecaf0d9bc728a0, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 21:36:20,184 INFO app Thread-21 (process_request_thread) : Response: 200 OK
+2025-09-15 21:36:20,185 INFO werkzeug Thread-21 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 21:36:20] "GET /api/health HTTP/1.1" 200 -
+2025-09-15 21:36:32,231 INFO app Thread-23 (process_request_thread) : Request: GET http://localhost:5000/api/species/statistics
+2025-09-15 21:36:37,253 ERROR api.routes.species_identification Thread-23 (process_request_thread) : Statistics retrieval error: localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 68c83988e5ecaf0d9bc728a1, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27018) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27018: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-09-15 21:36:37,254 INFO app Thread-23 (process_request_thread) : Response: 500 INTERNAL SERVER ERROR
+2025-09-15 21:36:37,256 INFO werkzeug Thread-23 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 21:36:37] "[35m[1mGET /api/species/statistics HTTP/1.1[0m" 500 -
+2025-09-16 12:55:21,231 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-16 12:55:21,249 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-16 12:55:21,354 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.111.40:5000
+2025-09-16 12:55:21,355 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-09-16 12:55:21,382 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-16 12:55:22,051 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-16 12:55:22,055 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-16 12:55:22,073 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-16 12:55:22,087 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245

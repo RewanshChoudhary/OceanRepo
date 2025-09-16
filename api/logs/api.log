@@ -261,3 +261,17 @@ LINE 5:                 LEFT JOIN sampling_events se ON od.sampling_...
 2025-09-15 20:14:36,451 INFO app Thread-41 (process_request_thread) : Request: GET http://localhost:5000/api/info
 2025-09-15 20:14:36,452 INFO app Thread-41 (process_request_thread) : Response: 200 OK
 2025-09-15 20:14:36,455 INFO werkzeug Thread-41 (process_request_thread) : 127.0.0.1 - - [15/Sep/2025 20:14:36] "GET /api/info HTTP/1.1" 200 -
+2025-09-15 20:23:53,351 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/flatted/python/flatted.py', reloading
+2025-09-15 20:23:54,847 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 20:23:56,940 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 20:23:56,980 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 20:23:57,078 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 20:23:57,105 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245
+2025-09-15 20:24:01,303 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/shell-quote/print.py', reloading
+2025-09-15 20:24:01,309 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/shell-quote/print.py', reloading
+2025-09-15 20:24:01,336 INFO werkzeug Thread-2 :  * Detected change in '/home/rewansh57/SIH/marine-data-platform/marine-frontend/node_modules/shell-quote/print.py', reloading
+2025-09-15 20:24:02,326 INFO werkzeug MainThread :  * Restarting with watchdog (inotify)
+2025-09-15 20:24:04,136 INFO api.utils.database MainThread : PostgreSQL connection test successful
+2025-09-15 20:24:04,191 INFO api.utils.database MainThread : MongoDB connection test successful
+2025-09-15 20:24:04,279 WARNING werkzeug MainThread :  * Debugger is active!
+2025-09-15 20:24:04,321 INFO werkzeug MainThread :  * Debugger PIN: 742-389-245

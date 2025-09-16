@@ -19,15 +19,15 @@ class DatabaseConfig:
     
     POSTGRES_CONFIG = {
         'host': os.getenv('POSTGRES_HOST', 'localhost'),
-        'port': int(os.getenv('POSTGRES_PORT', '5433')),
+        'port': int(os.getenv('POSTGRES_PORT', '5432')),
         'database': os.getenv('POSTGRES_DB', 'marine_db'),
         'user': os.getenv('POSTGRES_USER', 'marineuser'),
-        'password': os.getenv('POSTGRES_PASSWORD', 'marine123')
+        'password': os.getenv('POSTGRES_PASSWORD', 'marinepass123')
     }
     
     MONGODB_CONFIG = {
         'host': os.getenv('MONGODB_HOST', 'localhost'),
-        'port': int(os.getenv('MONGODB_PORT', '27018')),
+        'port': int(os.getenv('MONGODB_PORT', '27017')),
         'database': os.getenv('MONGODB_DB', 'marine_db')
     }
 
@@ -56,8 +56,8 @@ def get_mongodb_connection():
             g.mongo_db = g.mongo_client[DatabaseConfig.MONGODB_CONFIG['database']]
         return g.mongo_client, g.mongo_db
     except Exception as e:
-            logger.error(f"MongoDB connection error: {e}")
-            return None
+        logger.error(f"MongoDB connection error: {e}")
+        return None, None
 
 def init_databases():
     """Initialize database connections and create necessary collections/tables"""
@@ -125,61 +125,7 @@ def close_db_connections():
     if 'mongo_client' in g:
         g.mongo_client.close()
 
-def init_databases():
-    """Initialize database connections"""
-    try:
-        # Test connections
-        postgres_conn = psycopg2.connect(**DatabaseConfig.POSTGRES_CONFIG)
-        postgres_conn.close()
-        logger.info("PostgreSQL connection test successful")
-        
-        mongo_client = MongoClient(
-            host=DatabaseConfig.MONGODB_CONFIG['host'],
-            port=DatabaseConfig.MONGODB_CONFIG['port'],
-            serverSelectionTimeoutMS=5000
-        )
-        mongo_client.admin.command('ismaster')
-        mongo_client.close()
-        logger.info("MongoDB connection test successful")
-        
-        return True
-    except Exception as e:
-        logger.error(f"Database initialization failed: {e}")
-        return False
-
-def test_connections():
-    """Test database connections for health checks"""
-    status = {
-        'postgresql': False,
-        'mongodb': False
-    }
-    
-    try:
-        # Test PostgreSQL
-        conn = psycopg2.connect(**DatabaseConfig.POSTGRES_CONFIG)
-        cursor = conn.cursor()
-        cursor.execute("SELECT 1")
-        cursor.fetchone()
-        cursor.close()
-        conn.close()
-        status['postgresql'] = True
-    except Exception as e:
-        logger.error(f"PostgreSQL health check failed: {e}")
-    
-    try:
-        # Test MongoDB
-        client = MongoClient(
-            host=DatabaseConfig.MONGODB_CONFIG['host'],
-            port=DatabaseConfig.MONGODB_CONFIG['port'],
-            serverSelectionTimeoutMS=5000
-        )
-        client.admin.command('ismaster')
-        client.close()
-        status['mongodb'] = True
-    except Exception as e:
-        logger.error(f"MongoDB health check failed: {e}")
-    
-    return status
+# Remove duplicate function - using the one above
 
 # Context managers for database operations
 class PostgreSQLCursor:
