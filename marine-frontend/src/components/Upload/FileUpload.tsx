@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Upload, X, FileText, CheckCircle, AlertCircle, Download, RefreshCw } from 'lucide-react';
+import { Upload, X, FileText, CheckCircle, AlertCircle, Download, RefreshCw, Play, Settings } from 'lucide-react';
 import { ApiService } from '../../services/api';
 import { useApp } from '../../context/AppContext';
 
@@ -28,6 +28,8 @@ export default function FileUpload() {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadType, setUploadType] = useState<'edna' | 'oceanographic' | 'species' | 'taxonomy'>('edna');
   const [description, setDescription] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [processingResults, setProcessingResults] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { loadDatabaseStats } = useApp();
 
@@ -212,6 +214,97 @@ export default function FileUpload() {
     }
   };
 
+  const processAllUploads = async (filterByType: boolean = false) => {
+    setIsProcessing(true);
+    setProcessingResults(null);
+    
+    try {
+      const data = {
+        status_filter: 'uploaded',
+        upload_type_filter: filterByType ? uploadType : undefined,
+        process_matches: true
+      };
+      
+      const response = await ApiService.processUploads(data);
+      
+      if (response.success) {
+        setProcessingResults(response.data);
+        
+        // Update local file states based on results
+        const processedFiles = response.data.detailed_results?.processing_results || [];
+        setFiles(prev => prev.map(f => {
+          const processedFile = processedFiles.find((pf: any) => pf.file_id === f.fileId);
+          if (processedFile) {
+            return {
+              ...f,
+              status: processedFile.success ? 'completed' : 'error',
+              processingResults: processedFile.processing_result,
+              errorMessage: processedFile.success ? undefined : processedFile.error
+            };
+          }
+          return f;
+        }));
+        
+        // Refresh database stats
+        await loadDatabaseStats();
+        
+      } else {
+        throw new Error(response.message || 'Processing failed');
+      }
+    } catch (error: any) {
+      console.error('Bulk processing failed:', error);
+      setProcessingResults({
+        error: error.response?.data?.message || error.message || 'Bulk processing failed'
+      });
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const reprocessFile = async (fileId: string) => {
+    const file = files.find(f => f.id === fileId);
+    if (!file || !file.fileId) return;
+
+    try {
+      setFiles(prev => prev.map(f => 
+        f.id === fileId ? { ...f, status: 'processing' } : f
+      ));
+
+      const response = await ApiService.reprocessFile(file.fileId);
+      
+      if (response.success) {
+        setFiles(prev => prev.map(f => 
+          f.id === fileId ? { 
+            ...f, 
+            status: 'completed',
+            processingResults: response.data.processing_result,
+            errorMessage: undefined
+          } : f
+        ));
+        
+        // Refresh database stats
+        await loadDatabaseStats();
+        
+      } else {
+        setFiles(prev => prev.map(f => 
+          f.id === fileId ? { 
+            ...f, 
+            status: 'error',
+            errorMessage: response.message || 'Reprocessing failed'
+          } : f
+        ));
+      }
+    } catch (error: any) {
+      setFiles(prev => prev.map(f => 
+        f.id === fileId ? { 
+          ...f, 
+          status: 'error',
+          errorMessage: error.response?.data?.message || error.message || 'Reprocessing failed'
+        } : f
+      ));
+    }
+  };
+
   const formatFileSize = (bytes: number): string => {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
@@ -336,6 +429,64 @@ export default function FileUpload() {
         </div>
       </div>
 
+      {/* Bulk Processing Controls */}
+      {files.length > 0 && (
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <h3 className="text-lg font-medium text-gray-900 mb-3">Enhanced Processing</h3>
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={() => processAllUploads(false)}
+              disabled={isProcessing}
+              className="inline-flex items-center px-4 py-2 bg-ocean-600 text-white rounded-md hover:bg-ocean-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isProcessing ? (
+                <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+              ) : (
+                <Play className="w-4 h-4 mr-2" />
+              )}
+              Process All Files
+            </button>
+            
+            <button
+              onClick={() => processAllUploads(true)}
+              disabled={isProcessing}
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              Process {uploadType.charAt(0).toUpperCase() + uploadType.slice(1)} Only
+            </button>
+            
+            {isProcessing && (
+              <div className="text-sm text-gray-600">
+                Processing uploaded files with enhanced schema matching...
+              </div>
+            )}
+          </div>
+          
+          {processingResults && (
+            <div className="mt-4 p-3 bg-white border rounded">
+              {processingResults.error ? (
+                <div className="text-red-700">
+                  <strong>Processing Error:</strong> {processingResults.error}
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <div className="text-green-700 font-medium">
+                    Processing completed successfully!
+                  </div>
+                  <div className="text-sm text-gray-600 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>Files Analyzed: <strong>{processingResults.summary?.total_files_analyzed || 0}</strong></div>
+                    <div>Successfully Processed: <strong className="text-green-600">{processingResults.summary?.files_processed_successfully || 0}</strong></div>
+                    <div>Failed: <strong className="text-red-600">{processingResults.summary?.files_failed_processing || 0}</strong></div>
+                    <div>Schemas Available: <strong>{processingResults.summary?.schemas_available || 0}</strong></div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* File List */}
       {files.length > 0 && (
         <div className="space-y-3">
@@ -384,12 +535,22 @@ export default function FileUpload() {
 
                 <div className="flex items-center space-x-2 ml-4">
                   {file.status === 'error' && (
-                    <button
-                      onClick={() => retryUpload(file.id)}
-                      className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
-                    >
-                      Retry
-                    </button>
+                    <>
+                      <button
+                        onClick={() => retryUpload(file.id)}
+                        className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
+                      >
+                        Retry Upload
+                      </button>
+                      {file.fileId && (
+                        <button
+                          onClick={() => reprocessFile(file.id)}
+                          className="text-xs px-2 py-1 bg-orange-100 text-orange-700 rounded hover:bg-orange-200 transition-colors"
+                        >
+                          Reprocess
+                        </button>
+                      )}
+                    </>
                   )}
                   {file.status === 'completed' && file.processingResults && (
                     <button 
@@ -425,13 +586,27 @@ export default function FileUpload() {
 
       {/* Upload Guidelines */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h4 className="font-medium text-blue-900 mb-2">Upload Guidelines</h4>
-        <ul className="text-sm text-blue-800 space-y-1">
-          <li>• eDNA sequences: FASTA or TXT format with sequence data</li>
-          <li>• Oceanographic: CSV with latitude, longitude, parameters, and values</li>
-          <li>• Species data: CSV/Excel with taxonomic information</li>
-          <li>• Maximum file size: 100MB per file</li>
-        </ul>
+        <h4 className="font-medium text-blue-900 mb-2">Upload Guidelines & Processing</h4>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <h5 className="font-medium text-blue-800 mb-1">File Formats:</h5>
+            <ul className="text-sm text-blue-800 space-y-1">
+              <li>• eDNA sequences: FASTA or TXT format with sequence data</li>
+              <li>• Oceanographic: CSV with latitude, longitude, parameters, and values</li>
+              <li>• Species data: CSV/Excel with taxonomic information</li>
+              <li>• Maximum file size: 100MB per file</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-medium text-blue-800 mb-1">Enhanced Processing:</h5>
+            <ul className="text-sm text-blue-800 space-y-1">
+              <li>• Automatic schema detection and matching</li>
+              <li>• Intelligent data type recognition</li>
+              <li>• Bulk processing with filtering options</li>
+              <li>• Real-time processing status updates</li>
+            </ul>
+          </div>
+        </div>
         
         <div className="mt-3 flex items-center space-x-2">
           <Download className="w-4 h-4 text-blue-600" />

@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle, LayersControl } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import { MapPin, Layers, Search, Download, Filter } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import '../../../utils/leafletFix';
+import ApiService from '../../../services/api';
 
 // Mock data for sampling locations
 const generateSampleLocations = () => {
@@ -50,11 +51,54 @@ const dataTypeConfig = {
 };
 
 export default function GeographicPanel() {
-  const [selectedLayers, setSelectedLayers] = useState(['edna', 'oceanographic', 'species']);
+  const [selectedLayers, setSelectedLayers] = useState(['oceanographic']);
   const [searchTerm, setSearchTerm] = useState('');
   const [mapView, setMapView] = useState<'normal' | 'satellite' | 'terrain'>('normal');
+  const [realLocations, setRealLocations] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
   
-  const sampleLocations = useMemo(() => generateSampleLocations(), []);
+  // Load real sampling locations
+  useEffect(() => {
+    const loadRealLocations = async () => {
+      setLoading(true);
+      try {
+        const samplingPoints = await ApiService.getSamplingPoints();
+        const oceanographicData = await ApiService.getOceanographicData({ limit: 100 });
+        
+        // Transform real data to map format
+        const locations = oceanographicData.map((data, index) => ({
+          id: data.id,
+          name: `Sample Point ${index + 1}`,
+          lat: data.location.latitude,
+          lng: data.location.longitude,
+          type: 'oceanographic',
+          count: 1,
+          temperature: data.parameter_type === 'temperature' ? data.value : null,
+          salinity: data.parameter_type === 'salinity' ? data.value : null,
+          biodiversityIndex: Math.random() * 0.8 + 0.2, // Mock for now
+          parameter_type: data.parameter_type,
+          value: data.value,
+          unit: data.unit,
+          timestamp: data.timestamp
+        }));
+        
+        setRealLocations(locations);
+      } catch (error) {
+        console.error('Error loading real locations:', error);
+        // Fallback to mock data
+        setRealLocations(generateSampleLocations());
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadRealLocations();
+  }, []);
+  
+  const sampleLocations = useMemo(() => 
+    realLocations.length > 0 ? realLocations : generateSampleLocations(), 
+    [realLocations]
+  );
 
   const filteredLocations = useMemo(() => {
     return sampleLocations.filter(location => 
@@ -196,17 +240,25 @@ export default function GeographicPanel() {
                             <span className="font-medium">{config.label}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Samples:</span>
-                            <span className="font-medium">{location.count}</span>
+                            <span className="text-gray-600">Parameter:</span>
+                            <span className="font-medium">{location.parameter_type}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Temperature:</span>
-                            <span className="font-medium">{location.temperature.toFixed(1)}°C</span>
+                            <span className="text-gray-600">Value:</span>
+                            <span className="font-medium">{location.value?.toFixed(2)} {location.unit}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Salinity:</span>
-                            <span className="font-medium">{location.salinity.toFixed(1)} PSU</span>
-                          </div>
+                          {location.temperature && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">Temperature:</span>
+                              <span className="font-medium">{location.temperature.toFixed(1)}°C</span>
+                            </div>
+                          )}
+                          {location.salinity && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">Salinity:</span>
+                              <span className="font-medium">{location.salinity.toFixed(1)} PSU</span>
+                            </div>
+                          )}
                           <div className="flex justify-between">
                             <span className="text-gray-600">Biodiversity:</span>
                             <span className="font-medium">{(location.biodiversityIndex * 100).toFixed(0)}%</span>
@@ -216,6 +268,11 @@ export default function GeographicPanel() {
                           <div className="text-xs text-gray-500">
                             Coordinates: {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
                           </div>
+                          {location.timestamp && (
+                            <div className="text-xs text-gray-500">
+                              Date: {new Date(location.timestamp).toLocaleDateString()}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </Popup>

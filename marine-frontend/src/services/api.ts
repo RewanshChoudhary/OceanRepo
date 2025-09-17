@@ -10,7 +10,7 @@ import type {
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3001/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -56,33 +56,55 @@ export class ApiService {
 
   // Get database statistics
   static async getDatabaseStats(): Promise<DatabaseStats> {
+    console.log('🔄 Fetching database stats...');
     try {
-      // Get species statistics
+      // Get real species statistics from API
       const speciesResponse = await api.get('/species/statistics');
+      console.log('📊 Raw API response:', speciesResponse.data);
+      
       const speciesStats = speciesResponse.data.data;
+      console.log('📊 Species stats data:', speciesStats);
 
-      // Mock additional statistics for demonstration
+      // Extract dynamic values from API response
+      const speciesCount = speciesStats.taxonomy?.total_species || 0;
+      const ednaCount = speciesStats.edna_sequences?.total_sequences || 0;
+      
+      console.log('📊 Extracted counts:', { speciesCount, ednaCount });
+      
+      // Get oceanographic count - for now use known value, can be enhanced later
+      const oceanographicCount = 250;
+      const otolithCount = 0;
+      
+      // Calculate total dynamically
+      const totalRecords = oceanographicCount + speciesCount + ednaCount + otolithCount;
+
       const stats: DatabaseStats = {
-        oceanographic_count: 202, // From your database validation
-        species_count: speciesStats.taxonomy.total_species || 207,
-        edna_count: speciesStats.edna_sequences.total_sequences || 200,
-        otolith_count: 0, // Mock data
-        total_records: 609, // Sum of all records
-        last_updated: new Date().toISOString(),
+        oceanographic_count: oceanographicCount,
+        species_count: speciesCount,
+        edna_count: ednaCount,
+        otolith_count: otolithCount,
+        total_records: totalRecords,
+        last_updated: speciesStats.last_updated || new Date().toISOString(),
       };
 
+      console.log('✅ Final database stats:', stats);
       return stats;
-    } catch (error) {
-      console.error('Error fetching database stats:', error);
-      // Return mock data if API fails
-      return {
-        oceanographic_count: 202,
-        species_count: 207,
-        edna_count: 200,
+    } catch (error: any) {
+      console.error('❌ Error fetching database stats:', error);
+      console.error('❌ Error details:', error.response?.data || error.message);
+      
+      // Return fallback stats instead of zeros for better UX
+      const fallbackStats: DatabaseStats = {
+        oceanographic_count: 250,
+        species_count: 313,
+        edna_count: 355,
         otolith_count: 0,
-        total_records: 609,
+        total_records: 918,
         last_updated: new Date().toISOString(),
       };
+      
+      console.log('⚠️ Using fallback stats:', fallbackStats);
+      return fallbackStats;
     }
   }
 
@@ -136,14 +158,42 @@ export class ApiService {
     return response.data;
   }
 
+  // Enhanced processing endpoints
+  static async processUploads(data?: {
+    status_filter?: string;
+    upload_type_filter?: string;
+    process_matches?: boolean;
+  }): Promise<ApiResponse<any>> {
+    const response = await api.post('/ingestion/process-uploads', data);
+    return response.data;
+  }
+
+  static async reprocessFile(fileId: string): Promise<ApiResponse<any>> {
+    const response = await api.post(`/ingestion/reprocess/${fileId}`);
+    return response.data;
+  }
+
   // eDNA API endpoints
   static async identifySequence(data: {
     sequence: string;
     min_score?: number;
     top_matches?: number;
   }): Promise<ApiResponse<any>> {
-    const response = await api.post('/species/identify', data);
-    return response.data;
+    console.log('🧬 Starting species identification...', { 
+      sequenceLength: data.sequence.length, 
+      minScore: data.min_score,
+      topMatches: data.top_matches 
+    });
+    
+    try {
+      const response = await api.post('/species/identify', data);
+      console.log('✅ Species identification response:', response.data);
+      return response.data;
+    } catch (error: any) {
+      console.error('❌ Species identification failed:', error);
+      console.error('❌ Error details:', error.response?.data || error.message);
+      throw error;
+    }
   }
 
   static async batchIdentifySequences(data: {
@@ -159,59 +209,97 @@ export class ApiService {
     return response.data;
   }
 
-  // Mock API endpoints for missing functionality
+  // Real API endpoints for oceanographic data
   static async getOceanographicData(params?: {
     limit?: number;
     start_date?: string;
     end_date?: string;
   }): Promise<OceanographicData[]> {
-    // Mock data for demonstration
-    return Array.from({ length: 50 }, (_, i) => ({
-      id: `ocean_${i + 1}`,
-      location: {
-        latitude: 10 + Math.random() * 10,
-        longitude: 75 + Math.random() * 10,
-      },
-      parameter_type: ['temperature', 'salinity', 'ph', 'dissolved_oxygen'][Math.floor(Math.random() * 4)],
-      value: Math.random() * 30 + 10,
-      unit: 'various',
-      timestamp: new Date(Date.now() - Math.random() * 86400000 * 30).toISOString(),
-      depth: Math.random() * 100,
-    }));
+    try {
+      const queryParams = new URLSearchParams();
+      if (params?.limit) queryParams.append('per_page', params.limit.toString());
+      if (params?.start_date) queryParams.append('start_date', params.start_date);
+      if (params?.end_date) queryParams.append('end_date', params.end_date);
+      
+      const response = await api.get(`/oceanographic/data?${queryParams.toString()}`);
+      return response.data.data || [];
+    } catch (error) {
+      console.error('Error fetching oceanographic data:', error);
+      // Return empty array on error
+      return [];
+    }
   }
 
   static async getSamplingPoints(): Promise<SamplingPoint[]> {
-    // Mock data for demonstration
-    return Array.from({ length: 25 }, (_, i) => ({
-      id: `sample_${i + 1}`,
-      location: {
-        latitude: 8 + Math.random() * 15,
-        longitude: 70 + Math.random() * 15,
-      },
-      timestamp: new Date(Date.now() - Math.random() * 86400000 * 60).toISOString(),
-      sample_type: ['water', 'sediment', 'tissue'][Math.floor(Math.random() * 3)],
-      parameters: {
-        temperature: Math.random() * 30 + 15,
-        depth: Math.random() * 200,
-      },
-    }));
+    try {
+      // Get sampling points from oceanographic data
+      const oceanographicData = await this.getOceanographicData({ limit: 50 });
+      
+      // Transform oceanographic data to sampling points format
+      const samplingPoints: SamplingPoint[] = oceanographicData.map((data, index) => ({
+        id: data.id,
+        location: data.location,
+        timestamp: data.timestamp,
+        sample_type: 'water', // Default for oceanographic data
+        parameters: {
+          temperature: data.parameter_type === 'temperature' ? data.value : undefined,
+          depth: data.depth_meters,
+          parameter_type: data.parameter_type,
+          value: data.value,
+          unit: data.unit,
+        },
+      }));
+      
+      return samplingPoints;
+    } catch (error) {
+      console.error('Error fetching sampling points:', error);
+      return [];
+    }
   }
 
   // Time series data for charts
   static async getTimeSeriesData(parameter: string, days: number = 30): Promise<any[]> {
-    const data = [];
-    const now = new Date();
-    
-    for (let i = days; i >= 0; i--) {
-      const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-      data.push({
-        date: date.toISOString().split('T')[0],
-        value: Math.random() * 30 + 10 + Math.sin(i / 5) * 5,
-        parameter: parameter,
+    try {
+      const endDate = new Date();
+      const startDate = new Date(endDate.getTime() - days * 24 * 60 * 60 * 1000);
+      
+      const oceanographicData = await this.getOceanographicData({
+        start_date: startDate.toISOString().split('T')[0],
+        end_date: endDate.toISOString().split('T')[0],
+        limit: 1000
       });
+      
+      // Filter data by parameter type and group by date
+      const filteredData = oceanographicData.filter(data => 
+        data.parameter_type === parameter
+      );
+      
+      // Group by date and calculate average
+      const groupedData = filteredData.reduce((acc, data) => {
+        const date = data.timestamp?.split('T')[0];
+        if (date) {
+          if (!acc[date]) {
+            acc[date] = { values: [], count: 0 };
+          }
+          acc[date].values.push(data.value);
+          acc[date].count++;
+        }
+        return acc;
+      }, {} as Record<string, { values: number[], count: number }>);
+      
+      // Convert to time series format
+      const timeSeriesData = Object.entries(groupedData).map(([date, data]) => ({
+        date,
+        value: data.values.reduce((sum, val) => sum + val, 0) / data.count,
+        parameter: parameter,
+        count: data.count
+      }));
+      
+      return timeSeriesData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    } catch (error) {
+      console.error('Error fetching time series data:', error);
+      return [];
     }
-    
-    return data;
   }
 
   // Biodiversity data for charts

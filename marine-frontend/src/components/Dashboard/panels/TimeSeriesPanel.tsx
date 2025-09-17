@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   LineChart, 
   Line, 
@@ -14,19 +14,26 @@ import {
   Bar
 } from 'recharts';
 import { Calendar, Filter, Download } from 'lucide-react';
-import { useApp } from '../../../context/AppContext';
+import ApiService from '../../../services/api';
 
 // Mock data for time series - in real app this would come from API
 const generateTimeSeriesData = () => {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return months.map(month => ({
-    month,
-    species: Math.floor(Math.random() * 50) + 100,
-    edna_samples: Math.floor(Math.random() * 30) + 80,
-    oceanographic: Math.floor(Math.random() * 40) + 120,
-    temperature: Math.random() * 5 + 20,
-    salinity: Math.random() * 2 + 34,
-  }));
+  const currentDate = new Date();
+  const mockData = [];
+  
+  // Generate 30 days of mock data
+  for (let i = 29; i >= 0; i--) {
+    const date = new Date(currentDate.getTime() - i * 24 * 60 * 60 * 1000);
+    mockData.push({
+      date: date.toISOString().split('T')[0],
+      temperature: Math.random() * 5 + 20,
+      salinity: Math.random() * 2 + 34,
+      ph: Math.random() * 1 + 7.5,
+      dissolved_oxygen: Math.random() * 2 + 6,
+    });
+  }
+  
+  return mockData;
 };
 
 const chartTypes = [
@@ -36,20 +43,70 @@ const chartTypes = [
 ];
 
 const dataMetrics = [
-  { id: 'species', label: 'Species Count', color: '#10b981' },
-  { id: 'edna_samples', label: 'eDNA Samples', color: '#8b5cf6' },
-  { id: 'oceanographic', label: 'Oceanographic Data', color: '#0ea5e9' },
   { id: 'temperature', label: 'Temperature (°C)', color: '#f59e0b' },
   { id: 'salinity', label: 'Salinity (PSU)', color: '#ef4444' },
+  { id: 'ph', label: 'pH Level', color: '#8b5cf6' },
+  { id: 'dissolved_oxygen', label: 'Dissolved Oxygen', color: '#10b981' },
 ];
 
 export default function TimeSeriesPanel() {
-  const { state } = useApp();
   const [selectedChart, setSelectedChart] = useState('line');
-  const [selectedMetrics, setSelectedMetrics] = useState(['species', 'edna_samples', 'oceanographic']);
+  const [selectedMetrics, setSelectedMetrics] = useState(['temperature', 'salinity', 'ph']);
   const [timeRange, setTimeRange] = useState('12months');
+  const [timeSeriesData, setTimeSeriesData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
   
-  const data = generateTimeSeriesData();
+  // Load real time series data
+  useEffect(() => {
+    const loadTimeSeriesData = async () => {
+      setLoading(true);
+      try {
+        const days = timeRange === '3months' ? 90 : 
+                    timeRange === '6months' ? 180 : 
+                    timeRange === '12months' ? 365 : 730;
+        
+        // Get data for different parameters
+        const [tempData, salinityData, phData, dissolvedOxygenData] = await Promise.all([
+          ApiService.getTimeSeriesData('temperature', days),
+          ApiService.getTimeSeriesData('salinity', days),
+          ApiService.getTimeSeriesData('ph', days),
+          ApiService.getTimeSeriesData('dissolved_oxygen', days)
+        ]);
+        
+        // Combine and format data
+        const combinedData = [...tempData, ...salinityData, ...phData, ...dissolvedOxygenData];
+        const groupedData = combinedData.reduce((acc, item) => {
+          const date = item.date;
+          if (!acc[date]) {
+            acc[date] = { date, temperature: null, salinity: null, ph: null, dissolved_oxygen: null };
+          }
+          acc[date][item.parameter] = item.value;
+          return acc;
+        }, {} as Record<string, any>);
+        
+        const formattedData = Object.values(groupedData)
+          .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
+          .slice(-30); // Show last 30 data points for better visualization
+        
+        console.log('✅ Successfully loaded time series data:', formattedData.length, 'data points');
+        console.log('Sample data points:', formattedData.slice(0, 3));
+        setTimeSeriesData(formattedData);
+      } catch (error) {
+        console.error('❌ Error loading time series data:', error);
+        console.log('🔄 Falling back to mock data');
+        // Fallback to mock data if API fails
+        const mockData = generateTimeSeriesData();
+        console.log('Generated mock data:', mockData.slice(0, 3));
+        setTimeSeriesData(mockData);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadTimeSeriesData();
+  }, [timeRange]);
+  
+  const data = timeSeriesData.length > 0 ? timeSeriesData : generateTimeSeriesData();
 
   const handleMetricToggle = (metricId: string) => {
     setSelectedMetrics(prev => 
@@ -84,7 +141,17 @@ export default function TimeSeriesPanel() {
                 })}
               </defs>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
+              <XAxis 
+                dataKey="date" 
+                tickFormatter={(value) => {
+                  if (!value) return '';
+                  try {
+                    return new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                  } catch {
+                    return value;
+                  }
+                }}
+              />
               <YAxis />
               <Tooltip />
               <Legend />
@@ -111,7 +178,17 @@ export default function TimeSeriesPanel() {
           <ResponsiveContainer {...chartProps}>
             <BarChart data={data}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
+              <XAxis 
+                dataKey="date" 
+                tickFormatter={(value) => {
+                  if (!value) return '';
+                  try {
+                    return new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                  } catch {
+                    return value;
+                  }
+                }}
+              />
               <YAxis />
               <Tooltip />
               <Legend />
@@ -135,7 +212,17 @@ export default function TimeSeriesPanel() {
           <ResponsiveContainer {...chartProps}>
             <LineChart data={data}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
+              <XAxis 
+                dataKey="date" 
+                tickFormatter={(value) => {
+                  if (!value) return '';
+                  try {
+                    return new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                  } catch {
+                    return value;
+                  }
+                }}
+              />
               <YAxis />
               <Tooltip />
               <Legend />
@@ -243,7 +330,15 @@ export default function TimeSeriesPanel() {
 
       {/* Chart */}
       <div className="bg-white rounded-lg border border-gray-200 p-4">
-        {selectedMetrics.length > 0 ? (
+        {loading ? (
+          <div className="h-96 flex items-center justify-center text-gray-500">
+            <div className="text-center">
+              <div className="text-6xl mb-4">⏳</div>
+              <p className="text-lg font-medium">Loading real-time data...</p>
+              <p className="text-sm">Fetching oceanographic measurements from database</p>
+            </div>
+          </div>
+        ) : selectedMetrics.length > 0 ? (
           renderChart()
         ) : (
           <div className="h-96 flex items-center justify-center text-gray-500">
