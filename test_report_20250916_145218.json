@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-09-16T14:52:18.524503",
+  "results": {
+    "total_tests": 34,
+    "passed": 25,
+    "failed": 1,
+    "errors": 8,
+    "skipped": 0,
+    "test_suites": {
+      "tests.test_file_upload": {
+        "tests_run": 15,
+        "failures": 1,
+        "errors": 8,
+        "skipped": 0,
+        "success_rate": 40.0
+      },
+      "tests.test_edna_analysis": {
+        "tests_run": 19,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "success_rate": 100.0
+      }
+    },
+    "start_time": "2025-09-16 14:52:17.536481",
+    "end_time": "2025-09-16 14:52:18.524294",
+    "duration": 0.987813
+  },
+  "success_rate": 73.52941176470588,
+  "recommendations": [
+    "Fix critical issues before proceeding",
+    "Improve error handling and validation",
+    "Add more comprehensive test coverage"
+  ]
+}

@@ -1,0 +1,8 @@
+location_lat,location_lon,timestamp,temperature_celsius,salinity_psu
+invalid_lat,74.7965,2025-09-17T08:00:00Z,29.2,35.1
+12.9716,invalid_lon,2025-09-17T08:15:00Z,28.8,35.2
+12.9716,74.7965,invalid_timestamp,28.5,35.3
+13.0827,80.2707,2025-09-17T09:15:00Z,-999,34.9
+13.0827,80.2707,2025-09-17T09:30:00Z,27.9,invalid_salinity
+,76.2,2025-09-17T10:00:00Z,28.6,35.0
+12.0,74.5,2025-09-17T10:15:00Z,extremely_hot_temp,35.2

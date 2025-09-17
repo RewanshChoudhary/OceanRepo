@@ -94,11 +94,14 @@ npm run dev
 ```
 
 ### 6. **Access Platform**
-- **Web Interface**: http://localhost:5173
+- **Web Interface**: http://localhost:5174 (Vite dev server)
+- **API Server**: http://localhost:5000
 - **API Docs**: http://localhost:5000/api/info
 - **Health Check**: http://localhost:5000/api/health
 - **pgAdmin**: http://localhost:8080 (admin@marine.com / admin123)
 - **MongoDB Express**: http://localhost:8081 (admin / admin123)
+
+> **✅ Status**: Time series charts are now fully functional with real-time data visualization!
 
 ## 📁 Project Structure
 

@@ -81,29 +81,23 @@ def _perform_distance_analysis(cursor, geometry, radius_km, parameters):
     else:
         return APIResponse.validation_error({'geometry': ['Only Point geometry supported for distance analysis']})
     
-    # Build parameter selection
-    param_columns = ', '.join([f'od.{param}' for param in parameters if param in [
-        'temperature_celsius', 'salinity_psu', 'ph_level', 'dissolved_oxygen_mg_per_l',
-        'turbidity_ntu', 'chlorophyll_a_mg_m3', 'nitrate_umol_l', 'phosphate_umol_l'
-    ]])
-    
-    if not param_columns:
-        param_columns = 'od.temperature_celsius, od.salinity_psu'
+    # Build parameter selection - simplified for actual schema
+    param_columns = 'od.parameter_type, od.value, od.unit'
     
     query = f"""
         SELECT 
-            od.measurement_id,
+            od.id,
             ST_Y(od.location::geometry) as latitude,
             ST_X(od.location::geometry) as longitude,
             ST_Distance(od.location::geography, {geom_clause}::geography) / 1000 as distance_km,
-            od.depth_meters,
+            od.measurement_depth as depth_meters,
             od.timestamp,
-            {param_columns},
-            se.event_name,
-            rp.project_code
+            od.parameter_type,
+            od.value,
+            od.unit,
+            od.quality_flag,
+            od.instrument_type
         FROM oceanographic_data od
-        LEFT JOIN sampling_events se ON od.sampling_event_id = se.id
-        LEFT JOIN research_projects rp ON se.project_id = rp.id
         WHERE ST_DWithin(od.location::geography, {geom_clause}::geography, {radius_km * 1000})
         ORDER BY distance_km ASC
         LIMIT 100
@@ -124,7 +118,7 @@ def _perform_distance_analysis(cursor, geometry, radius_km, parameters):
     formatted_results = []
     for row in results:
         result_data = {
-            'measurement_id': row['measurement_id'],
+            'id': str(row['id']),
             'location': {
                 'latitude': float(row['latitude']),
                 'longitude': float(row['longitude'])
@@ -132,15 +126,12 @@ def _perform_distance_analysis(cursor, geometry, radius_km, parameters):
             'distance_km': float(row['distance_km']),
             'depth_meters': float(row['depth_meters']) if row['depth_meters'] else None,
             'timestamp': row['timestamp'].isoformat() if row['timestamp'] else None,
-            'event_name': row['event_name'],
-            'project_code': row['project_code'],
-            'parameters': {}
+            'parameter_type': row['parameter_type'],
+            'value': float(row['value']) if row['value'] else None,
+            'unit': row['unit'],
+            'quality_flag': row['quality_flag'],
+            'instrument_type': row['instrument_type']
         }
-        
-        # Add requested parameters
-        for param in parameters:
-            if param in row and row[param] is not None:
-                result_data['parameters'][param] = float(row[param])
         
         formatted_results.append(result_data)
     

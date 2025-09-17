@@ -109,12 +109,18 @@ class APIResponse:
         Returns:
             Flask response tuple
         """
-        return APIResponse.error(
-            message="Validation failed",
-            status_code=422,
-            error_code="VALIDATION_ERROR",
-            details={"validation_errors": errors}
-        )
+        response = {
+            'success': False,
+            'message': "Validation failed",
+            'timestamp': datetime.utcnow().isoformat(),
+            'validation_errors': errors,
+            'error': {
+                'code': "VALIDATION_ERROR",
+                'message': "Validation failed",
+                'details': {'validation_errors': errors}
+            }
+        }
+        return jsonify(response), 400
     
     @staticmethod
     def not_found(resource: str = "Resource") -> tuple:

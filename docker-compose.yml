@@ -32,7 +32,7 @@ services:
     volumes:
       - mongodb_data:/data/db
     healthcheck:
-      test: echo 'db.stats().ok' | mongo localhost:27017/marine_db --quiet
+      test: mongosh --eval "db.runCommand('ping')" --quiet
       interval: 10s
       timeout: 5s
       retries: 5

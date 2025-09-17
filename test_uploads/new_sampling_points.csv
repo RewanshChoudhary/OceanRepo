@@ -1,0 +1,11 @@
+site_id,site_name,latitude,longitude,depth_meters,habitat_type,established_date,sampling_frequency,water_quality_rating,accessibility
+SP_001,Mangalore Research Station,12.9716,74.7965,15.0,Coastal Waters,2025-01-15,Daily,Excellent,Easy
+SP_002,Chennai Marine Observatory,13.0827,80.2707,22.0,Open Ocean,2025-02-01,Weekly,Good,Moderate
+SP_003,Kanyakumari Deep Site,8.0883,77.5386,45.0,Continental Shelf,2025-02-15,Monthly,Fair,Difficult
+SP_004,Goa Coral Reef Site,15.2993,74.1240,8.0,Coral Reef,2025-03-01,Daily,Excellent,Easy
+SP_005,Gujarat Estuarine Site,22.3072,68.8357,5.0,Estuary,2025-03-15,Weekly,Good,Easy
+SP_006,Mumbai Harbor Station,19.0760,72.8777,12.0,Harbor,2025-04-01,Daily,Poor,Easy
+SP_007,Kochi Backwater Site,9.9312,76.2673,3.0,Backwater,2025-04-15,Weekly,Good,Moderate
+SP_008,Vizag Deep Water Station,17.7231,83.3245,38.0,Deep Water,2025-05-01,Monthly,Excellent,Difficult
+SP_009,Paradip Port Area,20.2648,86.6964,18.0,Port Area,2025-05-15,Weekly,Fair,Moderate
+SP_010,Tuticorin Marine Park,8.8000,78.1500,25.0,Marine Protected Area,2025-06-01,Daily,Excellent,Moderate

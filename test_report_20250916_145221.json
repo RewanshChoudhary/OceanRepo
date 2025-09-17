@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-09-16T14:52:21.123813",
+  "results": {
+    "total_tests": 19,
+    "passed": 6,
+    "failed": 9,
+    "errors": 4,
+    "skipped": 0,
+    "test_suites": {
+      "tests.test_api_integration": {
+        "tests_run": 19,
+        "failures": 9,
+        "errors": 4,
+        "skipped": 0,
+        "success_rate": 31.57894736842105
+      },
+      "test_api_endpoints": {
+        "tests_run": 0,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "success_rate": 0
+      }
+    },
+    "start_time": "2025-09-16 14:52:18.924651",
+    "end_time": "2025-09-16 14:52:21.123545",
+    "duration": 2.198894
+  },
+  "success_rate": 31.57894736842105,
+  "recommendations": [
+    "Conduct thorough code review",
+    "Fix fundamental issues in core components",
+    "Consider refactoring problematic modules"
+  ]
+}

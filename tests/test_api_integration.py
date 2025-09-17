@@ -142,7 +142,8 @@ class TestAPIEndpoints(unittest.TestCase):
         data = json.loads(response.data)
         self.assertTrue(data['success'])
         self.assertIn('data', data)
-        self.assertIn('pagination', data)
+        self.assertIn('metadata', data)
+        self.assertIn('pagination', data['metadata'])
     
     @patch('api.routes.data_ingestion.MongoDB')
     def test_get_file_details(self, mock_mongodb):
@@ -191,6 +192,10 @@ class TestAPIEndpoints(unittest.TestCase):
         # Mock eDNA matcher
         mock_matcher_instance = Mock()
         mock_edna_matcher.return_value = mock_matcher_instance
+        
+        # Mock matcher attributes to be JSON serializable
+        mock_matcher_instance.k = 8  # Return integer instead of Mock
+        mock_matcher_instance.min_score = 50.0
         
         mock_matches = [
             {
@@ -333,7 +338,8 @@ class TestAPIEndpoints(unittest.TestCase):
         data = json.loads(response.data)
         self.assertTrue(data['success'])
         self.assertIn('data', data)
-        self.assertIn('pagination', data)
+        self.assertIn('metadata', data)
+        self.assertIn('pagination', data['metadata'])
     
     @patch('api.routes.species_identification.MongoDB')
     def test_get_species_details(self, mock_mongodb):
@@ -374,18 +380,48 @@ class TestAPIEndpoints(unittest.TestCase):
         mock_db = Mock()
         mock_mongodb.return_value.__enter__.return_value = mock_db
         
-        # Mock aggregation results
-        mock_db.taxonomy_data.aggregate.return_value = [
-            {
-                '_id': None,
-                'total_species': 100,
-                'kingdoms': ['Animalia', 'Plantae'],
-                'phylums': ['Chordata', 'Tracheophyta'],
-                'classes': ['Actinopterygii'],
-                'families': ['Gadidae']
-            }
-        ]
+        # Mock multiple aggregation results using side_effect
+        def mock_aggregate(pipeline):
+            # First aggregation (taxonomy statistics)
+            if pipeline and pipeline[0].get('$group', {}).get('_id') is None:
+                return [
+                    {
+                        '_id': None,
+                        'total_species': 100,
+                        'kingdoms': ['Animalia', 'Plantae'],
+                        'phylums': ['Chordata', 'Tracheophyta'],
+                        'classes': ['Actinopterygii'],
+                        'families': ['Gadidae']
+                    }
+                ]
+            # Phylum distribution
+            elif pipeline and pipeline[0].get('$group', {}).get('_id') == '$phylum':
+                return [
+                    {'_id': 'Chordata', 'count': 50},
+                    {'_id': 'Tracheophyta', 'count': 30}
+                ]
+            # Source distribution
+            elif pipeline and pipeline[0].get('$group', {}).get('_id') == '$data_source':
+                return [
+                    {'_id': 'NCBI', 'count': 60},
+                    {'_id': 'BOLD', 'count': 40}
+                ]
+            else:
+                return []
         
+        mock_db.taxonomy_data.aggregate.side_effect = mock_aggregate
+        
+        # Mock eDNA sequence aggregation
+        def mock_edna_aggregate(pipeline):
+            if pipeline and pipeline[0].get('$group', {}).get('_id') == '$confidence_level':
+                return [
+                    {'_id': 'high', 'count': 120},
+                    {'_id': 'medium', 'count': 60},
+                    {'_id': 'low', 'count': 20}
+                ]
+            return []
+        
+        mock_db.edna_sequences.aggregate.side_effect = mock_edna_aggregate
         mock_db.edna_sequences.count_documents.return_value = 200
         
         response = self.client.get('/api/species/statistics')
@@ -401,12 +437,16 @@ class TestAPIEndpoints(unittest.TestCase):
 class TestAPIResponseUtil(unittest.TestCase):
     """Test API response utility functions"""
     
+    def setUp(self):
+        self.app = create_app({'TESTING': True})
+    
     def test_success_response(self):
         """Test successful API response creation"""
         data = {'test': 'data'}
         message = 'Test success'
         
-        response = APIResponse.success(data, message)
+        with self.app.app_context():
+            response = APIResponse.success(data, message)
         
         self.assertEqual(response[1], 200)  # Status code
         response_data = json.loads(response[0].data)
@@ -419,7 +459,8 @@ class TestAPIResponseUtil(unittest.TestCase):
         """Test error API response creation"""
         message = 'Test error'
         
-        response = APIResponse.error(message, status_code=400)
+        with self.app.app_context():
+            response = APIResponse.error(message, status_code=400)
         
         self.assertEqual(response[1], 400)  # Status code
         response_data = json.loads(response[0].data)
@@ -434,7 +475,8 @@ class TestAPIResponseUtil(unittest.TestCase):
             'field2': ['Error 3']
         }
         
-        response = APIResponse.validation_error(errors)
+        with self.app.app_context():
+            response = APIResponse.validation_error(errors)
         
         self.assertEqual(response[1], 400)  # Status code
         response_data = json.loads(response[0].data)
@@ -450,15 +492,17 @@ class TestAPIResponseUtil(unittest.TestCase):
         total = 25
         message = 'Test pagination'
         
-        response = APIResponse.paginated(data, page, per_page, total, message)
+        with self.app.app_context():
+            response = APIResponse.paginated(data, page, per_page, total, message)
         
         self.assertEqual(response[1], 200)  # Status code
         response_data = json.loads(response[0].data)
         self.assertTrue(response_data['success'])
         self.assertEqual(response_data['data'], data)
-        self.assertIn('pagination', response_data)
+        self.assertIn('metadata', response_data)
+        self.assertIn('pagination', response_data['metadata'])
         
-        pagination = response_data['pagination']
+        pagination = response_data['metadata']['pagination']
         self.assertEqual(pagination['page'], page)
         self.assertEqual(pagination['per_page'], per_page)
         self.assertEqual(pagination['total'], total)

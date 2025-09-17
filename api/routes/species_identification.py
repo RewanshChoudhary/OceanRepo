@@ -75,56 +75,61 @@ def identify_species():
         except Exception as e:
             logger.error(f"Database connection failed: {e}")
             return APIResponse.server_error("Database connection failed")
+        
+        # Perform matching
+        matches = matcher.match_sequence(sequence, top_n=top_matches)
+        
+        # Enhance results with additional species information
+        enhanced_matches = []
+        for match in matches:
+            species_info = db.taxonomy_data.find_one({
+                'species_id': match['species_id']
+            })
             
-            # Perform matching
-            matches = matcher.match_sequence(sequence, top_n=top_matches)
+            # Ensure species_id is valid (not NaN or None)
+            species_id = match['species_id']
+            if species_id is None or (isinstance(species_id, float) and str(species_id) == 'nan'):
+                species_id = f"unknown_{len(enhanced_matches) + 1}"
             
-            # Enhance results with additional species information
-            enhanced_matches = []
-            for match in matches:
-                species_info = db.taxonomy_data.find_one({
-                    'species_id': match['species_id']
-                })
-                
-                enhanced_match = {
-                    'species_id': match['species_id'],
-                    'scientific_name': match['scientific_name'],
-                    'common_name': match['common_name'],
-                    'matching_score': match['matching_score'],
-                    'confidence_level': match['confidence_level'],
-                    'taxonomy': {
-                        'kingdom': species_info.get('kingdom', 'Unknown') if species_info else 'Unknown',
-                        'phylum': match['phylum'],
-                        'class': species_info.get('class', 'Unknown') if species_info else 'Unknown',
-                        'order': species_info.get('order', 'Unknown') if species_info else 'Unknown',
-                        'family': species_info.get('family', 'Unknown') if species_info else 'Unknown',
-                        'genus': species_info.get('genus', 'Unknown') if species_info else 'Unknown'
-                    },
-                    'sequence_stats': {
-                        'query_length': match['query_length'],
-                        'query_kmers': match['query_kmers']
-                    }
-                }
-                enhanced_matches.append(enhanced_match)
-            
-            result_data = {
-                'matches': enhanced_matches,
-                'query_info': {
-                    'sequence_length': len(sequence),
-                    'processed_sequence': sequence[:50] + '...' if len(sequence) > 50 else sequence,
-                    'k_mer_size': matcher.k,
-                    'min_score_threshold': min_score,
-                    'total_matches_found': len(matches)
+            enhanced_match = {
+                'species_id': str(species_id),
+                'scientific_name': match['scientific_name'],
+                'common_name': match['common_name'],
+                'matching_score': match['matching_score'],
+                'confidence_level': match['confidence_level'],
+                'taxonomy': {
+                    'kingdom': species_info.get('kingdom', 'Unknown') if species_info else 'Unknown',
+                    'phylum': match['phylum'],
+                    'class': species_info.get('class', 'Unknown') if species_info else 'Unknown',
+                    'order': species_info.get('order', 'Unknown') if species_info else 'Unknown',
+                    'family': species_info.get('family', 'Unknown') if species_info else 'Unknown',
+                    'genus': species_info.get('genus', 'Unknown') if species_info else 'Unknown'
                 },
-                'analysis_timestamp': datetime.utcnow().isoformat()
+                'sequence_stats': {
+                    'query_length': match['query_length'],
+                    'query_kmers': match['query_kmers']
+                }
             }
-            
-            if not matches:
-                message = f"No species matches found above {min_score}% similarity threshold"
-                return APIResponse.success(result_data, message)
-            
-            client.close()  # Close the direct connection
-            return APIResponse.success(result_data, f"Found {len(matches)} species matches")
+            enhanced_matches.append(enhanced_match)
+        
+        result_data = {
+            'matches': enhanced_matches,
+            'query_info': {
+                'sequence_length': len(sequence),
+                'processed_sequence': sequence[:50] + '...' if len(sequence) > 50 else sequence,
+                'k_mer_size': matcher.k,
+                'min_score_threshold': min_score,
+                'total_matches_found': len(matches)
+            },
+            'analysis_timestamp': datetime.utcnow().isoformat()
+        }
+        
+        if not matches:
+            message = f"No species matches found above {min_score}% similarity threshold"
+            return APIResponse.success(result_data, message)
+        
+        client.close()  # Close the direct connection
+        return APIResponse.success(result_data, f"Found {len(matches)} species matches")
             
     except Exception as e:
         logger.error(f"Species identification error: {e}")
@@ -182,66 +187,74 @@ def batch_identify_species():
                 'sequences': ['Maximum 50 sequences allowed per batch']
             })
         
-        # Initialize eDNA matcher
-        with MongoDB() as db:
-            if db is None:
-                return APIResponse.server_error("Database connection failed")
+        # Initialize eDNA matcher (direct connection)
+        try:
+            from pymongo import MongoClient
+            client = MongoClient(
+                host=os.getenv('MONGODB_HOST', 'localhost'),
+                port=int(os.getenv('MONGODB_PORT', '27017'))
+            )
+            db = client[os.getenv('MONGODB_DB', 'marine_db')]
             
             matcher = eDNAMatcher(min_score=min_score)
             matcher.build_reference_database(db)
+        except Exception as e:
+            logger.error(f"Database connection failed: {e}")
+            return APIResponse.server_error("Database connection failed")
+        
+        results = []
+        
+        for seq_data in sequences:
+            seq_id = seq_data.get('id', f"seq_{len(results) + 1}")
+            sequence = seq_data.get('sequence', '').strip().upper()
+            metadata = seq_data.get('metadata', {})
             
-            results = []
+            if not sequence:
+                results.append({
+                    'id': seq_id,
+                    'error': 'Empty sequence',
+                    'matches': [],
+                    'metadata': metadata
+                })
+                continue
             
-            for seq_data in sequences:
-                seq_id = seq_data.get('id', f"seq_{len(results) + 1}")
-                sequence = seq_data.get('sequence', '').strip().upper()
-                metadata = seq_data.get('metadata', {})
+            try:
+                matches = matcher.match_sequence(sequence, top_n=top_matches)
                 
-                if not sequence:
-                    results.append({
-                        'id': seq_id,
-                        'error': 'Empty sequence',
-                        'matches': [],
-                        'metadata': metadata
-                    })
-                    continue
+                results.append({
+                    'id': seq_id,
+                    'matches': matches,
+                    'sequence_length': len(sequence),
+                    'total_matches': len(matches),
+                    'metadata': metadata,
+                    'best_match': matches[0] if matches else None
+                })
                 
-                try:
-                    matches = matcher.match_sequence(sequence, top_n=top_matches)
-                    
-                    results.append({
-                        'id': seq_id,
-                        'matches': matches,
-                        'sequence_length': len(sequence),
-                        'total_matches': len(matches),
-                        'metadata': metadata,
-                        'best_match': matches[0] if matches else None
-                    })
-                    
-                except Exception as e:
-                    results.append({
-                        'id': seq_id,
-                        'error': f'Processing failed: {str(e)}',
-                        'matches': [],
-                        'metadata': metadata
-                    })
-            
-            # Calculate summary statistics
-            successful_matches = sum(1 for r in results if 'error' not in r and r.get('total_matches', 0) > 0)
-            total_sequences = len(results)
-            
-            summary = {
-                'total_sequences': total_sequences,
-                'successful_matches': successful_matches,
-                'failed_sequences': total_sequences - successful_matches,
-                'success_rate': (successful_matches / total_sequences * 100) if total_sequences > 0 else 0,
-                'processing_timestamp': datetime.utcnow().isoformat()
-            }
-            
-            return APIResponse.success({
-                'results': results,
-                'summary': summary
-            }, f"Processed {total_sequences} sequences with {successful_matches} successful matches")
+            except Exception as e:
+                results.append({
+                    'id': seq_id,
+                    'error': f'Processing failed: {str(e)}',
+                    'matches': [],
+                    'metadata': metadata
+                })
+        
+        # Calculate summary statistics
+        successful_matches = sum(1 for r in results if 'error' not in r and r.get('total_matches', 0) > 0)
+        total_sequences = len(results)
+        
+        summary = {
+            'total_sequences': total_sequences,
+            'successful_matches': successful_matches,
+            'failed_sequences': total_sequences - successful_matches,
+            'success_rate': (successful_matches / total_sequences * 100) if total_sequences > 0 else 0,
+            'processing_timestamp': datetime.utcnow().isoformat()
+        }
+        
+        client.close()  # Close the direct connection
+        return APIResponse.success({
+            'results': results,
+            'summary': summary
+        }, f"Processed {total_sequences} sequences with {successful_matches} successful matches")
             
     except Exception as e:
         logger.error(f"Batch species identification error: {e}")

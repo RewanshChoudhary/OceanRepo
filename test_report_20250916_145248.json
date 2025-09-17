@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-09-16T14:52:48.643692",
+  "results": {
+    "total_tests": 53,
+    "passed": 31,
+    "failed": 10,
+    "errors": 12,
+    "skipped": 0,
+    "test_suites": {},
+    "start_time": "2025-09-16 14:52:46.527698",
+    "end_time": "2025-09-16 14:52:48.642977",
+    "duration": 2.115279
+  },
+  "success_rate": 58.490566037735846,
+  "recommendations": [
+    "Conduct thorough code review",
+    "Fix fundamental issues in core components",
+    "Consider refactoring problematic modules"
+  ]
+}

@@ -9,16 +9,21 @@ import ApiService from '../../../services/api';
 // Mock data for sampling locations
 const generateSampleLocations = () => {
   const locations = [
-    { name: 'Arabian Sea', lat: 19.0760, lng: 72.8777, type: 'edna', count: 45 },
-    { name: 'Bay of Bengal', lat: 13.0827, lng: 80.2707, type: 'oceanographic', count: 32 },
+    { name: 'Arabian Sea - Mumbai', lat: 19.0760, lng: 72.8777, type: 'edna', count: 45 },
+    { name: 'Bay of Bengal - Chennai', lat: 13.0827, lng: 80.2707, type: 'oceanographic', count: 32 },
     { name: 'Lakshadweep Sea', lat: 10.5667, lng: 72.6417, type: 'species', count: 28 },
     { name: 'Andaman Sea', lat: 11.7401, lng: 92.6586, type: 'edna', count: 38 },
-    { name: 'Gujarat Coast', lat: 22.2587, lng: 71.1924, type: 'oceanographic', count: 55 },
-    { name: 'Tamil Nadu Coast', lat: 11.1271, lng: 78.6569, type: 'species', count: 42 },
-    { name: 'Kerala Coast', lat: 10.8505, lng: 76.2711, type: 'edna', count: 35 },
-    { name: 'Odisha Coast', lat: 20.9517, lng: 85.0985, type: 'oceanographic', count: 25 },
-    { name: 'West Bengal Coast', lat: 22.9868, lng: 87.8550, type: 'species', count: 30 },
-    { name: 'Goa Coast', lat: 15.2993, lng: 74.1240, type: 'edna', count: 40 },
+    { name: 'Gujarat Coast - Kutch', lat: 22.2587, lng: 71.1924, type: 'oceanographic', count: 55 },
+    { name: 'Tamil Nadu Coast - Tuticorin', lat: 8.8000, lng: 78.1500, type: 'species', count: 42 },
+    { name: 'Kerala Coast - Kochi', lat: 9.9312, lng: 76.2673, type: 'edna', count: 35 },
+    { name: 'Odisha Coast - Paradip', lat: 20.2648, lng: 86.6964, type: 'oceanographic', count: 25 },
+    { name: 'West Bengal Coast - Digha', lat: 21.6178, lng: 87.7737, type: 'species', count: 30 },
+    { name: 'Goa Coast - Panaji', lat: 15.2993, lng: 74.1240, type: 'edna', count: 40 },
+    { name: 'Karnataka Coast - Mangalore', lat: 12.9716, lng: 74.7965, type: 'oceanographic', count: 38 },
+    { name: 'Andhra Pradesh - Vishakhapatnam', lat: 17.7231, lng: 83.3245, type: 'species', count: 33 },
+    { name: 'Gujarat - Porbandar', lat: 21.6417, lng: 69.6293, type: 'edna', count: 29 },
+    { name: 'Maharashtra - Ratnagiri', lat: 16.9944, lng: 73.3000, type: 'oceanographic', count: 41 },
+    { name: 'Puducherry Coast', lat: 11.9139, lng: 79.8145, type: 'species', count: 27 },
   ];
   
   return locations.map(loc => ({
@@ -51,7 +56,7 @@ const dataTypeConfig = {
 };
 
 export default function GeographicPanel() {
-  const [selectedLayers, setSelectedLayers] = useState(['oceanographic']);
+  const [selectedLayers, setSelectedLayers] = useState(['oceanographic', 'edna', 'species']);
   const [searchTerm, setSearchTerm] = useState('');
   const [mapView, setMapView] = useState<'normal' | 'satellite' | 'terrain'>('normal');
   const [realLocations, setRealLocations] = useState<any[]>([]);
@@ -63,28 +68,56 @@ export default function GeographicPanel() {
       setLoading(true);
       try {
         const samplingPoints = await ApiService.getSamplingPoints();
-        const oceanographicData = await ApiService.getOceanographicData({ limit: 100 });
+        const oceanographicData = await ApiService.getOceanographicData({ limit: 250 });
         
-        // Transform real data to map format
-        const locations = oceanographicData.map((data, index) => ({
-          id: data.id,
-          name: `Sample Point ${index + 1}`,
-          lat: data.location.latitude,
-          lng: data.location.longitude,
-          type: 'oceanographic',
-          count: 1,
-          temperature: data.parameter_type === 'temperature' ? data.value : null,
-          salinity: data.parameter_type === 'salinity' ? data.value : null,
-          biodiversityIndex: Math.random() * 0.8 + 0.2, // Mock for now
-          parameter_type: data.parameter_type,
-          value: data.value,
-          unit: data.unit,
-          timestamp: data.timestamp
-        }));
+        console.log('📍 Loaded oceanographic data points:', oceanographicData.length);
         
+        // Group data by location to avoid overlapping markers
+        const locationGroups: Record<string, any[]> = {};
+        
+        oceanographicData.forEach((data) => {
+          const key = `${data.location.latitude.toFixed(4)},${data.location.longitude.toFixed(4)}`;
+          if (!locationGroups[key]) {
+            locationGroups[key] = [];
+          }
+          locationGroups[key].push(data);
+        });
+        
+        console.log('📍 Unique location groups:', Object.keys(locationGroups).length);
+        
+        // Transform grouped data to map format
+        const locations = Object.entries(locationGroups).map(([coordKey, dataPoints], index) => {
+          const firstPoint = dataPoints[0];
+          const tempData = dataPoints.find(d => d.parameter_type === 'temperature');
+          const salinityData = dataPoints.find(d => d.parameter_type === 'salinity');
+          const phData = dataPoints.find(d => d.parameter_type === 'ph');
+          const oxygenData = dataPoints.find(d => d.parameter_type === 'dissolved_oxygen');
+          
+          return {
+            id: `location-${index}`,
+            name: `Sampling Site ${index + 1}`,
+            lat: firstPoint.location.latitude,
+            lng: firstPoint.location.longitude,
+            type: 'oceanographic',
+            count: dataPoints.length,
+            temperature: tempData ? tempData.value : null,
+            salinity: salinityData ? salinityData.value : null,
+            ph: phData ? phData.value : null,
+            dissolved_oxygen: oxygenData ? oxygenData.value : null,
+            biodiversityIndex: Math.random() * 0.8 + 0.2, // Mock for now
+            parameter_type: 'multiple',
+            value: dataPoints.length,
+            unit: 'measurements',
+            timestamp: firstPoint.timestamp,
+            allData: dataPoints
+          };
+        });
+        
+        console.log('📍 Final location markers:', locations.length);
         setRealLocations(locations);
       } catch (error) {
         console.error('Error loading real locations:', error);
+        console.log('📍 Falling back to mock data');
         // Fallback to mock data
         setRealLocations(generateSampleLocations());
       } finally {
@@ -208,6 +241,14 @@ export default function GeographicPanel() {
 
       {/* Map */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        {loading && (
+          <div className="absolute top-2 right-2 z-[1000] bg-white rounded-lg shadow-md px-3 py-2 text-sm text-gray-600">
+            <div className="flex items-center space-x-2">
+              <div className="w-4 h-4 border-2 border-gray-300 border-t-ocean-500 rounded-full animate-spin"></div>
+              <span>Loading map data...</span>
+            </div>
+          </div>
+        )}
         <div style={{ height: '500px', width: '100%' }}>
           <MapContainer
             center={[15.0, 77.0]} // Center on India
@@ -232,7 +273,7 @@ export default function GeographicPanel() {
                     icon={createCustomIcon(location.type, config.color)}
                   >
                     <Popup>
-                      <div className="p-2 min-w-48">
+                      <div className="p-3 min-w-64">
                         <h3 className="font-semibold text-gray-900 mb-2">{location.name}</h3>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between">
@@ -240,37 +281,62 @@ export default function GeographicPanel() {
                             <span className="font-medium">{config.label}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Parameter:</span>
-                            <span className="font-medium">{location.parameter_type}</span>
+                            <span className="text-gray-600">Total Measurements:</span>
+                            <span className="font-medium">{location.count}</span>
                           </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Value:</span>
-                            <span className="font-medium">{location.value?.toFixed(2)} {location.unit}</span>
-                          </div>
+                          
+                          {/* Environmental Parameters */}
                           {location.temperature && (
                             <div className="flex justify-between">
                               <span className="text-gray-600">Temperature:</span>
-                              <span className="font-medium">{location.temperature.toFixed(1)}°C</span>
+                              <span className="font-medium">{location.temperature.toFixed(2)}°C</span>
                             </div>
                           )}
                           {location.salinity && (
                             <div className="flex justify-between">
                               <span className="text-gray-600">Salinity:</span>
-                              <span className="font-medium">{location.salinity.toFixed(1)} PSU</span>
+                              <span className="font-medium">{location.salinity.toFixed(2)} PSU</span>
                             </div>
                           )}
+                          {location.ph && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">pH Level:</span>
+                              <span className="font-medium">{location.ph.toFixed(2)}</span>
+                            </div>
+                          )}
+                          {location.dissolved_oxygen && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">Dissolved O₂:</span>
+                              <span className="font-medium">{location.dissolved_oxygen.toFixed(2)} mg/L</span>
+                            </div>
+                          )}
+                          
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Biodiversity:</span>
+                            <span className="text-gray-600">Biodiversity Index:</span>
                             <span className="font-medium">{(location.biodiversityIndex * 100).toFixed(0)}%</span>
                           </div>
                         </div>
-                        <div className="mt-2 pt-2 border-t border-gray-200">
+                        
+                        <div className="mt-3 pt-2 border-t border-gray-200">
                           <div className="text-xs text-gray-500">
-                            Coordinates: {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
+                            📍 {location.lat.toFixed(4)}°, {location.lng.toFixed(4)}°
                           </div>
                           {location.timestamp && (
                             <div className="text-xs text-gray-500">
-                              Date: {new Date(location.timestamp).toLocaleDateString()}
+                              📅 {new Date(location.timestamp).toLocaleDateString()}
+                            </div>
+                          )}
+                          
+                          {/* Parameter breakdown */}
+                          {location.allData && (
+                            <div className="mt-2 pt-1 border-t border-gray-100">
+                              <div className="text-xs text-gray-600 font-medium mb-1">Parameter Breakdown:</div>
+                              <div className="text-xs text-gray-500">
+                                {Array.from(new Set(location.allData.map(d => d.parameter_type))).map(param => {
+                                  const count = location.allData.filter(d => d.parameter_type === param).length;
+                                  return `${param}: ${count}`;
+                                }).join(' • ')}
+                              </div>
                             </div>
                           )}
                         </div>

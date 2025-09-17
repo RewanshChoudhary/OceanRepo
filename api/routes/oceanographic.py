@@ -101,8 +101,6 @@ def get_oceanographic_data():
                 SELECT COUNT(*) 
                 FROM oceanographic_data od
                 LEFT JOIN sampling_points sp ON od.sampling_point_id = sp.id
-                LEFT JOIN sampling_events se ON od.sampling_event_id = se.id
-                LEFT JOIN research_projects rp ON se.project_id = rp.id
                 {where_clause}
             """
             
@@ -115,37 +113,18 @@ def get_oceanographic_data():
             data_query = f"""
                 SELECT 
                     od.id,
-                    od.measurement_id,
                     ST_Y(od.location::geometry) as latitude,
                     ST_X(od.location::geometry) as longitude,
                     od.timestamp,
-                    od.depth_meters,
-                    od.temperature_celsius,
-                    od.salinity_psu,
-                    od.ph_level,
-                    od.dissolved_oxygen_mg_per_l,
-                    od.dissolved_oxygen_percent,
-                    od.turbidity_ntu,
-                    od.chlorophyll_a_mg_m3,
-                    od.pressure_dbar,
-                    od.density_kg_m3,
-                    od.nitrate_umol_l,
-                    od.phosphate_umol_l,
-                    od.current_speed_cm_s,
-                    od.current_direction_degrees,
+                    od.measurement_depth as depth_meters,
+                    od.parameter_type,
+                    od.value,
+                    od.unit,
+                    od.quality_flag,
                     od.instrument_type,
-                    od.data_quality,
-                    od.processing_level,
-                    od.comments,
-                    sp.station_name,
-                    se.event_name,
-                    se.sampling_method,
-                    rp.project_name,
-                    rp.project_code
+                    od.created_at
                 FROM oceanographic_data od
                 LEFT JOIN sampling_points sp ON od.sampling_point_id = sp.id
-                LEFT JOIN sampling_events se ON od.sampling_event_id = se.id
-                LEFT JOIN research_projects rp ON se.project_id = rp.id
                 {where_clause}
                 ORDER BY od.timestamp DESC
                 LIMIT %s OFFSET %s
@@ -159,45 +138,18 @@ def get_oceanographic_data():
             for row in measurements:
                 measurement = {
                     'id': str(row['id']),
-                    'measurement_id': row['measurement_id'],
                     'location': {
                         'latitude': float(row['latitude']) if row['latitude'] else None,
                         'longitude': float(row['longitude']) if row['longitude'] else None
                     },
                     'timestamp': row['timestamp'].isoformat() if row['timestamp'] else None,
                     'depth_meters': float(row['depth_meters']) if row['depth_meters'] else None,
-                    'physical_parameters': {
-                        'temperature_celsius': float(row['temperature_celsius']) if row['temperature_celsius'] else None,
-                        'salinity_psu': float(row['salinity_psu']) if row['salinity_psu'] else None,
-                        'pressure_dbar': float(row['pressure_dbar']) if row['pressure_dbar'] else None,
-                        'density_kg_m3': float(row['density_kg_m3']) if row['density_kg_m3'] else None
-                    },
-                    'chemical_parameters': {
-                        'ph_level': float(row['ph_level']) if row['ph_level'] else None,
-                        'dissolved_oxygen_mg_per_l': float(row['dissolved_oxygen_mg_per_l']) if row['dissolved_oxygen_mg_per_l'] else None,
-                        'dissolved_oxygen_percent': float(row['dissolved_oxygen_percent']) if row['dissolved_oxygen_percent'] else None,
-                        'nitrate_umol_l': float(row['nitrate_umol_l']) if row['nitrate_umol_l'] else None,
-                        'phosphate_umol_l': float(row['phosphate_umol_l']) if row['phosphate_umol_l'] else None
-                    },
-                    'optical_parameters': {
-                        'turbidity_ntu': float(row['turbidity_ntu']) if row['turbidity_ntu'] else None,
-                        'chlorophyll_a_mg_m3': float(row['chlorophyll_a_mg_m3']) if row['chlorophyll_a_mg_m3'] else None
-                    },
-                    'current_data': {
-                        'speed_cm_s': float(row['current_speed_cm_s']) if row['current_speed_cm_s'] else None,
-                        'direction_degrees': int(row['current_direction_degrees']) if row['current_direction_degrees'] else None
-                    },
-                    'metadata': {
-                        'station_name': row['station_name'],
-                        'event_name': row['event_name'],
-                        'sampling_method': row['sampling_method'],
-                        'project_name': row['project_name'],
-                        'project_code': row['project_code'],
-                        'instrument_type': row['instrument_type'],
-                        'data_quality': row['data_quality'],
-                        'processing_level': row['processing_level'],
-                        'comments': row['comments']
-                    }
+                    'parameter_type': row['parameter_type'],
+                    'value': float(row['value']) if row['value'] else None,
+                    'unit': row['unit'],
+                    'quality_flag': row['quality_flag'],
+                    'instrument_type': row['instrument_type'],
+                    'created_at': row['created_at'].isoformat() if row['created_at'] else None
                 }
                 formatted_data.append(measurement)
             

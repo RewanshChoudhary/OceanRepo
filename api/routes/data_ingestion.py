@@ -502,8 +502,8 @@ def list_files():
                     'description': doc.get('description'),
                     'file_size': doc.get('file_size'),
                     'status': doc.get('status'),
-                    'upload_timestamp': doc.get('upload_timestamp').isoformat() if doc.get('upload_timestamp') else None,
-                    'processed_timestamp': doc.get('processed_timestamp').isoformat() if doc.get('processed_timestamp') else None,
+                    'upload_timestamp': doc.get('upload_timestamp').isoformat() if hasattr(doc.get('upload_timestamp'), 'isoformat') else doc.get('upload_timestamp'),
+                    'processed_timestamp': doc.get('processed_timestamp').isoformat() if hasattr(doc.get('processed_timestamp'), 'isoformat') else doc.get('processed_timestamp'),
                     'metadata': doc.get('metadata', {}),
                     'processing_summary': {
                         'success': doc.get('processing_results', {}).get('success', False),
@@ -548,8 +548,8 @@ def get_file_details(file_id):
                 'description': file_record.get('description'),
                 'file_size': file_record.get('file_size'),
                 'status': file_record.get('status'),
-                'upload_timestamp': file_record.get('upload_timestamp').isoformat() if file_record.get('upload_timestamp') else None,
-                'processed_timestamp': file_record.get('processed_timestamp').isoformat() if file_record.get('processed_timestamp') else None,
+                'upload_timestamp': file_record.get('upload_timestamp').isoformat() if hasattr(file_record.get('upload_timestamp'), 'isoformat') else file_record.get('upload_timestamp'),
+                'processed_timestamp': file_record.get('processed_timestamp').isoformat() if hasattr(file_record.get('processed_timestamp'), 'isoformat') else file_record.get('processed_timestamp'),
                 'metadata': file_record.get('metadata', {}),
                 'processing_results': file_record.get('processing_results', {}),
                 'error_log': file_record.get('error_log', []),
@@ -564,6 +564,126 @@ def get_file_details(file_id):
     except Exception as e:
         logger.error(f"File details error: {e}")
         return APIResponse.server_error(f"Failed to retrieve file details: {str(e)}")
+
+@data_ingestion_bp.route('/process-uploads', methods=['POST'])
+def process_uploaded_files():
+    """
+    Process uploaded files using enhanced schema matching
+    
+    POST /api/ingestion/process-uploads
+    
+    Request body:
+    {
+        "status_filter": "uploaded",  // Optional: filter by file status
+        "upload_type_filter": "edna", // Optional: filter by upload type
+        "process_matches": true        // Whether to actually process the files
+    }
+    """
+    try:
+        data = request.get_json() or {}
+        
+        status_filter = data.get('status_filter')
+        upload_type_filter = data.get('upload_type_filter')
+        process_matches = data.get('process_matches', True)
+        
+        # Initialize the enhanced schema matcher
+        from scripts.schema_matcher import SchemaMatchingOrchestrator
+        
+        config = {
+            'similarity_threshold': 0.6,
+            'log_level': 'INFO',
+            'console_logging': True
+        }
+        
+        matcher = SchemaMatchingOrchestrator(config)
+        
+        # Run matching on uploaded files
+        results = matcher.run_matching_on_uploads(
+            status_filter=status_filter,
+            upload_type_filter=upload_type_filter,
+            process_matches=process_matches
+        )
+        
+        if 'error' in results:
+            return APIResponse.server_error(f"Processing failed: {results['error']}")
+        
+        # Summarize results
+        total_files = results['files_analyzed']
+        total_processed = len([r for r in results.get('processing_results', []) if r.get('success')])
+        total_failed = len([r for r in results.get('processing_results', []) if not r.get('success')])
+        
+        response_data = {
+            'summary': {
+                'total_files_analyzed': total_files,
+                'files_processed_successfully': total_processed,
+                'files_failed_processing': total_failed,
+                'schemas_available': results['schemas_found']
+            },
+            'detailed_results': results,
+            'processing_timestamp': results['timestamp']
+        }
+        
+        return APIResponse.success(
+            response_data,
+            f"Processed {total_files} uploaded files. {total_processed} successful, {total_failed} failed."
+        )
+        
+    except Exception as e:
+        logger.error(f"Upload processing error: {e}")
+        return APIResponse.server_error(f"Failed to process uploads: {str(e)}")
+
+@data_ingestion_bp.route('/reprocess/<file_id>', methods=['POST'])
+def reprocess_single_file(file_id):
+    """
+    Reprocess a specific uploaded file
+    
+    POST /api/ingestion/reprocess/{file_id}
+    """
+    try:
+        with MongoDB() as db:
+            if db is None:
+                return APIResponse.server_error("Database connection failed")
+            
+            # Check if file exists
+            file_record = db.uploaded_files.find_one({'file_id': file_id})
+            if not file_record:
+                return APIResponse.not_found("File")
+            
+            # Initialize schema matcher
+            from scripts.schema_matcher import SchemaMatchingOrchestrator
+            
+            config = {
+                'similarity_threshold': 0.6,
+                'log_level': 'INFO',
+                'console_logging': True
+            }
+            
+            matcher = SchemaMatchingOrchestrator(config)
+            
+            # Process just this one file
+            results = matcher.run_matching_on_uploads(
+                status_filter=None,
+                upload_type_filter=None,
+                process_matches=True
+            )
+            
+            # Filter results for this specific file
+            if file_id in results.get('matches', {}):
+                file_result = next((r for r in results.get('processing_results', []) if r.get('file_id') == file_id), None)
+                
+                if file_result:
+                    return APIResponse.success(
+                        file_result,
+                        f"File {file_id} reprocessed successfully"
+                    )
+                else:
+                    return APIResponse.error("File processing failed", 500)
+            else:
+                return APIResponse.error("File not found in processing results", 404)
+                
+    except Exception as e:
+        logger.error(f"File reprocessing error: {e}")
+        return APIResponse.server_error(f"Failed to reprocess file: {str(e)}")
 
 @data_ingestion_bp.route('/schemas', methods=['GET'])
 def get_supported_schemas():

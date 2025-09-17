@@ -6,13 +6,16 @@ import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from pymongo import MongoClient
-from flask import g
 import logging
 from dotenv import load_dotenv
+from threading import local
 
 load_dotenv()
 
 logger = logging.getLogger(__name__)
+
+# Thread-local storage for database connections
+_local = local()
 
 class DatabaseConfig:
     """Database configuration settings"""
@@ -34,12 +37,12 @@ class DatabaseConfig:
 def get_postgres_connection():
     """Get PostgreSQL connection with connection pooling"""
     try:
-        if 'postgres_conn' not in g or g.postgres_conn.closed:
-            g.postgres_conn = psycopg2.connect(
+        if not hasattr(_local, 'postgres_conn') or _local.postgres_conn.closed:
+            _local.postgres_conn = psycopg2.connect(
                 **DatabaseConfig.POSTGRES_CONFIG,
                 cursor_factory=RealDictCursor
             )
-        return g.postgres_conn
+        return _local.postgres_conn
     except Exception as e:
         logger.error(f"PostgreSQL connection failed: {e}")
         return None
@@ -47,14 +50,14 @@ def get_postgres_connection():
 def get_mongodb_connection():
     """Get MongoDB connection"""
     try:
-        if 'mongo_client' not in g:
-            g.mongo_client = MongoClient(
+        if not hasattr(_local, 'mongo_client'):
+            _local.mongo_client = MongoClient(
                 host=DatabaseConfig.MONGODB_CONFIG['host'],
                 port=DatabaseConfig.MONGODB_CONFIG['port'],
                 serverSelectionTimeoutMS=5000
             )
-            g.mongo_db = g.mongo_client[DatabaseConfig.MONGODB_CONFIG['database']]
-        return g.mongo_client, g.mongo_db
+            _local.mongo_db = _local.mongo_client[DatabaseConfig.MONGODB_CONFIG['database']]
+        return _local.mongo_client, _local.mongo_db
     except Exception as e:
         logger.error(f"MongoDB connection error: {e}")
         return None, None
@@ -120,10 +123,13 @@ def test_connections():
 
 def close_db_connections():
     """Close database connections"""
-    if 'postgres_conn' in g:
-        g.postgres_conn.close()
-    if 'mongo_client' in g:
-        g.mongo_client.close()
+    if hasattr(_local, 'postgres_conn'):
+        _local.postgres_conn.close()
+        delattr(_local, 'postgres_conn')
+    if hasattr(_local, 'mongo_client'):
+        _local.mongo_client.close()
+        delattr(_local, 'mongo_client')
+        delattr(_local, 'mongo_db')
 
 # Remove duplicate function - using the one above
 

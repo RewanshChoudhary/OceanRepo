@@ -286,25 +286,35 @@ class SchemaMatcher:
         all_schema_fields = required_fields + optional_fields
         field_patterns = schema_config.get('field_patterns', [])
         
+        # Track which file fields have been matched to avoid double scoring
+        matched_file_fields = set()
+        
         # Score based on exact field matches
         for schema_field in all_schema_fields:
             weight = 2.0 if schema_field in required_fields else 1.0
             max_possible_score += weight
             
-            if schema_field.lower() in [f.lower() for f in file_fields]:
-                total_score += weight
+            # Find exact matches
+            for file_field in file_fields:
+                if file_field.lower() == schema_field.lower():
+                    total_score += weight
+                    matched_file_fields.add(file_field)
+                    break
         
-        # Score based on pattern matches
+        # Score based on pattern matches for unmatched fields only
         for file_field in file_fields:
-            best_pattern_score = 0.0
-            
-            for pattern in field_patterns:
-                pattern_score = self._match_field_pattern(file_field.lower(), pattern)
-                if pattern_score > best_pattern_score:
-                    best_pattern_score = pattern_score
-            
-            total_score += best_pattern_score * 0.5  # Pattern matches get half weight
-            max_possible_score += 0.5
+            if file_field not in matched_file_fields:
+                best_pattern_score = 0.0
+                
+                for pattern in field_patterns:
+                    pattern_score = self._match_field_pattern(file_field.lower(), pattern)
+                    if pattern_score > best_pattern_score:
+                        best_pattern_score = pattern_score
+                
+                # Give stronger weight to good pattern matches
+                weight = 1.5 if best_pattern_score >= 0.8 else 0.5
+                total_score += best_pattern_score * weight
+                max_possible_score += weight
         
         # Calculate percentage confidence
         if max_possible_score == 0:
@@ -317,15 +327,37 @@ class SchemaMatcher:
         """Match field name against regex pattern"""
         try:
             import re
-            if re.search(pattern.lower(), field_name.lower()):
-                # More specific matches get higher scores
-                if field_name.lower() == pattern.lower():
-                    return 1.0
-                elif len(pattern) > 5:  # Longer patterns are more specific
-                    return 0.8
-                else:
-                    return 0.6
-            return 0.0
+            
+            # Handle OR patterns (e.g., 'lat|latitude')
+            if '|' in pattern:
+                pattern_variants = [p.strip() for p in pattern.split('|')]
+                best_score = 0.0
+                
+                for variant in pattern_variants:
+                    # Check for exact match first
+                    if field_name.lower() == variant.lower():
+                        return 1.0
+                    # Check if field contains the variant
+                    elif variant.lower() in field_name.lower():
+                        score = 0.8 if len(variant) > 5 else 0.6
+                        best_score = max(best_score, score)
+                    # Check regex match
+                    elif re.search(variant.lower(), field_name.lower()):
+                        score = 0.7 if len(variant) > 3 else 0.5
+                        best_score = max(best_score, score)
+                
+                return best_score
+            else:
+                # Single pattern matching
+                if re.search(pattern.lower(), field_name.lower()):
+                    # More specific matches get higher scores
+                    if field_name.lower() == pattern.lower():
+                        return 1.0
+                    elif len(pattern) > 5:  # Longer patterns are more specific
+                        return 0.8
+                    else:
+                        return 0.6
+                return 0.0
         except Exception:
             return 0.0
     
@@ -676,7 +708,7 @@ class SchemaMatching:
         matches.sort(key=lambda x: x['match_score'], reverse=True)
         return matches
 
-class SchemaMatcher:
+class SchemaMatchingOrchestrator:
     """Main class that orchestrates the schema matching process"""
     
     def __init__(self, config: Dict = None):
@@ -709,37 +741,63 @@ class SchemaMatcher:
             ]
         )
     
-    def scan_directory(self, directory_path: str) -> Dict[str, Dict]:
-        """Scan directory for JSON and CSV files"""
-        directory = Path(directory_path)
-        if not directory.exists():
-            raise FileNotFoundError(f"Directory not found: {directory_path}")
-        
+    def scan_uploaded_files(self, db, status_filter: str = None, upload_type_filter: str = None) -> Dict[str, Dict]:
+        """Scan uploaded files from database instead of directory"""
         files_structure = {}
-        supported_files = []
         
-        # Find all supported files
-        for ext in self.file_analyzer.supported_extensions:
-            supported_files.extend(directory.rglob(f"*{ext}"))
-        
-        self.logger.info(f"Found {len(supported_files)} files to analyze in {directory_path}")
-        
-        for file_path in supported_files:
-            self.logger.info(f"Analyzing: {file_path.name}")
+        try:
+            # Build query filter
+            query_filter = {}
+            if status_filter:
+                query_filter['status'] = status_filter
+            if upload_type_filter:
+                query_filter['metadata.upload_type'] = upload_type_filter
             
-            if file_path.suffix == '.json':
-                structure = self.file_analyzer.analyze_json_file(file_path)
-            elif file_path.suffix == '.csv':
-                structure = self.file_analyzer.analyze_csv_file(file_path)
-            else:
-                continue
+            # Get uploaded files from database
+            uploaded_files = list(db.uploaded_files.find(query_filter))
             
-            if 'error' not in structure:
-                files_structure[str(file_path)] = structure
-            else:
-                self.logger.warning(f"Error analyzing {file_path.name}: {structure['error']}")
-        
-        return files_structure
+            self.logger.info(f"Found {len(uploaded_files)} uploaded files to analyze")
+            
+            for file_doc in uploaded_files:
+                file_path = file_doc.get('file_path')
+                file_id = file_doc.get('file_id')
+                original_filename = file_doc.get('original_filename', 'unknown')
+                upload_type = file_doc.get('metadata', {}).get('upload_type', 'unknown')
+                
+                if not file_path or not os.path.exists(file_path):
+                    self.logger.warning(f"File not found: {original_filename} (ID: {file_id})")
+                    continue
+                
+                self.logger.info(f"Analyzing uploaded file: {original_filename} (Type: {upload_type})")
+                
+                # Determine file type and analyze
+                if file_path.lower().endswith('.json'):
+                    structure = self.file_analyzer.analyze_json_file(Path(file_path))
+                elif file_path.lower().endswith(('.csv', '.tsv')):
+                    structure = self.file_analyzer.analyze_csv_file(Path(file_path))
+                else:
+                    self.logger.warning(f"Unsupported file type: {original_filename}")
+                    continue
+                
+                if 'error' not in structure:
+                    # Add upload metadata to structure
+                    structure['upload_info'] = {
+                        'file_id': file_id,
+                        'original_filename': original_filename,
+                        'upload_type': upload_type,
+                        'upload_timestamp': file_doc.get('upload_timestamp'),
+                        'file_size': file_doc.get('file_size'),
+                        'description': file_doc.get('description', '')
+                    }
+                    files_structure[file_id] = structure
+                else:
+                    self.logger.warning(f"Error analyzing {original_filename}: {structure['error']}")
+            
+            return files_structure
+            
+        except Exception as e:
+            self.logger.error(f"Failed to scan uploaded files: {e}")
+            return {}
     
     def extract_database_schemas(self) -> Dict[str, Dict]:
         """Extract schemas from both PostgreSQL and MongoDB"""
@@ -761,52 +819,198 @@ class SchemaMatcher:
         
         return all_schemas
     
-    def run_matching(self, directory_path: str) -> Dict:
-        """Run the complete matching process"""
-        self.logger.info("Starting Marine Data Schema Matcher")
+    def run_matching_on_uploads(self, status_filter: str = None, upload_type_filter: str = None, process_matches: bool = True) -> Dict:
+        """Run the complete matching process on uploaded files"""
+        self.logger.info("Starting Marine Data Schema Matcher for uploaded files")
         
-        # Scan files
-        files_structure = self.scan_directory(directory_path)
+        # Connect to database first
+        db_connected = False
+        db = None
         
-        # Extract database schemas
-        schemas = self.extract_database_schemas()
-        
-        if not schemas:
-            self.logger.error("No database schemas found. Check your database connections.")
-            return {}
-        
-        # Perform matching
-        self.logger.info(f"Matching {len(files_structure)} files against {len(schemas)} schemas")
-        
-        results = {
-            'timestamp': datetime.now().isoformat(),
-            'directory_scanned': directory_path,
-            'files_analyzed': len(files_structure),
-            'schemas_found': len(schemas),
-            'matches': {}
+        try:
+            from api.utils.database import MongoDB
+            with MongoDB() as database:
+                if database is None:
+                    raise Exception("Database connection failed")
+                db = database
+                db_connected = True
+                
+                # Scan uploaded files
+                files_structure = self.scan_uploaded_files(db, status_filter, upload_type_filter)
+                
+                if not files_structure:
+                    self.logger.warning("No uploaded files found to process")
+                    return {
+                        'timestamp': datetime.now().isoformat(),
+                        'files_analyzed': 0,
+                        'schemas_found': 0,
+                        'matches': {},
+                        'processing_results': []
+                    }
+                
+                # Extract database schemas
+                schemas = self.extract_database_schemas()
+                
+                if not schemas:
+                    self.logger.error("No database schemas found. Check your database connections.")
+                    return {}
+                
+                # Perform matching
+                self.logger.info(f"Matching {len(files_structure)} files against {len(schemas)} schemas")
+                
+                results = {
+                    'timestamp': datetime.now().isoformat(),
+                    'files_analyzed': len(files_structure),
+                    'schemas_found': len(schemas),
+                    'matches': {},
+                    'processing_results': []
+                }
+                
+                for file_id, file_structure in files_structure.items():
+                    upload_info = file_structure.get('upload_info', {})
+                    file_name = upload_info.get('original_filename', file_id)
+                    upload_type = upload_info.get('upload_type', 'unknown')
+                    
+                    self.logger.info(f"Matching: {file_name} (Upload type: {upload_type})")
+                    matches = self.matcher.match_file_to_schema(file_structure, schemas)
+                    
+                    # Filter matches based on upload type if specified
+                    if upload_type != 'unknown':
+                        filtered_matches = self.filter_matches_by_upload_type(matches, upload_type)
+                        if filtered_matches:
+                            matches = filtered_matches
+                    
+                    results['matches'][file_id] = {
+                        'file_info': file_structure,
+                        'potential_matches': matches[:3],  # Top 3 matches
+                        'upload_info': upload_info
+                    }
+                    
+                    if matches:
+                        best_match = matches[0]
+                        self.logger.info(f"Best match for {file_name}: {best_match['schema_name']} "
+                                       f"(score: {best_match['match_score']:.2f})")
+                        
+                        # Process the match if requested
+                        if process_matches:
+                            processing_result = self.process_matched_file(file_id, file_structure, best_match, db)
+                            results['processing_results'].append(processing_result)
+                    else:
+                        self.logger.warning(f"No suitable matches found for {file_name}")
+                
+                return results
+                
+        except Exception as e:
+            self.logger.error(f"Error during matching process: {e}")
+            return {
+                'timestamp': datetime.now().isoformat(),
+                'error': str(e),
+                'files_analyzed': 0,
+                'schemas_found': 0,
+                'matches': {},
+                'processing_results': []
+            }
+        finally:
+            # Clean up database connections
+            if hasattr(self, 'db_extractor'):
+                self.db_extractor.close_connections()
+    
+    def filter_matches_by_upload_type(self, matches: List[Dict], upload_type: str) -> List[Dict]:
+        """Filter schema matches based on frontend upload type"""
+        type_mapping = {
+            'edna': ['edna_sequences'],
+            'oceanographic': ['oceanographic_data', 'sampling_points'],
+            'species': ['species_data', 'taxonomy_data'],
+            'taxonomy': ['taxonomy_data', 'species_data']
         }
         
-        for file_path, file_structure in files_structure.items():
-            file_name = Path(file_path).name
-            self.logger.info(f"Matching: {file_name}")
-            matches = self.matcher.match_file_to_schema(file_structure, schemas)
+        target_schemas = type_mapping.get(upload_type, [])
+        if not target_schemas:
+            return matches
+        
+        filtered = [match for match in matches if match.get('schema_name') in target_schemas]
+        return filtered if filtered else matches  # Return original if no matches
+    
+    def process_matched_file(self, file_id: str, file_structure: Dict, best_match: Dict, db) -> Dict:
+        """Process a file that has been matched to a schema"""
+        try:
+            upload_info = file_structure.get('upload_info', {})
+            file_path = upload_info.get('file_path')
+            schema_name = best_match.get('schema_name')
             
-            results['matches'][file_path] = {
-                'file_info': file_structure,
-                'potential_matches': matches[:3]  # Top 3 matches
+            if not file_path:
+                # Get file path from database
+                file_doc = db.uploaded_files.find_one({'file_id': file_id})
+                if not file_doc:
+                    raise Exception(f"File document not found: {file_id}")
+                file_path = file_doc.get('file_path')
+            
+            if not file_path or not os.path.exists(file_path):
+                raise Exception(f"File not found: {file_path}")
+            
+            # Import ingestion functions from data_ingestion module
+            from api.routes.data_ingestion import ingest_to_postgresql, ingest_to_mongodb
+            
+            # Determine target database and process
+            if schema_name in ['oceanographic_data', 'sampling_points']:
+                result = ingest_to_postgresql(file_path, schema_name, db)
+            elif schema_name in ['species_data', 'edna_sequences', 'taxonomy_data']:
+                result = ingest_to_mongodb(file_path, schema_name, db)
+            else:
+                raise Exception(f"Unknown schema type: {schema_name}")
+            
+            # Update file status in database
+            update_data = {
+                'status': 'processed' if result.get('success') else 'processing_failed',
+                'processing_results': {
+                    'schema_detected': schema_name,
+                    'confidence': best_match.get('match_score', 0),
+                    'ingestion_results': [result],
+                    'processed_timestamp': datetime.now().isoformat()
+                },
+                'processed_timestamp': datetime.now()
             }
             
-            if matches:
-                best_match = matches[0]
-                self.logger.info(f"Best match for {file_name}: {best_match['schema_name']} "
-                               f"(score: {best_match['match_score']:.2f})")
-            else:
-                self.logger.warning(f"No suitable matches found for {file_name}")
-        
-        # Clean up
-        self.db_extractor.close_connections()
-        
-        return results
+            if not result.get('success'):
+                update_data['error_log'] = [result.get('error', 'Processing failed')]
+            
+            db.uploaded_files.update_one(
+                {'file_id': file_id},
+                {'$set': update_data}
+            )
+            
+            return {
+                'file_id': file_id,
+                'file_name': upload_info.get('original_filename', file_id),
+                'schema_matched': schema_name,
+                'confidence': best_match.get('match_score', 0),
+                'processing_result': result,
+                'success': result.get('success', False)
+            }
+            
+        except Exception as e:
+            error_msg = f"Failed to process {file_id}: {str(e)}"
+            self.logger.error(error_msg)
+            
+            # Update file status with error
+            try:
+                db.uploaded_files.update_one(
+                    {'file_id': file_id},
+                    {'$set': {
+                        'status': 'processing_failed',
+                        'error_log': [error_msg],
+                        'processed_timestamp': datetime.now()
+                    }}
+                )
+            except:
+                pass  # Don't fail if we can't update the error status
+            
+            return {
+                'file_id': file_id,
+                'file_name': upload_info.get('original_filename', file_id),
+                'success': False,
+                'error': error_msg
+            }
     
     def generate_report(self, results: Dict):
         """Generate reports in various formats"""
@@ -910,7 +1114,7 @@ def main():
         'console_logging': not args.no_console_logging
     }
     
-    matcher = SchemaMatcher(config)
+    matcher = SchemaMatchingOrchestrator(config)
     
     try:
         results = matcher.run_matching(args.directory)
